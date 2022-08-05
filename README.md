@@ -1,6 +1,3 @@
-# ColoRiverHydroEx
-Source code for the Colorado River Basin Hydrology Explorer (ColoRiverHydroEx) Shiny App.
-
 ColoRiverHydroEx: Colorado River Basin Hydrology Explorer
 =============================
 | ColoRiverHydroEx Links & Badges              |                                                                             |
