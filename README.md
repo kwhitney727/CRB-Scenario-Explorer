@@ -4,7 +4,7 @@ ColoRiverHydroEx: Colorado River Basin Hydrology Explorer
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | (upcoming Paper)             | upcoming paper DOI |
 | ColoRiverHydroEx Documentation      | upcoming documentation |
-| License                | [![GitHub license](https://img.shields.io/badge/license-GPLv3-blue.svg)] |
+| License                | [![GitHub license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/kwhitney727/ColoRiverHydroEx/master/LICENSE) |
 | Current Release DOI    | upcoming DOI release |
 | ColoRiverHydroEx Shiny App        | upcoming link to Shiny App |
 
