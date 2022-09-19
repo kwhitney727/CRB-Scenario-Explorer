@@ -1,24 +1,23 @@
-ColoRiverHydroEx: Colorado River Basin Hydrology Explorer
+VIC-Explorer: Variable Infiltration Capacity model Explorer
 =============================
-| ColoRiverHydroEx Links & Badges              |                                                                             |
+| VIC-Explorer Links & Badges              |                                                                             |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | (upcoming Paper)             | upcoming paper DOI |
-| ColoRiverHydroEx Documentation      | upcoming documentation |
-| License                | [![GitHub license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/kwhitney727/ColoRiverHydroEx/master/LICENSE) |
+| VIC-Explorer Documentation      | upcoming documentation |
+| License                | [![GitHub license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/kwhitney727/VIC-Explorer/master/LICENSE) |
 | Current Release DOI    | upcoming DOI release |
-| ColoRiverHydroEx Shiny App        | upcoming link to Shiny App |
+| VIC-Explorer Shiny App        | upcoming link to Shiny App |
 
-The Colorado River Basin Hydrology Explorer is an interactive website made using 
+The Variable Infiltration Capacity model Explorer (VIC-Explorer) is an interactive website made using 
 the [Shiny App](https://shiny.rstudio.com/) package in R. 
-The application includes various abilities to explore and visualize Colorado River Basin hydrology 
-under future projected conditions. Forthcoming companion publications will detail 
-the methods behind the data, and include a case study using the App.
+The application includes various abilities to explore and visualize VIC (Variable Infiltration Capacity) model results. 
+Forthcoming companion publications will detail the methods behind the data, and include a case study in the Colorado River Basin using the App.
 
 More info will soon be made available here. 
 
-Citing ColoRiverHydroEx
+Citing VIC-Explorer
 =============
-If you use ColoRiverHydroEx in your work and would like to cite it you can use our (upcoming) paper as:
+If you use VIC-Explorer in your work and would like to cite it you can use our (upcoming) paper as:
 
  > (upcoming citation)
 
