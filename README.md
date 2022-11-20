@@ -8,9 +8,9 @@ VIC-Explorer: Variable Infiltration Capacity model Explorer
 | Current Release DOI    | upcoming DOI release |
 | VIC-Explorer Shiny App        | [https://kmwhitne.shinyapps.io/VIC-Explorer](https://kmwhitne.shinyapps.io/VIC-Explorer) |
 
-The Variable Infiltration Capacity model Explorer (VIC-Explorer) is an interactive website made using the Shiny R web application framework, version 1.7.2, for the R programming language.<sup>1,2</sup>
+The Variable Infiltration Capacity model Explorer (VIC-Explorer) is an interactive web-based tool made using the Shiny R web application framework, version 1.7.2, for the R programming language.<sup>1,2</sup>
 The application includes various abilities to explore and visualize results generated with the VIC (Variable Infiltration Capacity) model.<sup>3</sup>
-Forthcoming companion publications will detail the methods behind the data, and include a case study in the Colorado River Basin using the App.
+Forthcoming companion publications will detail the methods behind the data, and include a case study in the Colorado River Basin using the VIC-Explorer tool.
 
 More Information will be provided here soon.
 
