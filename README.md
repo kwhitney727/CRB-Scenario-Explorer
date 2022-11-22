@@ -1,22 +1,22 @@
-VIC-Explorer: Variable Infiltration Capacity model Explorer
+CRB-Scenario-Explorer: Colorado River Basin Scenario Explorer
 =============================
-| VIC-Explorer Links & Badges              |                                                                             |
+| CRB-Scenario-Explorer Links & Badges              |                                                                             |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | (upcoming Paper)             | upcoming paper DOI |
-| VIC-Explorer Documentation      | upcoming documentation |
-| License                | [![GitHub license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/kwhitney727/VIC-Explorer/master/LICENSE) |
+| CRB-Scenario-Explorer Documentation      | upcoming documentation |
+| License                | [![GitHub license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/kwhitney727/CRB-Scenario-Explorer/master/LICENSE) |
 | Current Release DOI    | upcoming DOI release |
 | VIC-Explorer Shiny App        | [https://kmwhitne.shinyapps.io/VIC-Explorer](https://kmwhitne.shinyapps.io/VIC-Explorer) |
 
-The Variable Infiltration Capacity model Explorer (VIC-Explorer) is an interactive web-based tool made using the Shiny R web application framework, version 1.7.2, for the R programming language.<sup>1,2</sup>
-The application includes various abilities to explore and visualize results generated with the VIC (Variable Infiltration Capacity) model.<sup>3</sup>
-Forthcoming companion publications will detail the methods behind the data, and include a case study in the Colorado River Basin using the VIC-Explorer tool.
+The Colorado River Basin Scenario Explorer (CRB-Scenario-Explorer) is an interactive web-based tool made using the Shiny R web application framework, version 1.7.2, for the R programming language.<sup>1,2</sup>
+The application includes various abilities to explore and visualize hydrologic projections over the Colorado River Basin (CRB) results generated with the Variable Infiltration Capacity (VIC) model.<sup>3</sup>
+Forthcoming companion publications will detail the methods behind the data, and include a case study in the Colorado River Basin using the CRB-Scenario-Explorer tool.
 
 More Information will be provided here soon.
 
-Citing VIC-Explorer
+Citing CRB-Scenario-Explorer
 =============
-If you use VIC-Explorer in your work and would like to cite it you can use our (upcoming) paper as:
+If you use CRB-Scenario-Explorer in your work and would like to cite it you can use our (upcoming) paper as:
 
  > (upcoming citation)
 
