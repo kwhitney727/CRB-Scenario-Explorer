@@ -2,7 +2,7 @@
 ##
 ## Script name: helper_functions.R
 ##
-## Purpose of the script: Creates helper functions for the VIC-Explorer website.
+## Purpose of the script: Creates helper functions for the CRB-Scenario-Explorer website.
 ##
 ## @author: Kristen Whitney
 ##
@@ -1097,4 +1097,40 @@ plot_spatial_map <-function(plot_input_list){
   }
   
   return(fig)
+}
+
+# p partitioning line plot function ----
+plot_p_partitioning_plot <-function(){
+  # generate plot data point values for ramp from x of -0.5 to 0.5
+  x_values <- c(-0.05,0.05)
+  y_values <- c(100,0)
+  x2<-seq(x_values[1],x_values[2],length.out=9)
+  y2<-seq(y_values[1],y_values[2],length.out=9)
+  
+  # concatenate plot data point values to data points with x values below -0.5 and above 0.5
+  x3<-c(seq(-1*100,-0.5,length.out=3*100),x2,seq(0.5,1*100,length.out=3*100))
+  y3 <- c(seq(100,100,length.out=3*100),y2,seq(0,0,length.out=3*100))
+  
+  data_p_partition <-data.frame(x3,y3)
+  fig <- plot_ly(data_p_partition,x =~x3, y=~y3,mode='lines',
+                                 hovertemplate= '<extra></extra><i>T</i> = %{x:.2f}<sup>o</sup>C,<br>%{y:.0f}% Snow') %>%
+    layout(plot_bgcolor='#e5ecf6',
+           xaxis = list(
+             title = "Air Temperature (<i>T</i>; [<sup>o</sup>C])",
+             zerolinecolor = '#ffff',
+             zerolinewidth = 2,
+             gridcolor = 'ffff',
+             range=c(-1,1)
+           ),
+           yaxis = list(
+             title = "Percent of precipitation as snowfall (%)",
+             zerolinecolor = '#ffff',
+             zerolinewidth = 2,
+             gridcolor = 'ffff'
+           ),
+           title = "Rain-Snow Partitioning"
+    )
+  
+  return(fig)
+  
 }

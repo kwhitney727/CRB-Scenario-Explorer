@@ -23,7 +23,7 @@ vic_ex_images <- list(
   "vic_data_pipeline" = list(
     image_src = "vic_data_pipeline.jpg",
     image_width = "auto",
-    image_height = "450",
+    image_height = "500",
     image_alt_text = "Scenario Overview"
   ),
   "scenario_overview" = list(
@@ -40,106 +40,147 @@ vic_ex_images <- list(
     
   ),
   "climate_projections" = list(
-    image_src = "under_construction.jpg",  # To include table 1 from JWRPM
+    image_src = "timeseries.yearly_anomalies.climate_bookends.jpg",  # To include table 1 from JWRPM
     image_width = "auto",
-    image_height = "450",
+    image_height = "400",
     image_alt_text = "Under Construction"
   ),
-  "land_cover" = list(
-    image_src = "under_construction.jpg",  # to include the fore-sce maps
+  "climate_projections_table" = list(
+    image_src = "vic_climate_proj_table.jpg",  # To include table 1 from JWRPM
     image_width = "auto",
-    image_height = "450",
-    image_alt_text = "Under Construction"
-  ),
-  "forest_disturbances" = list(
-    image_src = "under_construction.jpg", # to include Fig 4 and/or Tables 2,3 from JWRPM
-    image_width = "auto",
-    image_height = "450",
-    image_alt_text = "Under Construction"
-  ),
-  "model_parameters" = list(
-    image_src = "under_construction.jpg",  # to include Fig. 4 and/or Tables 2,3 from JWRPM
-    image_width = "auto",
-    image_height = "500",
-    image_alt_text = "Under Construction"
-  ),
-  "met_model" = list(
-    image_src = "under_construction.jpg",  # to include the ptri/puni/pmix diagram
-    image_width = "auto",
-    image_height = "500",
+    image_height = "650",
     image_alt_text = "Under Construction"
   ),
   "hydro_model" = list(
-    image_src = "vic_schematic.jpg",  # to include a VIC model schematic
+    image_src = "vic_schematic.jpg",
     image_width = "auto",
     image_height = "550",
     image_alt_text = "Under Construction"
   ),
-  "flow_rout" = list(
-    image_src = "under_construction.jpg",  # to include the channel network
+  "watersheds_channels" = list(
+    image_src = "watersheds_channels.jpg",
     image_width = "auto",
     image_height = "450",
     image_alt_text = "Under Construction"
   ),
-  "elevation_subbasins" = list(
-    image_src = "elevation_subbasins.jpg",  # to include the channel network
+  "rvic_channel_routing" = list(
+    image_src = "rvic_schematic_for_web.png",
     image_width = "auto",
-    image_height = "450",
+    image_height = "500",
+    image_alt_text = "Under Construction"
+  ),
+  "elevation_landcover_maps" = list(
+    image_src = "elevation_foresce_landcover.jpg",
+    image_width = "auto",
+    image_height = "650",
+    image_alt_text = "elevation and subbasins"
+  ),
+  "elevation_landcover_table" = list(
+    image_src = "elevation_landcover_table.jpg",
+    image_width = "auto",
+    image_height = "500",
+    image_alt_text = "elevation and subbasins"
+  ),
+  "parameters_table_figure" = list(
+    image_src = "parameters_table_figure.jpg",
+    image_width = "auto",
+    image_height = "600",
     image_alt_text = "elevation and subbasins"
   ),
   "stakeholders" = list(
     image_src = "stakeholder_engagement.jpg",
     image_width = "auto",
-    image_height = "450",
+    image_height = "325",
     image_alt_text = "stakeholder engagment"
   ),
-  "hydro_model_prec" = list(
-    image_src = "under_construction.jpg",  # to include a VIC model schematic
-    image_width = "auto",
-    image_height = "450",
-    image_alt_text = "Under Construction"
-  ),
   "hydro_model_snow" = list(
-    image_src = "under_construction.jpg",  # to include a VIC model schematic
+    image_src = "vic_snow_model_schematic.png", 
     image_width = "auto",
     image_height = "450",
-    image_alt_text = "Under Construction"
+    image_alt_text = "VIC snow model schematic"
   ),
   "hydro_model_evap" = list(
-    image_src = "under_construction.jpg",  # to include a VIC model schematic
+    image_src = "vic_evapotranspiration.jpg",  
     image_width = "auto",
-    image_height = "450",
-    image_alt_text = "Under Construction"
+    image_height = "240",
+    image_alt_text = "VIC model evapotranspiration components"
   ),
   "hydro_model_infil_runoff" = list(
-    image_src = "under_construction.jpg",  # to include a VIC model schematic
+    image_src = "vic_infiltration_runoff.jpg",
     image_width = "auto",
-    image_height = "450",
+    image_height = "500",
     image_alt_text = "Under Construction"
   ),
   "hydro_model_baseflow" = list(
-    image_src = "under_construction.jpg",  # to include a VIC model schematic
+    image_src = "vic_baseflow.jpg",  # to include a VIC model schematic
+    image_width = "auto",
+    image_height = "475",
+    image_alt_text = "Under Construction"
+  ),
+  "under_construction" = list(
+    image_src = "under_construction.jpg",  
     image_width = "auto",
     image_height = "450",
     image_alt_text = "Under Construction"
   ),
-  "under_construction" = list(
-    image_src = "under_construction.jpg",  # To include table 1 from JWRPM
+  "elevation_bands" = list(
+    image_src = "vic_elevation_bands_with_varnames.jpg",  
     image_width = "auto",
-    image_height = "450",
-    image_alt_text = "Under Construction"
+    image_height = "650",
+    image_alt_text = "VIC elevation bands"
+  ),
+  "elevation_bands_aggregation" = list(
+    image_src = "vic_elevation_bands_aggregation.jpg",  
+    image_width = "auto",
+    image_height = "360",
+    image_alt_text = "VIC elevation band aggregations."
+  ),
+  "snowpack_evolution" = list(
+    image_src = "vic_snowpack_evolution.jpg",  
+    image_width = "auto",
+    image_height = "230",
+    image_alt_text = "VIC snowpack albedo and size evolution."
+  ),
+  "snowpack_assumptions" = list(
+    image_src = "vic_snowpack_assumptions.jpg",  
+    image_width = "auto",
+    image_height = "575",
+    image_alt_text = "VIC snowpack process details and assumptions"
+  ),
+  "clumped_canopy" = list(
+    image_src = "vic_clumped_canopy.jpg",
+    image_width = "auto",
+    image_height = "320",
+    image_alt_text = "VIC model clumped canopy scheme for ET estimations"
+  ),
+  "penman_monteith" = list(
+    image_src = "vic_penman_monteith.jpg",
+    image_width = "auto",
+    image_height = "420",
+    image_alt_text = "Penman Monteith approach for VIC ET estimation"
+  ),
+  "beta_parameter" = list(
+    image_src = "vic_beta_parameter.jpg",
+    image_width = "auto",
+    image_height = "600",
+    image_alt_text = "VIC curve shape parameter (beta)"
   )
+  
 )
 
 
 ## --------------------------References dictionary---------------------------------## ----
 references_and_code <- list(
+  
+  "metsim_code" = "MetSim (Bennett <em>et al.</em>, 2020; <a href=\"https://github.com/UW-Hydro/MetSim\">github.com/UW-Hydro/MetSim</a>).",
+  "rvic_code" = "R-VIC (Lohmann <em>et al.</em>, 1996, 1998; <a href=\"https://github.com/UW-Hydro/RVIC\">github.com/UW-Hydro/RVIC</a>).",
   "vic_code" = "VIC version 5.0 (Hamman <em>et al.</em>,2018; <a href=\"https://github.com/UW-Hydro/VIC\">github.com/UW-Hydro/VIC</a>).",
   "hamman_el_al_2018" = "Hamman <em>et al.</em>, 2018. <em>Geosci. Model Dev.</em> 11: 3481–3496. <a href=\"https://doi.org/10.5194/gmd-11-3481-2018\">doi.org/10.5194/gmd-11-3481-2018</a>.",
-  "liang_el_al_2018" = "Liang <em>et al.</em>, 1994. <em>Geophys. Res.</em> 199 (D7): 14415. <a href=\"https://doi.org/10.1029/94JD00483\">doi.org/10.1029/94JD00483</a>.",
+  "liang_el_al_1994" = "Liang <em>et al.</em>, 1994. <em>Geophys. Res.</em> 199 (D7): 14415. <a href=\"https://doi.org/10.1029/94JD00483\">doi.org/10.1029/94JD00483</a>.",
   "andreadis_et_al_2009" = "Andreadis <em>et al.</em>, 2009. <em>Water Resour. Res.</em> 45: W05429. <a href=\"https://doi.org/10.1029/2008WR007042\">doi.org/10.1029/2008WR007042</a>.",           # upgraded snow overstory scheme w/ fully-balance energy terms and snow interception
   "cherkauer_lettenmaier_2003" = "Cherkauer and Lettenmaier, 2003. <em>J. Geophys. Res.</em> 108 (D22): 8858. <a href=\"https://doi.org/10.1029/2003JD003575\">doi.org/10.1029/2003JD003575</a>.",    # snow overstory/frozen soil
-  "bohn_vivoni_2016" = "Bohn and Vivoni, 2016. <em>Water Resour. Res.</em> 52 (1): 358–384. <a href=\"https://doi.org/10.1002/2015WR017934\">doi.org/10.1002/2015WR017934</a>.",                  # clumped canopy scheme
+  "cherkauer_et_al_2003" = "Cherkauer <em>et al.</em>, 2003. <em>Glob. Planet. Change.</em> 38 (1–2): 151–159. <a href=\"https://doi.org/10.1016/S0921-8181(03)00025-0\">doi.org/10.1016/S0921-8181(03)00025-0</a>.",
+  "bohn_vivoni_2016" = "Bohn and Vivoni, 2016. <em>Water Resour. Res.</em> 52 (1): 358–384. <a href=\"https://doi.org/10.1016/S0921-8181(03)00025-0\">doi.org/10.1016/S0921-8181(03)00025-0</a>.",                  # clumped canopy scheme
   "bureau_2012" = "Bureau of Reclamation, 2012. <em>Colorado River Basin water supply and demand study.</em> Washington, D.C. <a href=\"https://www.usbr.gov/watersmart/bsp/docs/finalreport/ColoradoRiver/CRBS_Executive_Summary_FINAL.pdf\">https://www.usbr.gov/watersmart/bsp/docs/finalreport/ColoradoRiver/CRBS_Executive_Summary_FINAL.pdf</a>.",
   "christensen_lettenmaier_2007" = "Christensen and Lettenmaier, 2007. <em>HESS</em> 11: 1417–1434. <a href=\"https://doi.org/10.5194/hess-11-1417-2007\">doi.org/10.5194/hess-11-1417-2007</a>.",
   "vano_lettenmaier_2012" = "Vano and Lettenmaier, 2012. <em>J. Hydrometeorol.</em> 13: 932–949. <a href=\"https://doi.org/10.1175/JHM-D-11-069.1\">doi.org/10.1175/JHM-D-11-069.1</a>.",
@@ -151,18 +192,21 @@ references_and_code <- list(
   "bennett_et_al_2020" ="Bennett <em>et al.</em>, 2020. <em>J. Open Source Softw.</em> 5 (47): 2042. <a href=\"https://doi.org/10.21105/joss.02042\">doi.org/10.21105/joss.02042</a>.",
   "bohn_et_al_2013" ="Bohn <em>et al.</em>, 2013. <em>Agric. For. Meteorol.</em> 176: 38–49. <a href=\"https://doi.org/10.1016/j.agrformet.2013.03.003\">doi.org/10.1016/j.agrformet.2013.03.003</a>.",
   "bohn_et_al_2019" ="Bohn <em>et al.</em>, 2019. <em>J. Hydrometeorol.</em> 20 (2): 298–317. <a href=\"https://doi.org/10.1175/JHM-D-18-0203.1\">doi.org/10.1175/JHM-D-18-0203.1</a>.",
-  "bohn_et_al_2018a" ="[dataset] Bohn <em>et al.</em>, 2018a. <em>Zenodo.</em> <a href=\"https://doi.org/10.5281/zenodo.1402223 \">doi.org/10.5281/zenodo.1402223</a>.",
+  "bohn_et_al_2018a" ="[dataset] Bohn <em>et al.</em>, 2018a. <em>Zenodo.</em> <a href=\"https://doi.org/10.5281/zenodo.1402223 \">doi.org/10.5281/zenodo.1402223</a>. (Accessed September 14, 2018)",
   "bohn_vivoni_2019" ="Bohn and Vivoni, 2019. <em>Sci. Data.</em> 6: 144. <a href=\"https://doi.org/10.1038/s41597-019-0150-2\">doi.org/10.1038/s41597-019-0150-2</a>.",
   "xiao_et_al_2018" ="Xiao <em>et al.</em>, 2018. <em>Water Resour. Res.</em> 54: 6739–6756. <a href=\"https://doi.org/10.1029/2018WR023153\">doi.org/10.1029/2018WR023153</a>.",
-  "xiao_et_al_2022" ="Xiao <em>et al.</em>, 2022. <em>HESS.</em> [preprint] in review. <a href=\"https://doi.org/10.5194/hess-2022-204\">doi.org/10.5194/hess-2022-204</a>.",
-  "livneh_et_al_2015a" ="Livneh <em>et al.</em>, 2015a. <em>Sci. Data.</em> 2: 150042. <a href=\"https://doi.org/10.1038/sdata.2015.42\">doi.org/10.1038/sdata.2015.42</a>.",
-  "livneh_et_al_2015b" ="Livneh <em>et al.</em>, 2015b. <em>J. Hydrol.</em> 523: 196–210. <a href=\"https://doi.org/10.1016/j.jhydrol.2015.01.039\">doi.org/10.1016/j.jhydrol.2015.01.039</a>.",
+  "xiao_et_al_2022" ="Xiao <em>et al.</em>, 2022. <em>HESS.</em> 26 (21): 5627–5646. <a href=\"https://doi.org/10.5194/hess-26-5627-2022\">doi.org/10.5194/hess-26-5627-2022</a>.",
+  "livneh_et_al_2015b" ="Livneh <em>et al.</em>, 2015b. <em>Sci. Data.</em> 2: 150042. <a href=\"https://doi.org/10.1038/sdata.2015.42\">doi.org/10.1038/sdata.2015.42</a>.",
+  "livneh_et_al_2015a" ="Livneh <em>et al.</em>, 2015a. <em>J. Hydrol.</em> 523: 196–210. <a href=\"https://doi.org/10.1016/j.jhydrol.2015.01.039\">doi.org/10.1016/j.jhydrol.2015.01.039</a>.",
   "nijssen_et_al_2001" ="Nijssen <em>et al.</em>, 2001. <em>J. Clim.</em> 14: 1790–1808. <a href=\"https://doi.org/10.1175/1520-0442(2001)014<1790:GREOSM>2.0.CO;2\">doi.org/10.1175/1520-0442(2001)014<1790:GREOSM>2.0.CO;2</a>.",
   "lohmann_et_al_1996" ="Lohmann <em>et al.</em>, 1996. <em>Tellus.</em> 48 (5): 708–721. <a href=\"https://doi.org/10.3402/tellusa.v48i5.12200\">doi.org/10.3402/tellusa.v48i5.12200</a>.",
   "lohmann_et_al_1998" ="Lohmann <em>et al.</em>, 1998. <em>Hydrol. Sci. J.</em> 43: 131–141. <a href=\"https://doi.org/10.1080/02626669809492107\">doi.org/10.1080/02626669809492107</a>.",
   "bennett_et_al_2018a" ="Bennett <em>et al.</em>, 2018a. <em>HESS.</em> 22: 709–725. <a href=\"https://doi.org/10.5194/hess-22-709-2018\">doi.org/10.5194/hess-22-709-2018</a>.",
   "bennett_et_al_2018b" ="Bennett <em>et al.</em>, 2018b. <em>Water Resour. Res.</em> 54: 132–149. <a href=\"https://doi.org/10.1002/2017WR020471\">doi.org/10.1002/2017WR020471</a>.",
-  "usgs_et_al_2016a" ="[dataset] U.S. Geological Survey (USGS), 2016a. <em>USGS National Elevation Dataset (NED) 1 arcsecond downloadable data collection from The National Map 3D Elevation Program (3DEP) - National Geospatial Data Asset (NGDA) National Elevation Data Set (NED).</em> <a href=\"https://www.usgs.gov/core-science-systems/ngp/tnm-delivery\">https://www.usgs.gov/core-science-systems/ngp/tnm-delivery</a>.",
+  "usgs_et_al_2016a" ="[dataset] U.S. Geological Survey (USGS), 2016a. <em>USGS National Elevation Dataset (NED) 1 arcsecond downloadable data collection from The National Map 3D Elevation Program (3DEP) - National Geospatial Data Asset (NGDA) National Elevation Data Set (NED).</em> <a href=\"https://www.usgs.gov/core-science-systems/ngp/tnm-delivery\">https://www.usgs.gov/core-science-systems/ngp/tnm-delivery</a>. (Accessed January 1, 2018)",
+  "usgs_et_al_2016b" ="[dataset] U.S. Geological Survey (USGS), 2016b. <em>National Water Information System data available to the World Wide Web (USGS Water Data for the Nation)</em> <a href=\"http://waterdata.usgs.gov/nwis/\">http://waterdata.usgs.gov/nwis/</a>. (Accessed January 1, 2018)",
+  "usgs_et_al_2019" ="[dataset] U.S. Geological Survey (USGS), 2019. <em>USGS Watershed Boundary Dataset (WBD) for 2-digit Hydrologic Unit.</em> <a href=\"ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Hydrography/WBD/HU2/Shape/\">ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Hydrography/WBD/HU2/Shape/</a>. (Accessed October 15, 2018)",
+  
   "wang_vivoni_2022" ="Wang and Vivoni, 2022. <em>J. Am. Water Resour. Assoc.</em> 58 (3): 370–387. <a href=\"https://doi.org/10.1111/1752-1688.13005\">doi.org/10.1111/1752-1688.13005</a>.",
   "bohn_et_al_2018b" = "Bohn <em>et al.</em>, 2018b. <em>Environ. Res. Lett.</em> 13: 114005. <a href=\"https://doi.org/10.1088/1748-9326/aae53e\">doi.org/10.1088/1748-9326/aae53e</a>.",
   "williams_et_al_2022" = "Williams <em>et al.</em>, 2022. <em>PNAS</em> 119 (10): e2114069119. <a href=\"https://doi.org/10.1073/pnas.2114069119\">doi.org/10.1073/pnas.2114069119</a>.",
@@ -178,13 +222,40 @@ references_and_code <- list(
   
   "deangelo_et_al_2017" = "DeAngelo <em>et al.</em>, 2017. In <em>Climate Science Special Report: Fourth National Climate Assessment, Volume I</em> [Wuebbles, D. J. <em>et al.</em> (eds.)], 393–410. Washington, DC, USA: U.S. Global Change Research Program. <a href=\"https://doi.org/10.7930/J0M32SZG\">doi.org/10.7930/J0M32SZG</a>.",
   "bennett_et_al_2009" = "Bennett <em>et al.</em>, 2009. <em>Ecol.</em> 12 (12): 1394–1404. <a href=\"https://doi.org/10.1111/j.1461-0248.2009.01387.x\">doi.org/10.1111/j.1461-0248.2009.01387.x</a>.",
-  "goeking_tarboton_2020" = "Goeking and Tarboton, 2020. <em>J. For.</em> 118 (2): 172–192. <a href=\"https://doi.org/10.1093/jofore/fvz069\">doi.org/10.1093/jofore/fvz069</a>."
+  "goeking_tarboton_2020" = "Goeking and Tarboton, 2020. <em>J. For.</em> 118 (2): 172–192. <a href=\"https://doi.org/10.1093/jofore/fvz069\">doi.org/10.1093/jofore/fvz069</a>.",
+  "marks_et_al_2013" = "Marks <em>et al.</em>, 2013. <em>Adv. Water Resour.</em> 55: 98–110. <a href=\"http://dx.doi.org/10.1016/j.advwatres.2012.11.012\">dx.doi.org/10.1016/j.advwatres.2012.11.012</a>.",
+  "jennings_et_al_2018" = "Jennings <em>et al.</em>, 2018. <em>Nat. Commun.</em> 9: 1148. <a href=\"https://doi.org/10.1038/s41467-018-03629-7\">doi.org/10.1038/s41467-018-03629-7</a>.",
+  "harpold_et_al_2017" = "Harpold <em>et al.</em>, 2017. <em>Hydrol. Earth Syst. Sci.</em> 21: 1–22. <a href=\"https://doi.org/10.5194/hess-21-1-2017\">doi.org/10.5194/hess-21-1-2017</a>.",
+  "wang_et_al_2019" = "Wang <em>et al.</em>, 2019. <em>Washington: American Geophysical Union</em> 46 (23): 13825–13835. <a href=\"https://doi.org/10.1029/2019GL085722\">doi.org/10.1029/2019GL085722</a>.",
+  "franchini_pacciani_1991" = "Franchini and Pacciani, 1991. <em>J. Hydrol.</em> 122 (1–4): 161–219. <a href=\"https://doi.org/10.1016/0022-1694(91)90178-K\">doi.org/10.1016/0022-1694(91)90178-K</a>.",
+  "gautam_mascaro_2018" = "Gautam and Mascaro, 2018. <em>Int. J. of Climatol.</em> 38: 3861–3877. [first page–last page]. <a href=\"https://doi.org/10.1002/joc.5540\">doi.org/10.1002/joc.5540</a>.",
+  "inegi_2013" = "INEGI, 2013. “Conjunto de datos vectoriales de Uso del Suelo y Vegetación, Escala 1: 250 000, Serie V (Capa Unión).” . <a href=\"https://www.inegi.org.mx/app/biblioteca/ficha.html?upc=702825007024\">inegi.org.mx/app/biblioteca/ficha.html?upc=702825007024</a>.",
+  "lukas_payton_2020" = "Lukas and Payton, 2020. <em>Colorado River Basin Climate and Hydrology: State of the Science</em> U. Colorado: Western Water Assessment. <a href=\"https://doi.org/10.25810/3hcv-w477\">doi.org/10.25810/3hcv-w477</a>.",
+  "sohl_et_al_2016" = "Sohl <em>et al.</em>, 2016. <em>Ecol. Modell.</em> 337: 181–297. <a href=\"https://doi.org/10.1016/j.ecolmodel.2016.07.016\">doi.org/10.1016/j.ecolmodel.2016.07.016</a>.",
+  "haffey_et_al_2018" = "Haffey <em>et al.</em>, 2018. <em>Fire Ecol.</em> 14 (1): 143–163. <a href=\"https://doi.org/10.4996/fireecology.140114316\">doi.org/10.4996/fireecology.140114316</a>.",
+  "hurteau_et_al_2014" = "Hurteau <em>et al.</em>, 2014. <em>For. Ecol. Manag.</em> 327: 280–289. <a href=\"http://dx.doi.org/10.1016/j.foreco.2013.08.007\">doi.org/10.1016/j.foreco.2013.08.007</a>.",
+  "litschert_et_al_2012" = "Litschert <em>et al.</em>, 2012. <em>For. Ecol. Manag.</em> 269: 124–133. <a href=\"https://doi.org/10.1016/j.foreco.2011.12.024\">doi.org/10.1016/j.foreco.2011.12.024</a>.",
+  "mcdowell_et_al_2016" = "McDowell <em>et al.</em>, 2016. <em>Nat. Clim. Change.</em> 6: 295–300. <a href=\"https://doi.org/10.1038/nclimate2873\">doi.org/10.1038/nclimate2873</a>.",
+  "seidl_et_al_2011" = "Seidl <em>et al.</em>, 2011. <em>Ecol. Modell.</em> 222 (4): 903–924. <a href=\"https://doi.org/10.1016/j.ecolmodel.2010.09.040\">doi.org/10.1016/j.ecolmodel.2010.09.040</a>.",
+  "rosenberg_et_al_2013" = "Rosenberg <em>et al.</em>, 2013. <em>Hydrol. Earth Syst. Sci.</em> 17: 1475–1491. <a href=\"https://doi.org/10.5194/hess-17-1475-2013\">doi.org/10.5194/hess-17-1475-2013</a>.",
+  "white_et_al_2010" = "White <em>et al.</em>, 2010. <em>Sci. Public Pol.</em> 37 (3): 219–232. <a href=\"https://doi.org/10.3152/030234210X497726\">doi.org/10.3152/030234210X497726</a>.",
+  "dunn_laing_2017" = "Dunn and Laing, 2017. <em>Environ. Sci. & Pol.</em> 76: 146–152. <a href=\"https://doi.org/10.1016/j.envsci.2017.07.005\">doi.org/10.1016/j.envsci.2017.07.005</a>.",
+  "reed_et_al_2016" = "Reed <em>et al.</em>, 2016. <em>Theor. Appl. Climatol.</em> 131: 153–165. <a href=\"https://doi.org/10.1007/s00704-016-1965-9\">doi.org/10.1007/s00704-016-1965-9</a>.",
+  "dore_et_al_2008" = "Dore <em>et al.</em>, 2008. <em>Glob. Chang. Biol.</em> 14 (8): 1801–1820. <a href=\"https://doi.org/10.1111/j.1365-2486.2008.01613.x\">doi.org/10.1111/j.1365-2486.2008.01613.x</a>.",
+  "zhang_et_al_2017" = "Zhang <em>et al.</em>, 2017. <em>J. Hydrol.</em> 546: 44–59. <a href=\"https://doi.org/10.1016/j.jhydrol.2016.12.040\">doi.org/10.1016/j.jhydrol.2016.12.040</a>.",
+  "li_et_al_2017" = "Li <em>et al.</em>, 2017. <em>Ecohydrol.</em> 10: e1838. <a href=\"https://doi.org/10.1002/eco.1838\">doi.org/10.1002/eco.1838</a>.",
+  "wang_et_al_2020" = "Wang <em>et al.</em>, 2020. <em>J. Hydrol.</em> 590: 125387. <a href=\"https://doi.org/10.1016/j.jhydrol.2020.125387\">doi.org/10.1016/j.jhydrol.2020.125387</a>.",
+  "boon_2012" = "Boon, 2012. <em>Ecohydrol.</em> 5: 279–285. <a href=\"https://doi.org/10.1002/eco.212\">doi.org/10.1002/eco.212</a>.",
+  "broxton_et_al_2014" = "Broxton <em>et al.</em>, 2014. <em>Ecohydrol.</em> 8 (6): 1073–1094. <a href=\"https://doi.org/10.1002/eco.1565\">doi.org/10.1002/eco.1565</a>.",
+  "harpold_et_al_2015" = "Harpold <em>et al.</em>, 2015. <em>Hydrol.</em> 29 (12): 2782–2798. <a href=\"https://doi.org/10.1002/hyp.10400\">doi.org/10.1002/hyp.10400</a>.",
+  "overpeck_udall_2020" = "Overpeck and Udall, 2020. <em>J. Hydrometeorol.</em> 15: 2558–2585. <a href=\"https://doi.org/10.1175/JHM-D-14-0082.1\">doi.org/10.1175/JHM-D-14-0082.1</a>.",
+  "seager_et_al_2007" = "Seager <em>et al.</em>, 2007. <em>Science.</em> 316 (5828): 1181–1184. <a href=\"https://doi.org/10.1126/science.1139601\">doi.org/10.1126/science.1139601</a>."
+  
   
   # general structure:
-  # "[in text citation]" = "[first author] <em>et al.</em>, [year]. <em>[journal abbreviation]</em> [vol] ([issue]): [pages–pages]. <a href=\"[doi full url]\">[doi short url]</a>."
+  # "[in text citation]" = "[first author] <em>et al.</em>, [year]. <em>[journal abbreviation]</em> [vol] ([issue]): [first page–last page]. <a href=\"[doi full url]\">[doi short url]</a>."
   
-  
-)
+  )
 
 ## --------------------------Watersheds dictionary---------------------------------## ----
 # Notes: Could add total basin area list item (requires pre-computed values or use of basin masks and domain file)
