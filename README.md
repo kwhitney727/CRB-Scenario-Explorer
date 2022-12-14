@@ -6,7 +6,7 @@ CRB-Scenario-Explorer: Colorado River Basin Scenario Explorer
 | CRB-Scenario-Explorer Documentation      | upcoming documentation |
 | License                | [![GitHub license](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://raw.githubusercontent.com/kwhitney727/CRB-Scenario-Explorer/master/LICENSE) |
 | Current Release DOI    | upcoming DOI release |
-| VIC-Explorer Shiny App        | [https://kmwhitne.shinyapps.io/VIC-Explorer](https://kmwhitne.shinyapps.io/VIC-Explorer) |
+| CRB-Scenario-Explorer Shiny App        | [https://kmwhitne.shinyapps.io/crb-scenario-explorer/](https://kmwhitne.shinyapps.io/crb-scenario-explorer/) |
 
 The Colorado River Basin Scenario Explorer (CRB-Scenario-Explorer) is an interactive web-based tool made using the Shiny R web application framework, version 1.7.2, for the R programming language.<sup>1,2</sup>
 The application includes various abilities to explore and visualize hydrologic projections over the Colorado River Basin (CRB) results generated with the Variable Infiltration Capacity (VIC) model.<sup>3</sup>
