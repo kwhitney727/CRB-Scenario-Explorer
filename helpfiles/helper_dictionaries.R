@@ -2,18 +2,16 @@
 ##
 ## Script name: helper_dictionaries.R
 ##
-## Purpose of the script: Creates main dictionary/list objects for the VIC-Explorer website.
+## Purpose of the script: Creates main dictionary/list objects for CRB-Scenario-Explorer.
 ##
 ## @author: Kristen Whitney
 ##
 ## Created on Mon Oct 3, 2022
 ##
-## Copyright (c) Arizona State University, 2022
-## Email: kmwhitne@asu.edu
 ##
 ## --------------------------------------------------------------------------------------##
 ##    Notes:
-##    More information on this to come. 
+##    
 ##
 ## --------------------------------------------------------------------------------------##
 
@@ -38,6 +36,12 @@ vic_ex_images <- list(
     image_height = "450",
     image_alt_text = "Model Framework"
     
+  ),
+  "framework_overview_table" = list(
+    image_src = "framework_overview_table.jpg",
+    image_width = "auto",
+    image_height = "700",
+    image_alt_text = "Model Framework"
   ),
   "climate_projections" = list(
     image_src = "timeseries.yearly_anomalies.climate_bookends.jpg",  # To include table 1 from JWRPM
@@ -175,8 +179,10 @@ references_and_code <- list(
   "metsim_code" = "MetSim (Bennett <em>et al.</em>, 2020; <a href=\"https://github.com/UW-Hydro/MetSim\">github.com/UW-Hydro/MetSim</a>).",
   "rvic_code" = "R-VIC (Lohmann <em>et al.</em>, 1996, 1998; <a href=\"https://github.com/UW-Hydro/RVIC\">github.com/UW-Hydro/RVIC</a>).",
   "vic_code" = "VIC version 5.0 (Hamman <em>et al.</em>,2018; <a href=\"https://github.com/UW-Hydro/VIC\">github.com/UW-Hydro/VIC</a>).",
-  "hamman_el_al_2018" = "Hamman <em>et al.</em>, 2018. <em>Geosci. Model Dev.</em> 11: 3481–3496. <a href=\"https://doi.org/10.5194/gmd-11-3481-2018\">doi.org/10.5194/gmd-11-3481-2018</a>.",
-  "liang_el_al_1994" = "Liang <em>et al.</em>, 1994. <em>Geophys. Res.</em> 199 (D7): 14415. <a href=\"https://doi.org/10.1029/94JD00483\">doi.org/10.1029/94JD00483</a>.",
+  "hamman_et_al_2018" = "Hamman <em>et al.</em>, 2018. <em>Geosci. Model Dev.</em> 11: 3481–3496. <a href=\"https://doi.org/10.5194/gmd-11-3481-2018\">doi.org/10.5194/gmd-11-3481-2018</a>.",
+  "liang_et_al_1994" = "Liang <em>et al.</em>, 1994. <em>Geophys. Res.</em> 199 (D7): 14415. <a href=\"https://doi.org/10.1029/94JD00483\">doi.org/10.1029/94JD00483</a>.",
+  "liang_et_al_1999" = "Liang <em>et al.</em>, 1999. <em>J. Geophys. Res.</em> 104 (D8): 9581–9600. <a href=\"https://doi.org/10.1029/98JD02307\">doi.org/10.1029/98JD02307</a>.",
+  
   "andreadis_et_al_2009" = "Andreadis <em>et al.</em>, 2009. <em>Water Resour. Res.</em> 45: W05429. <a href=\"https://doi.org/10.1029/2008WR007042\">doi.org/10.1029/2008WR007042</a>.",           # upgraded snow overstory scheme w/ fully-balance energy terms and snow interception
   "cherkauer_lettenmaier_2003" = "Cherkauer and Lettenmaier, 2003. <em>J. Geophys. Res.</em> 108 (D22): 8858. <a href=\"https://doi.org/10.1029/2003JD003575\">doi.org/10.1029/2003JD003575</a>.",    # snow overstory/frozen soil
   "cherkauer_et_al_2003" = "Cherkauer <em>et al.</em>, 2003. <em>Glob. Planet. Change.</em> 38 (1–2): 151–159. <a href=\"https://doi.org/10.1016/S0921-8181(03)00025-0\">doi.org/10.1016/S0921-8181(03)00025-0</a>.",
@@ -249,7 +255,8 @@ references_and_code <- list(
   "broxton_et_al_2014" = "Broxton <em>et al.</em>, 2014. <em>Ecohydrol.</em> 8 (6): 1073–1094. <a href=\"https://doi.org/10.1002/eco.1565\">doi.org/10.1002/eco.1565</a>.",
   "harpold_et_al_2015" = "Harpold <em>et al.</em>, 2015. <em>Hydrol.</em> 29 (12): 2782–2798. <a href=\"https://doi.org/10.1002/hyp.10400\">doi.org/10.1002/hyp.10400</a>.",
   "overpeck_udall_2020" = "Overpeck and Udall, 2020. <em>J. Hydrometeorol.</em> 15: 2558–2585. <a href=\"https://doi.org/10.1175/JHM-D-14-0082.1\">doi.org/10.1175/JHM-D-14-0082.1</a>.",
-  "seager_et_al_2007" = "Seager <em>et al.</em>, 2007. <em>Science.</em> 316 (5828): 1181–1184. <a href=\"https://doi.org/10.1126/science.1139601\">doi.org/10.1126/science.1139601</a>."
+  "seager_et_al_2007" = "Seager <em>et al.</em>, 2007. <em>Science.</em> 316 (5828): 1181–1184. <a href=\"https://doi.org/10.1126/science.1139601\">doi.org/10.1126/science.1139601</a>.",
+  "wigmosta_et_al_1994" = "Wigmosta <em>et al.</em>, 1994. <em>Water Resour. Res.</em> 30: 1665–1679. <a href=\"https://doi.org/10.1029/94WR00436\">doi.org/10.1029/94WR00436</a>."
   
   
   # general structure:
@@ -258,13 +265,10 @@ references_and_code <- list(
   )
 
 ## --------------------------Watersheds dictionary---------------------------------## ----
-# Notes: Could add total basin area list item (requires pre-computed values or use of basin masks and domain file)
 subbasin_full_names <- c("Green","Upper Colorado","San Juan","Glen Canyon","Little Colorado","Grand Canyon","Lower Colorado","Gila")
 subbasin_stored_names <- stri_replace_all_regex(subbasin_full_names,pattern=c("Colorado"),replacement = c("Colo"))
 subbasin_stored_names <- str_replace_all(subbasin_stored_names,fixed(" "), "")
 subbasin_full_names <- paste(subbasin_full_names, " subbasin", sep="")
-# basin_stored_names <- append(subbasin_stored_names,c("CRB","MiddleColo","UpperBasin","LowerBasin"))
-# basin_full_names<- append(subbasin_full_names,c("Basin-wide","Middle Colorado (Grand Canyon + Little Colorado subbasins)","Upper Basin","Lower Basin"))
 basin_stored_names <- append(subbasin_stored_names,c("CRB","UpperBasin","LowerBasin"))
 basin_full_names<- append(subbasin_full_names,c("Basin-wide","Upper Basin","Lower Basin"))
 
@@ -627,7 +631,7 @@ Runoff_baseflow_efficiency <- list(stored_name="R_BF_efficiency",
                                    description="Total runoff and baseflow efficiency (total runoff + baseflow per precipitation)",
                                    plot_var_str = 'RBFE',
                                    units="-",
-                                   subplot_label = "Efficiency",
+                                   subplot_label = "Supply efficiency",
                                    flux_type = FALSE,
                                    changes_as_a_percentage = TRUE,
                                    mann_color="YlGnBu",
@@ -704,7 +708,7 @@ var_info_dict <- list("Canopy water"=Canopy_moisture_interception,
                       "Sublimation"=Sublimation,
                       "Runoff efficiency (R/P)"=Runoff_efficiency,
                       "Baseflow efficiency (BF/P)"=Baseflow_efficiency,
-                      "Efficiency ([runoff + baseflow]/precipitation)"=Runoff_baseflow_efficiency,
+                      "Supply efficiency ([runoff + baseflow]/precipitation)"=Runoff_baseflow_efficiency,
                       "Rainfall fraction (rain/P)"=Rainfall_fraction,
                       "Evaporative index (ET/P)"=Evaporative_index,
                       "Dryness index (PET/P)"=Dryness_index
@@ -720,6 +724,7 @@ var_visible_wat_ann <- c(
   "Total precipitation",
   "Rainfall",
   "Snowfall",
+  "Soil moisture",
   "Air temperature",
   # "Canopy water",
   # "Canopy snow",
@@ -728,7 +733,9 @@ var_visible_wat_ann <- c(
   "Snowmelt",
   "Plant transpiration",
   "Soil evaporation",
-  "Efficiency ([runoff + baseflow]/precipitation)"
+  "Runoff efficiency (R/P)",
+  "Baseflow efficiency (BF/P)",
+  "Supply efficiency ([runoff + baseflow]/precipitation)"
   )
 
 var_visible_wat_mon <- c(
@@ -740,6 +747,7 @@ var_visible_wat_mon <- c(
   "Total precipitation",
   "Rainfall",
   "Snowfall",
+  "Soil moisture",
   "Air temperature",
   # "Canopy water",
   # "Canopy snow",
@@ -748,7 +756,7 @@ var_visible_wat_mon <- c(
   "Snowmelt",
   "Plant transpiration",
   "Soil evaporation"
-  # "Efficiency ([runoff + baseflow]/precipitation)"
+  # "Supply efficiency ([runoff + baseflow]/precipitation)"
 )
 
 var_visible_spatial <- c(
@@ -767,7 +775,9 @@ var_visible_spatial <- c(
   "Snowmelt",
   "Plant transpiration",
   "Soil evaporation",
-  "Efficiency ([runoff + baseflow]/precipitation)"
+  "Runoff efficiency (R/P)",
+  "Baseflow efficiency (BF/P)",
+  "Supply efficiency ([runoff + baseflow]/precipitation)"
 )
 ## --------------------------Dictionaries of plot settings for each analysis type---------------------------------## ----
 
@@ -783,12 +793,12 @@ plot_specs_wat_ann_barchart<-list(
   ),
   "scenario_legendgroup_names"=list(
     "Baseline_hist_0perc" = 'Baseline',
-    "Period_3_hist_0perc"= 'Far-Future Climate-only',
-    "Period_3_a2_0perc" = 'Far-Future Climate + LULC (0% Disturbance)',
-    "Period_3_a2_10perc" = 'Far-Future Climate + LULC (10% Disturbance)',
-    "Period_3_a2_30perc" = 'Far-Future Climate + LULC (30% Disturbance)',
-    "Period_3_a2_60perc" = 'Far-Future Climate + LULC (60% Disturbance)',
-    "Period_3_a2_90perc" = 'Far-Future Climate + LULC (90% Disturbance)'
+    "Period_3_hist_0perc"= 'Far-Future Climate-only (no LULC change)',
+    "Period_3_a2_0perc" = 'Far-Future Climate & LULC (0% Forest Disturbance)',
+    "Period_3_a2_10perc" = 'Far-Future Climate & LULC (10% Forest Disturbance)',
+    "Period_3_a2_30perc" = 'Far-Future Climate & LULC (30% Forest Disturbance)',
+    "Period_3_a2_60perc" = 'Far-Future Climate & LULC (60% Forest Disturbance)',
+    "Period_3_a2_90perc" = 'Far-Future Climate & LULC (90% Forest Disturbance)'
   ),
   "plot_description" = paste("Mean annual values in the Baseline (1976-2005)",
                              "and Far-Future (2066-2095) periods for different land-use",
@@ -849,11 +859,11 @@ plot_specs_wat_monthly_line<-list(
   ),
   "scenario_legendgroup_names"=list(
     "hist_0perc" = 'Baseline',
-    "a2_0perc" = 'Far-Future Climate + LULC (0% Disturbance)',
-    "a2_10perc" = 'Far-Future Climate + LULC (10% Disturbance)',
-    "a2_30perc" = 'Far-Future Climate + LULC (30% Disturbance)',
-    "a2_60perc" = 'Far-Future Climate + LULC (60% Disturbance)',
-    "a2_90perc" = 'Far-Future Climate + LULC (90% Disturbance)'
+    "a2_0perc" = 'Far-Future Climate & LULC (0% Forest Disturbance)',
+    "a2_10perc" = 'Far-Future Climate & LULC (10% Forest Disturbance)',
+    "a2_30perc" = 'Far-Future Climate & LULC (30% Forest Disturbance)',
+    "a2_60perc" = 'Far-Future Climate & LULC (60% Forest Disturbance)',
+    "a2_90perc" = 'Far-Future Climate & LULC (90% Forest Disturbance)'
   ),
   "plot_description" = paste("Mean monthly values in the Baseline (1976-2005)",
                              "and Far-Future (2066-2095) periods for each",
@@ -893,9 +903,9 @@ spatial_input_argument_dictionary <- list(
         Hot_Dry ="IPSL-CM5A-MR_rcp85.mann.2066_2095.no_dist_diff.nc"
       ),
       plot_description = list(
-        "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 10% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances.",
-        "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 10% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances.",
-        "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 10% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances."
+        "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 10% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
+        "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 10% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
+        "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 10% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates."
       )
     ),
     "30% Forest disturbance" = list(
@@ -907,9 +917,9 @@ spatial_input_argument_dictionary <- list(
         Hot_Dry ="IPSL-CM5A-MR_rcp85.mann.2066_2095.no_dist_diff.nc"
       ),
       plot_description = list(
-        "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 30% Forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances.",
-        "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 30% Forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances.",
-        "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 30% Forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances."
+        "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 30% Forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
+        "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 30% Forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
+        "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 30% Forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates."
       )
     ),
     "60% Forest disturbance" = list(
@@ -921,9 +931,9 @@ spatial_input_argument_dictionary <- list(
         Hot_Dry ="IPSL-CM5A-MR_rcp85.mann.2066_2095.no_dist_diff.nc"
       ),
       plot_description = list(
-        "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 60% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances.",
-        "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 60% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances.",
-        "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 60% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances."
+        "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 60% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
+        "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 60% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
+        "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 60% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates."
       )
     ),
     "90% Forest disturbance" = list(
@@ -935,9 +945,9 @@ spatial_input_argument_dictionary <- list(
         Hot_Dry ="IPSL-CM5A-MR_rcp85.mann.2066_2095.no_dist_diff.nc"
       ),
       plot_description = list(
-        "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 90% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances.",
-        "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 90% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances.",
-        "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 90% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates without forest disturbances."
+        "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 90% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
+        "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 90% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
+        "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 90% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates."
       )
     )
   ),
@@ -989,7 +999,7 @@ guided_analyses_wat_ann <- list(
     "wat_ann_basin_selected_1" = "Green",
     "wat_ann_basin_selected_2" = "Upper Basin",
     "wat_ann_var_selected_1" = "Streamflow ([cubic km])",
-    "wat_ann_var_selected_2" = "Efficiency ([runoff + baseflow]/precipitation)",
+    "wat_ann_var_selected_2" = "Supply efficiency ([runoff + baseflow]/precipitation)",
     "wat_ann_plot_type_selected" = 2
   ),
   "wat_ann_analysis_conclusions" = list(
@@ -1042,7 +1052,7 @@ guided_analyses_spatial <- list(
     "spatial_impact_type_selected" = "Climate change"
   ),
   "spatial_analysis_4" = list(
-    "spatial_var_selected_1" = "Efficiency ([runoff + baseflow]/precipitation)",
+    "spatial_var_selected_1" = "Supply efficiency ([runoff + baseflow]/precipitation)",
     "spatial_var_selected_2" = "Total evapotranspiration",
     "spatial_temporal_scale_selected" = "Annual (Oct-Sep)",
     "spatial_impact_type_selected" = "Climate change"
@@ -1054,7 +1064,7 @@ guided_analyses_spatial <- list(
     "spatial_impact_type_selected" = "30% Forest disturbance"
   ),
   "spatial_analysis_implications" = list(
-    "spatial_var_selected_1" = "Efficiency ([runoff + baseflow]/precipitation)",
+    "spatial_var_selected_1" = "Supply efficiency ([runoff + baseflow]/precipitation)",
     "spatial_var_selected_2" = "Flow supply (runoff + baseflow)",
     "spatial_temporal_scale_selected" = "Annual (Oct-Sep)",
     "spatial_impact_type_selected" = "30% Forest disturbance"

@@ -2,18 +2,16 @@
 ##
 ## Script name: helper_functions.R
 ##
-## Purpose of the script: Creates helper functions for the CRB-Scenario-Explorer website.
+## Purpose of the script: Creates helper functions for CRB-Scenario-Explorer.
 ##
 ## @author: Kristen Whitney
 ##
 ## Created on Mon Oct 4, 2022
 ##
-## Copyright (c) Arizona State University, 2022
-## Email: kmwhitne@asu.edu
 ##
 ## --------------------------------------------------------------------------------------##
 ##    Notes:
-##    More information on this to come. 
+##    
 ##
 ## --------------------------------------------------------------------------------------##
 ## ----------------------------------Load packages---------------------------------------##
@@ -65,10 +63,10 @@ plot_mean_ann_val_barplot <-function(plot_input_list){
   )
   
   # get annotations
-  annotations = list( 
+  legend_annotations = list( 
     list( 
       x = 0.25,  
-      y = 1.01,  
+      y = 1.02,  
       text = paste("<b>",basin_dict[[basins_selected[[1]]]]$full_name,"</b>"),  
       xref = "paper",  
       yref = "paper",  
@@ -78,7 +76,7 @@ plot_mean_ann_val_barplot <-function(plot_input_list){
     ),  
     list( 
       x = 0.75,  
-      y = 1.01,  
+      y = 1.02,  
       text = paste("<b>",basin_dict[[basins_selected[[2]]]]$full_name,"</b>"),  
       xref = "paper",  
       yref = "paper",  
@@ -86,47 +84,110 @@ plot_mean_ann_val_barplot <-function(plot_input_list){
       yanchor = "bottom",  
       showarrow = FALSE 
     ),
-      # list( 
-      #   x = 0.005,  
-      #   y = 0.945,  
-      #   # text = paste("<b>(a)",var_info_dict[[vars_selected[[1]]]]$subplot_label,"</b>"),  
-      #   text = "<b>(a)</b>", 
-      #   xref = "paper",  
-      #   yref = "paper",  
-      #   xanchor = "left",  
-      #   yanchor = "bottom",  
-      #   showarrow = FALSE 
-      # ),  
-      # list( 
-      #   x = 0.005,  
-      #   y = 0.42,  
-      #   # text = paste("<b>(b)",var_info_dict[[vars_selected[[2]]]]$subplot_label,"</b>"),  
-      #   text = "<b>(b)</b>",  
-      #   xref = "paper",  
-      #   yref = "paper",  
-      #   xanchor = "left",  
-      #   yanchor = "bottom",  
-      #   showarrow = FALSE 
-      # ),
-      # 
     
-    
-      list(
-        x = 1.04,
-        y= 0.07,
-        text = paste("<b>Subplot key:</b><br><b>(top)</b>",var_info_dict[[vars_selected[[1]]]]$subplot_label,
-                     "<br><b>(bottom)</b>",var_info_dict[[vars_selected[[2]]]]$subplot_label,
-                     "<br><b>(left)</b>",basin_dict[[basins_selected[[1]]]]$full_name,
-                     "<br><b>(right)</b>",basin_dict[[basins_selected[[2]]]]$full_name),
-        font = list(size = 12),
-        xref = "paper",  
-        yref = "paper", 
-        xanchor = "left",
-        yanchor = "bottom",
-        align = "left",
-        showarrow = FALSE
-      )
+    list(
+      x = 1.04,
+      y= 0.11,
+      text = paste("<b>Subplot key:</b><br><b>(top)</b>",var_info_dict[[vars_selected[[1]]]]$subplot_label,
+                   "<br><b>(bottom)</b>",var_info_dict[[vars_selected[[2]]]]$subplot_label,
+                   "<br><b>(left)</b>",basin_dict[[basins_selected[[1]]]]$full_name,
+                   "<br><b>(right)</b>",basin_dict[[basins_selected[[2]]]]$full_name),
+      font = list(size = 12),
+      xref = "paper",  
+      yref = "paper", 
+      xanchor = "left",
+      yanchor = "bottom",
+      align = "left",
+      showarrow = FALSE
+    ),
+    list(
+      text = paste("<b>Select an impact type:</b>"),
+      font = list(size = 14),
+      bgcolor="#99FF66",
+      x = 1.04,
+      y= 0.03,
+      xref = "paper",
+      yref = "paper",
+      xanchor = "left",
+      yanchor = "bottom",
+      align = "left",
+      showarrow = FALSE
     )
+  )
+  
+  # updatemenus component
+  updatemenus <- list(
+    list(
+      active = -1,
+      type= 'buttons',
+      direction= "right",
+      
+      x = 1.04,
+      y= -0.07,
+      xref = "paper",
+      yref = "paper",
+      xanchor = "left",
+      yanchor = "bottom",
+      bgcolor = '#99FF66',
+      font = list(
+        color = '#000000'
+        # size = 12
+        # family = 'Open Sans Bold'
+      ),
+      buttons = list(
+        list(
+          label = "Climate Impact",
+          method = "update",
+          
+          args = list(list(visible = c(TRUE, TRUE,TRUE,FALSE,FALSE,FALSE,FALSE)),
+                      list(
+                        title = list(
+                          text = HTML("<i>Climate Impact: Compare 'Climate-Only' or 0% Forest Disturbance' to Baseline</i>"),
+                          font = list(size = 10,
+                                      color ='#FF0000'),
+                          x = 1,
+                          y= 0.01,
+                          # y = 0.95, x = 0.5, 
+                          xanchor = 'right', yanchor =  'bottom'
+                        )
+                        # annotations = list(climate_impact_annotations,legend_annotations, c(),c(),c(),c())
+                      )
+          )),
+        list(
+          label = "Forest Disturbance Impact",
+          method = "update",
+          # bgcolor = '#66FF33',
+          args = list(list(visible = c(FALSE, FALSE,TRUE,TRUE,TRUE,TRUE,TRUE)),
+                      list(
+                        title = list(
+                          text = HTML("<i>Forest Disturbance Impact: Compare '0%' to '10-90%' Forest Disturbances</i>"),
+                          font = list(size = 10,
+                                      color ='#FF0000'),
+                          x = 1,
+                          y= 0.01,
+                          # y = 0.95, x = 0.5, 
+                          xanchor = 'right', yanchor =  'bottom'
+                        ))
+          )),
+        list(
+          label = "Reset",
+          method = "update",
+          args = list(list(visible = c(TRUE, TRUE,TRUE,TRUE,TRUE, TRUE,TRUE)),
+                      list(
+                        title = list(
+                          text = HTML(""),
+                          font = list(size = 10,
+                                      color ='#FF0000'),
+                          x = 1,
+                          y= 0.01,
+                          # y = 0.95, x = 0.5, 
+                          xanchor = 'right', yanchor =  'bottom'
+                        )
+                      )
+                      )))
+    )
+  )
+  
   
   # get dataset for subplot 1 (basin 1, var 1)
   b1v1_data <- input_data %>%
@@ -274,7 +335,9 @@ plot_mean_ann_val_barplot <-function(plot_input_list){
                           )
   
   fig <- subplot(b1v1,b2v1,b1v2,b2v2,shareY = T,shareX=T,nrows=2) %>% layout(showlegend = TRUE,
-                                                                    annotations=annotations
+                                                                    annotations=legend_annotations,
+                                                                    updatemenus=updatemenus,
+                                                                    legend=list(title=list(text=paste('<b>Mean annual values:</b>')))
                                                                     )
   
   return(fig)
@@ -319,11 +382,6 @@ plot_mean_ann_anomaly_lineplot <-function(plot_input_list){
   # set xlabel
   x_label = "High-elevation forest disturbance amount"
   
-  
-  # # change climate names
-  # input_data <- input_data %>% 
-  #   mutate(climate = dplyr::recode(climate, `Warm_Wet`="Warm/Wet", `Hot_Dry`="Hot/Dry"))
-  
   # get x axis order
   xform <- list(categoryorder = "array",
                 categoryarray = c("Warm/Wet", 
@@ -333,28 +391,6 @@ plot_mean_ann_anomaly_lineplot <-function(plot_input_list){
 
   # Get annotations
   annotations = list(
-    # list( 
-    #   x = 0.005,  
-    #   y = 0.945,  
-    #   # text = paste("<b>(a)",var_info_dict[[vars_selected[[1]]]]$subplot_label,"</b>"),  
-    #   text = "<b>(a)</b>", 
-    #   xref = "paper",  
-    #   yref = "paper",  
-    #   xanchor = "left",  
-    #   yanchor = "bottom",  
-    #   showarrow = FALSE 
-    # ),  
-    # list( 
-    #   x = 0.005,  
-    #   y = 0.42,  
-    #   # text = paste("<b>(b)",var_info_dict[[vars_selected[[2]]]]$subplot_label,"</b>"),  
-    #   text = "<b>(b)</b>",  
-    #   xref = "paper",  
-    #   yref = "paper",  
-    #   xanchor = "left",  
-    #   yanchor = "bottom",  
-    #   showarrow = FALSE 
-    # ),
     list(
       x = 1.017,
       y= 0.2,
@@ -370,6 +406,7 @@ plot_mean_ann_anomaly_lineplot <-function(plot_input_list){
       showarrow = FALSE
     )
   )
+  
   
   # get data
   data_plot <- input_data %>%
@@ -490,7 +527,8 @@ plot_mean_ann_anomaly_lineplot <-function(plot_input_list){
   # create final figure
   fig <- subplot(p_v1,p_v2,shareX = T,nrows=2,titleY=TRUE) %>% layout(
     showlegend=TRUE,
-    annotations=annotations
+    annotations=annotations,
+    legend=list(title=list(text=paste('<b>Far-Future mean annual<br>changes (relative to<br>Baseline):</b>')))
   )
   
   # fig <- subplot(p1,p3,p2,p4,shareY = T,nrows=2) %>% layout(showlegend = TRUE,annotations=subplot_annotations)
@@ -530,19 +568,12 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
   # set xlabel
   x_label = "Month"
   
-  
-  # # change climate names
-  # input_data <- input_data %>% 
-  #   mutate(climate = dplyr::recode(climate, `Warm_Wet`="Warm/Wet", `Hot_Dry`="Hot/Dry"))
-  
-  
-  
   # get subplot name annotations
-  annotations = list( 
+  legend_annotations = list( 
     list( 
       x = 0.25,  
-      y = 1.01,  
-      text = paste("<b>Warm/Wet</b>"),  
+      y = 1.02,  
+      text = paste("<b>Warm/Wet Climate</b>"),  
       xref = "paper",  
       yref = "paper",  
       xanchor = "center",  
@@ -551,8 +582,8 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
     ),  
     list( 
       x = 0.75,  
-      y = 1.01,  
-      text = paste("<b>Hot/Dry</b>"),  
+      y = 1.02,  
+      text = paste("<b>Hot/Dry Climate</b>"),  
       xref = "paper",  
       yref = "paper",  
       xanchor = "center",  
@@ -561,7 +592,7 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
     ),
     list(
       x = 1.04,
-      y= 0.07,
+      y= 0.11,
       text = paste("<b>Subplot key:</b><br><b>(top)</b>",var_info_dict[[vars_selected[[1]]]]$subplot_label,
                    "<br><b>(middle)</b>",var_info_dict[[vars_selected[[2]]]]$subplot_label,
                    "<br><b>(bottom)</b>",var_info_dict[[vars_selected[[3]]]]$subplot_label,
@@ -574,8 +605,92 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
       yanchor = "bottom",
       align = "left",
       showarrow = FALSE
+    ),
+    list(
+      # x = 1.04,
+      # y= 0.07,
+      text = paste("<b>Select an impact type:</b>"),
+      font = list(size = 14),
+      bgcolor="#99FF66",
+      x = 1.04,
+      y= 0.02,
+      xref = "paper",
+      yref = "paper",
+      xanchor = "left",
+      yanchor = "bottom",
+      align = "left",
+      showarrow = FALSE
     )
+  )
+  
+  # updatemenus component
+  updatemenus <- list(
+    list(
+      active = -1,
+      type= 'buttons',
+      direction= "right",
+      x = 1.04,
+      y= -0.09,
+      xref = "paper",  
+      yref = "paper",  
+      xanchor = "left",  
+      yanchor = "bottom", 
+      bgcolor = '#99FF66',
+      font = list(
+        color = '#000000'
+      ),
+      buttons = list(
+        list(
+          label = "Climate Impact",
+          method = "update",
+          args = list(list(visible = c(TRUE, TRUE,FALSE,FALSE,FALSE,FALSE)),
+                      list(
+                        title = list(
+                          text = HTML("<i>Climate Impact: Compare '0% Forest Disturbance' to Baseline</i>"),
+                          font = list(size = 10,
+                                      color ='#FF0000'),
+                          x = 1,
+                          y= 0.01,
+                          # y = 0.95, x = 0.5, 
+                          xanchor = 'right', yanchor =  'bottom'
+                        )
+                        # annotations = list(climate_impact_annotations,legend_annotations, c(),c(),c(),c())
+                        )
+                      )),
+        list(
+          label = "Forest Disturbance Impact",
+          method = "update",
+          args = list(list(visible = c(FALSE, TRUE,TRUE,TRUE,TRUE,TRUE)),
+                      list(
+                        title = list(
+                          text = HTML("<i>Forest Disturbance Impact: Compare '0%' to '10-90%' Forest Disturbances</i>"),
+                          font = list(size = 10,
+                                      color ='#FF0000'),
+                          x = 1,
+                          y= 0.01,
+                          # y = 0.95, x = 0.5, 
+                          xanchor = 'right', yanchor =  'bottom'
+                        ))
+                      )),
+       list(
+          label = "Reset",
+          method = "update",
+          args = list(list(visible = c(TRUE, TRUE,TRUE,TRUE, TRUE,TRUE)),
+                      list(
+                        title = list(
+                          text = HTML(""),
+                          font = list(size = 10,
+                                      color ='#FF0000'),
+                          x = 1,
+                          y= 0.01,
+                          # y = 0.95, x = 0.5, 
+                          xanchor = 'right', yanchor =  'bottom'
+                        )
+                        )
+                      )))
     )
+  )
+  
   
   # rename months to follow hydrologic calendar year
   hydro_month_order = c((10:12),(1:9))
@@ -701,7 +816,10 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
            fillcolor = "none", line = list(color = "black",width=0.75), 
            # opacity = 0.3,
            x0 = 0, x1 = 1, xref = "paper",
-           y0 = 0, y1 = 1, yref = "paper"))
+           y0 = 0, y1 = 1, yref = "paper")
+      ),
+    legend=list(title=list(text=paste('<b>',basin_selected,'monthly average</b>'))),
+    updatemenus=updatemenus
     )
   
   # create subplot 2 (var 1, climate 2)
@@ -740,7 +858,8 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
            fillcolor = "none", line = list(color = "black",width=0.75), 
            # opacity = 0.3,
            x0 = 0, x1 = 1, xref = "paper",
-           y0 = 0, y1 = 1, yref = "paper")))
+           y0 = 0, y1 = 1, yref = "paper")),
+    updatemenus=updatemenus)
   
   # create subplot 3 (var 2, climate 1)
   p_v2c1 <- plot_ly(v2c1_data,x=~month,y=~hist_0perc,name=plot_specs_wat_monthly_line$scenario_legendgroup_names$hist_0perc,
@@ -778,7 +897,8 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
            fillcolor = "none", line = list(color = "black",width=0.75), 
            # opacity = 0.3,
            x0 = 0, x1 = 1, xref = "paper",
-           y0 = 0, y1 = 1, yref = "paper")))
+           y0 = 0, y1 = 1, yref = "paper")),
+    updatemenus=updatemenus)
   
   # create subplot 4 (var 2, climate 2)
   p_v2c2 <- plot_ly(v2c2_data,x=~month,y=~hist_0perc,name=plot_specs_wat_monthly_line$scenario_legendgroup_names$hist_0perc,
@@ -816,7 +936,8 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
            fillcolor = "none", line = list(color = "black",width=0.75), 
            # opacity = 0.3,
            x0 = 0, x1 = 1, xref = "paper",
-           y0 = 0, y1 = 1, yref = "paper")))
+           y0 = 0, y1 = 1, yref = "paper")),
+    updatemenus=updatemenus)
   
   
   # create subplot 5 (var 3, climate 1)
@@ -855,7 +976,8 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
            fillcolor = "none", line = list(color = "black",width=0.75), 
            # opacity = 0.3,
            x0 = 0, x1 = 1, xref = "paper",
-           y0 = 0, y1 = 1, yref = "paper")))
+           y0 = 0, y1 = 1, yref = "paper")),
+    updatemenus=updatemenus)
   
   # create subplot 6 (var 3, climate 2)
   p_v3c2 <- plot_ly(v3c2_data,x=~month,y=~hist_0perc,name=plot_specs_wat_monthly_line$scenario_legendgroup_names$hist_0perc,
@@ -893,13 +1015,20 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
            fillcolor = "none", line = list(color = "black",width=0.75), 
            # opacity = 0.3,
            x0 = 0, x1 = 1, xref = "paper",
-           y0 = 0, y1 = 1, yref = "paper")))
+           y0 = 0, y1 = 1, yref = "paper")#,
+      # list(type = "rect",
+      #      fillcolor = "none", line = list(color = "#FF0000",width=0.5), 
+      #      # opacity = 0.3,
+      #      x0 = 1.09, x1 = 2.899, xref = "paper",
+      #      y0 = -0.5, y1 = 0.2, yref = "paper")
+      ),
+    updatemenus=updatemenus)
   
   
   # create final figure
   fig <- subplot(p_v1c1,p_v1c2,p_v2c1,p_v2c2,p_v3c1,p_v3c2,shareX = T,shareY=T,nrows=length(vars_selected),titleY=TRUE) %>% layout(
     showlegend=TRUE,
-    annotations=annotations
+    annotations=legend_annotations
   )
   
   
@@ -1087,13 +1216,15 @@ plot_spatial_map <-function(plot_input_list){
     leafem::addGeoRaster(rasterDF,layerID="values",project=TRUE,colorOptions=leafem::colorOptions(palette=rampcols,na.color="transparent",domain = scale_range),opacity=1,autozoom=FALSE) %>%
     leaflet::addLegend(position="bottomright",pal=mypal,values=scale_range,bins=nbins,title=legend_title,labFormat=myLabelFormat(signed=TRUE,relative_limits=TRUE,scale_range=scale_range,orig_val_range=orig_val_range,ndecimals=ndecimals)) %>%
     addMouseCoordinates() %>%
-    setView(lng= bounds[1]+((bounds[3]-bounds[1])/2)+0.5,lat=bounds[2]+((bounds[4]-bounds[2])/2)+0.25,zoom=5.65) #%>%
-    # fitBounds(bounds[1],bounds[2],bounds[3],bounds[4])
+    setView(lng= bounds[1]+((bounds[3]-bounds[1])/2)+0.5,lat=bounds[2]+((bounds[4]-bounds[2])/2)+0.25,zoom=5.65)  %>%
+    leaflet.extras::addSearchOSM(options = leaflet.extras::searchOptions(collapsed = TRUE, moveToLocation=FALSE,zoom=FALSE)) 
+
   
   # add basemap
   if (basemap_on) {
-    fig <- fig %>% addTiles() %>%
-      setView(lng= bounds[1]+((bounds[3]-bounds[1])/2)+0.5,lat=bounds[2]+((bounds[4]-bounds[2])/2)+0.25,zoom=5.65) #%>%
+    fig <- fig %>% addTiles(group = "OSM (default)") %>%
+      setView(lng= bounds[1]+((bounds[3]-bounds[1])/2)+0.5,lat=bounds[2]+((bounds[4]-bounds[2])/2)+0.25,zoom=5.65)
+
   }
   
   return(fig)
