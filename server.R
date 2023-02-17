@@ -8,12 +8,11 @@
 ##
 ## Created on Fri Sept 19 2022
 ##
-## Copyright (c) Arizona State University, 2022
 ## Email: kmwhitne@asu.edu
 ##
 ## --------------------------------------------------------------------------------------##
 ##    Notes:
-##    More information on this to come. 
+##     
 ##
 ## --------------------------------------------------------------------------------------##
 ## ----------------------------------Load packages---------------------------------------## ----
@@ -35,6 +34,7 @@ library(sf,quietly=TRUE,warn.conflicts = FALSE)
 library(rlist,quietly=TRUE,warn.conflicts = FALSE)
 library(manipulateWidget,quietly=TRUE,warn.conflicts = FALSE) # sync leaflet
 library(leaflet.minicharts,quietly=TRUE,warn.conflicts = FALSE)
+library(leaflet.extras,quietly=TRUE,warn.conflicts = FALSE)
 # library(dygraphs,quietly=TRUE,warn.conflicts = FALSE)
 # library(xts,quietly=TRUE,warn.conflicts = FALSE)
 # library(stringi,quietly=TRUE,warn.conflicts = FALSE)
@@ -176,7 +176,7 @@ server <- function(input, output,session) {
     navpage_name <- "Annual"
     updateNavbarPage(session, "pages",navpage_name)
     updateCollapse(session,"watershed_analyses_annual_panels",open="Guided Analysis")
-    updateRadioButtons(session,"wat_ann_analyses",selected = "wat_ann_analysis_5")
+    updateRadioButtons(session,"wat_ann_analyses",selected = "wat_ann_analysis_3")
   })
   observeEvent(input$link_from_spatial_to_wat_ann5, {
     navpage_name <- "Annual"
@@ -859,7 +859,10 @@ server <- function(input, output,session) {
   observeEvent(input$flow_rout_to_hydro_model, {
     masterpanel_id <- "more_info_panels"
     panel1_name <- "Hydrology Model"
+    panel1_id <- "more_info_hydro_model"
+    panel2_name <-  "Overview"
     updateTabsetPanel(session,inputId =  masterpanel_id,selected =  panel1_name)
+    updateTabsetPanel(session,inputId =  panel1_id,selected =  panel2_name)
   })
   observeEvent(input$flow_rout_to_watersheds1, {
     masterpanel_id <- "more_info_panels"
@@ -926,15 +929,15 @@ server <- function(input, output,session) {
   
   # Hydrology Model page - Overview panel
   output$hydro_overview_vic_code <- renderText((references_and_code$vic_code))
-  output$hydro_overview_hamman_el_al_2018 <- renderText((references_and_code$hamman_el_al_2018))
-  output$hydro_overview_liang_el_al_1994 <- renderText((references_and_code$liang_el_al_1994))
+  output$hydro_overview_hamman_et_al_2018 <- renderText((references_and_code$hamman_et_al_2018))
+  output$hydro_overview_liang_et_al_1994 <- renderText((references_and_code$liang_et_al_1994))
   output$hydro_overview_andreadis_et_al_2009 <- renderText((references_and_code$andreadis_et_al_2009))
   output$hydro_overview_cherkauer_lettenmaier_2003 <- renderText((references_and_code$cherkauer_lettenmaier_2003))
   output$hydro_overview_bohn_vivoni_2016 <- renderText((references_and_code$bohn_vivoni_2016))
   output$hydro_overview_bureau_2012 <- renderText((references_and_code$bureau_2012))
   output$hydro_overview_christensen_lettenmaier_2007 <- renderText((references_and_code$christensen_lettenmaier_2007))
   output$hydro_overview_vano_lettenmaier_2012 <- renderText((references_and_code$vano_lettenmaier_2012))
-  output$hydro_overview_bohn_el_al_2018b <- renderText((references_and_code$bohn_et_al_2018b))
+  output$hydro_overview_bohn_et_al_2018b <- renderText((references_and_code$bohn_et_al_2018b))
   output$hydro_overview_wang_vivoni_2022 <- renderText((references_and_code$wang_vivoni_2022))
   
   # Hydrology Model page - Precipitation partitioning panel
@@ -947,18 +950,18 @@ server <- function(input, output,session) {
   # Hydrology Model page - Snowpack panel
   output$hydro_model_snowpack_andreadis_et_al_2009 <- renderText((references_and_code$andreadis_et_al_2009))
   output$hydro_model_snowpack_cherkauer_et_al_2003 <- renderText((references_and_code$cherkauer_et_al_2003))
-  output$hydro_model_snowpack_liang_et_al_1994 <- renderText((references_and_code$liang_el_al_1994))
+  output$hydro_model_snowpack_liang_et_al_1994 <- renderText((references_and_code$liang_et_al_1994))
   output$hydro_model_snowpack_xiao_et_al_2022 <- renderText((references_and_code$xiao_et_al_2022))
   
   # Hydrology Model page - Evapotranspiration panel
   output$hydro_model_evap_andreadis_et_al_2009 <- renderText((references_and_code$andreadis_et_al_2009))
   output$hydro_model_evap_cherkauer_et_al_2003 <- renderText((references_and_code$cherkauer_et_al_2003))
-  output$hydro_model_evap_liang_et_al_1994 <- renderText((references_and_code$liang_el_al_1994))
+  output$hydro_model_evap_liang_et_al_1994 <- renderText((references_and_code$liang_et_al_1994))
   output$hydro_model_evap_bohn_and_vivoni_2016 <- renderText((references_and_code$bohn_vivoni_2016))
   output$hydro_model_evap_xiao_et_al_2022 <- renderText((references_and_code$xiao_et_al_2022))
   
   # Hydrology Model page - Infiltration/Runoff panel
-  output$hydro_model_infil_runoff_liang_et_al_1994 <- renderText((references_and_code$liang_el_al_1994))
+  output$hydro_model_infil_runoff_liang_et_al_1994 <- renderText((references_and_code$liang_et_al_1994))
   
   # Hydrology Model page - Baseflow panel
   output$hydro_model_baseflow_franchini_pacciani_1991 <- renderText((references_and_code$franchini_pacciani_1991))
@@ -1016,8 +1019,8 @@ server <- function(input, output,session) {
   output$framework_vic_code <- renderText((references_and_code$vic_code))
   output$framework_rvic_code <- renderText((references_and_code$rvic_code))
   output$framework_metsim_code <- renderText((references_and_code$metsim_code))
-  output$framework_liang_et_al_1994 <- renderText((references_and_code$liang_el_al_1994))
-  output$framework_hamman_et_al_2018 <- renderText((references_and_code$hamman_el_al_2018))
+  output$framework_liang_et_al_1994 <- renderText((references_and_code$liang_et_al_1994))
+  output$framework_hamman_et_al_2018 <- renderText((references_and_code$hamman_et_al_2018))
   output$framework_pierce_et_al_2014 <- renderText((references_and_code$pierce_et_al_2014))
   output$framework_pierce_et_al_2015 <- renderText((references_and_code$pierce_et_al_2015))
   output$framework_taylor_et_al_2012 <- renderText((references_and_code$taylor_et_al_2012))
@@ -1037,7 +1040,13 @@ server <- function(input, output,session) {
   output$framework_bennett_et_al_2018b <- renderText((references_and_code$bennett_et_al_2018b))
   output$framework_usgs_et_al_2016a <- renderText((references_and_code$usgs_et_al_2016a))
   output$framework_andreadis_et_al_2009 <- renderText((references_and_code$andreadis_et_al_2009))
-
+  output$framework_liang_et_al_1999 <- renderText((references_and_code$liang_et_al_1999))
+  output$framework_cherkauer_lettenmaier_2003 <- renderText((references_and_code$cherkauer_lettenmaier_2003))
+  output$framework_wigmosta_et_al_1994 <- renderText((references_and_code$wigmosta_et_al_1994))
+  output$framework_franchini_pacciani_1991 <- renderText((references_and_code$franchini_pacciani_1991))
+  output$framework_bohn_vivoni_2016 <- renderText((references_and_code$bohn_vivoni_2016))
+  
+  
 ## ----------------------------------Watershed-Analyses Annual tab---------------------------------------## ----
   
   # plot description output
@@ -1049,6 +1058,14 @@ server <- function(input, output,session) {
     } else {
       return(plot_specs_wat_ann_change_line$plot_description$absolute)
     }
+  })
+  
+  # plot description to other panels
+  observeEvent(input$wat_ann_plot_description_to_freeform, {
+    updateCollapse(session,"watershed_analyses_annual_panels",open="Freeform Analysis")
+  })
+  observeEvent(input$wat_ann_plot_description_to_guided, {
+    updateCollapse(session,"watershed_analyses_annual_panels",open="Guided Analysis")
   })
   
   # render plot
@@ -1095,7 +1112,9 @@ server <- function(input, output,session) {
             HTML("<b>Background:</b>"),
             HTML("First let’s compare the two underlying climate scenarios, by comparing mean annual Total precipitation (<i>P</i>) and Air temperature (<i>T</i>) values."),
             tags$li(HTML("Mean annual changes are determined by comparing the height of ‘Far-Future’ bars (grey/colored bars) to the ‘Baseline’ bar (black bar) or the ‘Baseline’ reference line (dashed horizontal line).")),
-            tags$li(HTML("You can use the 'Main Control Panel' to change the plot type (Mean annual changes with fluxes as"),
+            tags$li(HTML("You can use the controls in the"), 
+                    actionLink("wat_ann_analysis_1_update0","'Freemform Analysis' panel"),
+                    HTML("to change the plot type (Mean annual changes with fluxes as"),
                     actionLink("wat_ann_analysis_1_update1","percentages"), 
                     HTML("or"), 
                     actionLink("wat_ann_analysis_1_update2","absolute differences"), 
@@ -1144,21 +1163,21 @@ server <- function(input, output,session) {
             tags$li(HTML("Hydrologic sensitivities to these changes are determined by comparing Far-Future (grey/colored bars) and Baseline (black bars) values.")),
             br(),
             HTML("<b>Climate Change Impacts:</b>"),
-            tags$li(
-              HTML("The Far-Future 'Climate-only' (using Basline LULC) and '0% Disturbance' (Far-Future LULC, no forest disturbances) cases had nearly identical results for all variables and regions."), 
+            tags$li(HTML("Comparisons of Baseline values to either the Far-Future 'Climate-only' (using Basline LULC) or '0% Disturbance' (Far-Future LULC, no forest disturbances) case indicate the climate impact.")),
+            tags$li(HTML("<code>Climate change reduced snow water equivalent (<i>SWE</i>) relative to Baseline</code>, with larger reductions in the Hot/Dry case accompanying larger snowfall (<i>P<sub>S</sub></i>) decline than the Warm/Wet case.")),
+            tags$li(HTML("The different levels of <i>P<sub>S</sub></i> decline between climate cases was due to"),
+                    actionLink("wat_ann_analysis_2_update1", HTML("opposite total precipitation trends and different degrees of warming."))),
+            tags$li(actionLink("wat_ann_analysis_2_update2","Sublimation and Snowmelt"),
+                    HTML("also declined, verifying that <code><i>SWE</i> reductions were due to <i>P<sub>S</sub></i> decline accompanying climate change</code>.")),
+            helpText(tags$li(
+              HTML("The 'Climate-only' and '0% Disturbance' cases had nearly identical results for all variables and regions."), 
             ),
             tags$li(
               HTML("This indicated that the LULC changes from the FORE-SCE had a negligble impact on the overall water budget,"),
               HTML("primarily due to the VIC assumptions (click"),
               actionLink("link_from_wat_ann_to_hydro_model_overview","here"),
               HTML(" for more info).")
-            ),
-            tags$li(HTML("Comparisons of Baseline values to either of these two Far-Future cases ('Climate-only' or '0% Disturbance') indicate the climate impact.")),
-            tags$li(HTML("<code>Climate change reduced snow water equivalent (<i>SWE</i>) relative to Baseline</code>, with larger reductions in the Hot/Dry case accompanying larger snowfall (<i>P<sub>S</sub></i>) decline than the Warm/Wet case.")),
-            tags$li(HTML("The different levels of <i>P<sub>S</sub></i> decline between climate cases was due to"),
-                    actionLink("wat_ann_analysis_2_update1", HTML("opposite total precipitation trends and different degrees of warming."))),
-            tags$li(actionLink("wat_ann_analysis_2_update2","Sublimation and Snowmelt"),
-                    HTML("also declined, verifying that <code><i>SWE</i> reductions were due to <i>P<sub>S</sub></i> decline accompanying climate change</code>.")),
+            )),
             br(),
             HTML("<b>Forest Disturbance Impacts under Climate Change:</b>"),
             tags$li(HTML("<code>Forest disturbances minimized reductions in"),
@@ -1185,7 +1204,7 @@ server <- function(input, output,session) {
                     actionLink("wat_ann_analysis_3_update1","canopy evaporation"),
                     HTML("from"),
                     actionLink("link_from_wat_ann_to_forest_disturbances3","the reduced Leaf Area Index and larger canopy spacing for grasses.")),
-            tags$li(HTML("<code>Forest disturbance impacts to ET were more limited under the Hot/Dry climate"),
+            tags$li(HTML("<code>Forest disturbance impacts to <i>ET</i> were more limited under the Hot/Dry climate"),
                     HTML("due to the increasingly water-limited conditions</code> ("),
                     actionLink("wat_ann_analysis_3_update2",HTML("most of <i>P</i>")),
                     HTML("was lost to <i>ET</i> regardless of vegetation status).")),
@@ -1231,6 +1250,10 @@ server <- function(input, output,session) {
               HTML("Average changes across the Upper Basin and the Green subbasin (representing a"),
               actionLink("link_from_wat_ann_to_watersheds3","basin headwater region"),
               HTML(") are shown.")
+            ),
+            helpText(
+              tags$li(HTML("Negative <i>\u0394RBFE</i> values imply more ‘water-limited’ conditions than Baseline, where greater amounts of <i>P</i> are lost to total evapotranspiration (<i>ET</i>) at the expense of <i>R</i> and <i>BF</i>.")),
+              tags$li(HTML("Likewise, postive in <i>\u0394RBFE</i> values imply more ‘energy-limited’ conditions than Baseline, where less of <i>P</i> is lost to <i>ET</i>, causing the production of more <i>R</i> and <i>BF</i>.")),
             ),
             
             br(),
@@ -1297,6 +1320,9 @@ server <- function(input, output,session) {
   })
   
   # Guided analyses - subcomponents
+  observeEvent(input$wat_ann_analysis_1_update0, {
+    updateCollapse(session,"watershed_analyses_annual_panels",open="Freeform Analysis")
+  })
   observeEvent(input$wat_ann_analysis_1_update1, {
     updateRadioButtons(session,"wat_ann_plot_type_selected",selected = 2)
   })
@@ -1338,12 +1364,12 @@ server <- function(input, output,session) {
   observeEvent(input$wat_ann_analysis_5_update1, {
     updateVarSelectInput(session,"wat_ann_basin_selected_2",selected = "Upper Colorado")
     updateVarSelectInput(session,"wat_ann_var_selected_1",selected = "Streamflow ([cubic km])")
-    updateVarSelectInput(session,"wat_ann_var_selected_2",selected = "Efficiency ([runoff + baseflow]/precipitation)")
+    updateVarSelectInput(session,"wat_ann_var_selected_2",selected = "Supply efficiency ([runoff + baseflow]/precipitation)")
   })
   observeEvent(input$wat_ann_analysis_5_update2, {
     updateVarSelectInput(session,"wat_ann_basin_selected_1",selected = "San Juan")
     updateVarSelectInput(session,"wat_ann_var_selected_1",selected = "Streamflow ([cubic km])")
-    updateVarSelectInput(session,"wat_ann_var_selected_2",selected = "Efficiency ([runoff + baseflow]/precipitation)")
+    updateVarSelectInput(session,"wat_ann_var_selected_2",selected = "Supply efficiency ([runoff + baseflow]/precipitation)")
   })
   observeEvent(input$wat_ann_analysis_conclusions_update1, {
     updateVarSelectInput(session,"wat_ann_var_selected_1",selected = "Total evapotranspiration")
@@ -1360,11 +1386,25 @@ server <- function(input, output,session) {
   # 
 ## ----------------------------------Spatial-Analyses tab---------------------------------------## ----
   
-  
   # plot description output
   output$spatial_plot_description <- renderText({
     spatial_input_argument_dictionary$impact_scenarios[[input$spatial_impact_type_selected]]$plot_description[[input$spatial_temporal_scale_selected]]
     })
+  
+  # plot description to other panels
+  observeEvent(input$spatial_plot_description_to_freeform, {
+    updateCollapse(session,"spatial_analyses_panels",open="Freeform Analysis")
+  })
+  observeEvent(input$spatial_plot_description_to_guided, {
+    updateCollapse(session,"spatial_analyses_panels",open="Guided Analysis")
+  })
+  observeEvent(input$spatial_plot_description_to_conclusions, {
+    updateCollapse(session,"spatial_analyses_panels",open="Overarching Research Conclusions")
+  })
+  observeEvent(input$spatial_plot_description_to_implications, {
+    updateCollapse(session,"spatial_analyses_panels",open="Water Management and Policy Implications")
+  })
+  
   
   # Plot title outputs
   output$spatial_plot_warmwet_var1 <- renderText({
@@ -1417,7 +1457,7 @@ server <- function(input, output,session) {
       "basemap_on" = input$spatial_basemap_on    
     )
     
-    fig1 <-plot_spatial_map(plot_input_list)
+    fig1 <-plot_spatial_map(plot_input_list) 
     
     
     # get plot input list (variable two, Warm/Wet climate)
@@ -1525,8 +1565,12 @@ server <- function(input, output,session) {
                   HTML(") and the case without disturbance, highlighting where disturbances had the greatest impact.")),
           tags$li(HTML("Forest disturbances increased <i>SWE</i> and <i>M</i> due to larger ground snowpack accumulation that accompany"),
                   actionLink("link_from_spatial_to_forest_disturbances1","canopy reductions when grasses replace forests.")),
-          tags$li(HTML("Impacts were larger under the more energy-limited Warm/Wet case than the increasing water-limited Hot/Dry case (explored more in analysis step 4).")),
-          tags$li(HTML("<code>Switching the 'impact type' (from the control panel above) reveals that these impacts scale with the amount of forest disturbance.</code>"))
+          tags$li(HTML("Switching the 'impact type' (from the"),
+                       actionLink("spatial_analysis_1_update2","'Freemform Analysis' panel"),
+                       HTML(") reveals that these <code>impacts scale with the amount of forest disturbance.</code>")),
+          tags$li(HTML("<code>The climate cases modulated the forest disturbance impacts</code> (larger disturbance impacts under the Warm/Wet than the Hot/Dry climate).<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>This climate modulation effect is explored more in the"),
+                  actionLink("spatial_analysis_1_update3",HTML("next analysis step.</i>")))
+          
         )
       })
     } else if (identical(input$spatial_guided_analyses, "spatial_analysis_2")) {
@@ -1541,13 +1585,16 @@ server <- function(input, output,session) {
           br(),
           HTML("<b>Forest Disturbance Impacts under Climate Change:</b>"),
           tags$li(actionLink("spatial_analysis_2_update1","Switch the impact type to ‘30% Forest disturbance' and the 'Total precipitation' variable to 'Canopy evaporation'.")),
-          tags$li(HTML("Forest disturbances decreased <i>ET</i> in most regions following canopy evaporation (<i>E<sub>C</sub></i>) declines, due to"), 
+          tags$li(HTML("<code>Forest disturbances decreased <i>ET</i> in most regions</code> following canopy evaporation (<i>E<sub>C</sub></i>) declines, due to"), 
                   actionLink("link_from_spatial_to_forest_disturbances2","canopy reductions and larger canopy spacing when grasses replace forests.")),
-          tags$li(HTML("<code>Impacts were again larger under Warm/Wet climate, including more substantial <i>ET</i> declines (explored more in analysis step 4).</code>")),
           tags$li(HTML("Disturbances slightly increased <i>ET</i> over some mid-elevation regions ("),
                   actionLink("link_from_spatial_to_wat_ann4",HTML("causing muted impacts to <i>ET</i> at the basin-averaged scale")),
                   HTML(") due to"),
                   actionLink("spatial_analysis_2_update2",HTML("higher soil evaporation (<i>E<sub>Soil</sub></i>) rates."))),
+          tags$li(HTML("<code>Climate cases modulated the forest disturbance impact to <i>ET</i> (larger impacts under Warm/Wet climate, with more substantial <i>ET</i> declines).</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<i>This in turn modulated the effect to streamflow supplies, explored more in the"),
+                  actionLink("spatial_analysis_2_update3",HTML("next analysis step.</i>"))
+                  
+                  ),
           helpText(
             HTML("<b>References:</b>"),
             tags$ol(
@@ -1569,7 +1616,8 @@ server <- function(input, output,session) {
           tags$li(actionLink("spatial_analysis_3_update1","Change the impact type to ‘30% Forest disturbance'.")),
           tags$li(HTML("Forest disturbances increased <i>RBF</i> in headwater regions following the disturbance-induced <i>SWE</i> increases and <i>ET</i> declines.")),
           tags$li(HTML("While forest disturbances caused much larger <i>RBF</i> increases under the Warm/Wet climate, disturbances also led to declines in <i>RBF</i> over some regions under the Hot/Dry climate.")),
-          tags$li(HTML("<code>This indicated that the climate uncertainties modulated the impact of forest disturbances</code>, which is explored more next."))
+          tags$li(HTML("<code>This indicated that the climate uncertainties modulated the impact of forest disturbances.</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<i>The underlying mechanism for the climate modulation effect is explored in the"),
+                  actionLink("spatial_analysis_3_update2",HTML("final analysis step.</i>")))
         )
       })
     } else if (identical(input$spatial_guided_analyses, "spatial_analysis_4")) {
@@ -1589,7 +1637,7 @@ server <- function(input, output,session) {
           HTML("<b>Forest Disturbance Impacts under Climate Change:</b>"),
           tags$li(actionLink("spatial_analysis_4_update1","Change the impact type to ‘30% Forest disturbance'.")),
           tags$li(HTML("Forest disturbances increased <i>RBFE</i> and by larger amounts under the Warm/Wet case due to the more substantial snow water equivalent (<i>SWE</i>) increases and <i>ET</i> declines, relative to no disturbance.")),
-          tags$li(HTML("<code>This indicated that forest disturbance impacts were smaller in the increasingly water-limited Hot/Dry climate (most of <i>P</i> was lost to <i>ET</i> regardless of vegetation status).</code>")),
+          tags$li(HTML("<code>This indicated that forest disturbance impacts were smaller in the increasingly water-limited Hot/Dry climate (majority of <i>P</i> was lost to <i>ET</i> regardless of vegetation status).</code>")),
           tags$li(HTML("The Upper Basin (composed of the 4 northern subbasins) had the largest forest disturbance impacts due to <i>P</i> trends and the larger area of disturbed forests at high elevations (≥ 1,800 m,"),
                   actionLink("link_from_spatial_to_watersheds3","more info here"),
                   (").")),
@@ -1613,6 +1661,12 @@ server <- function(input, output,session) {
   observeEvent(input$spatial_analysis_update1, {
     updateCollapse(session,"spatial_analyses_panels",open="Guided Analysis")
   })
+  observeEvent(input$spatial_analysis_1_update2, {
+    updateCollapse(session,"spatial_analyses_panels",open="Freeform Analysis")
+  })
+  observeEvent(input$spatial_analysis_1_update3, {
+    updateRadioButtons(session,"spatial_guided_analyses",selected = "spatial_analysis_2")
+  })
   observeEvent(input$spatial_analysis_1_update1, {
     updateVarSelectInput(session,"spatial_var_selected_1",selected = "Snow water equivalent")
     updateVarSelectInput(session,"spatial_var_selected_2",selected = "Snowmelt")
@@ -1631,26 +1685,32 @@ server <- function(input, output,session) {
     updateVarSelectInput(session,"spatial_temporal_scale_selected",selected = "Annual (Oct-Sep)")
     updateVarSelectInput(session,"spatial_impact_type_selected",selected = "30% Forest disturbance")
   })
+  observeEvent(input$spatial_analysis_2_update3, {
+    updateRadioButtons(session,"spatial_guided_analyses",selected = "spatial_analysis_3")
+  })
   observeEvent(input$spatial_analysis_3_update1, {
     updateVarSelectInput(session,"spatial_var_selected_1",selected = "Flow supply (runoff + baseflow)")
     updateVarSelectInput(session,"spatial_var_selected_2",selected = "Soil moisture")
     updateVarSelectInput(session,"spatial_temporal_scale_selected",selected = "Annual (Oct-Sep)")
     updateVarSelectInput(session,"spatial_impact_type_selected",selected = "30% Forest disturbance")
   })
+  observeEvent(input$spatial_analysis_3_update2, {
+    updateRadioButtons(session,"spatial_guided_analyses",selected = "spatial_analysis_4")
+  })
   observeEvent(input$spatial_analysis_4_update1, {
-    updateVarSelectInput(session,"spatial_var_selected_1",selected = "Efficiency ([runoff + baseflow]/precipitation)")
+    updateVarSelectInput(session,"spatial_var_selected_1",selected = "Supply efficiency ([runoff + baseflow]/precipitation)")
     updateVarSelectInput(session,"spatial_var_selected_2",selected = "Total evapotranspiration")
     updateVarSelectInput(session,"spatial_temporal_scale_selected",selected = "Annual (Oct-Sep)")
     updateVarSelectInput(session,"spatial_impact_type_selected",selected = "30% Forest disturbance")
   })
   observeEvent(input$spatial_analysis_4_update2, {
-    updateVarSelectInput(session,"spatial_var_selected_1",selected = "Efficiency ([runoff + baseflow]/precipitation)")
+    updateVarSelectInput(session,"spatial_var_selected_1",selected = "Supply efficiency ([runoff + baseflow]/precipitation)")
     updateVarSelectInput(session,"spatial_var_selected_2",selected = "Total evapotranspiration")
     updateVarSelectInput(session,"spatial_temporal_scale_selected",selected = "Cool-Season (Oct-Mar)")
     updateVarSelectInput(session,"spatial_impact_type_selected",selected = "30% Forest disturbance")
   })
   observeEvent(input$spatial_analysis_4_update3, {
-    updateVarSelectInput(session,"spatial_var_selected_1",selected = "Efficiency ([runoff + baseflow]/precipitation)")
+    updateVarSelectInput(session,"spatial_var_selected_1",selected = "Supply efficiency ([runoff + baseflow]/precipitation)")
     updateVarSelectInput(session,"spatial_var_selected_2",selected = "Total evapotranspiration")
     updateVarSelectInput(session,"spatial_temporal_scale_selected",selected = "Warm-Season (Apr-Sep)")
     updateVarSelectInput(session,"spatial_impact_type_selected",selected = "30% Forest disturbance")
@@ -1760,6 +1820,18 @@ server <- function(input, output,session) {
   output$wat_mon_plot_description <- renderText({
     plot_specs_wat_monthly_line$plot_description
   })
+  # output$wat_mon_basin_description <- renderText({
+  #   HTML("<b>",input$wat_mon_basin_selected," monthly average</br>")
+  # })
+  
+  
+  # plot description to other panels
+  observeEvent(input$wat_mon_plot_description_to_freeform, {
+    updateCollapse(session,"watershed_analyses_monthly_panels",open="Freeform Analysis")
+  })
+  observeEvent(input$wat_mon_plot_description_to_guided, {
+    updateCollapse(session,"watershed_analyses_monthly_panels",open="Guided Analysis")
+  })
   
   # output$dum_text <- renderText({
   #   paste(basin_dict[[input$wat_mon_basin_selected]]$stored_name," ",input$wat_mon_basin_selected," ",input$wat_mon_var_selected_1," ",input$wat_mon_var_selected_2," ",input$wat_mon_var_selected_3)
@@ -1800,13 +1872,13 @@ server <- function(input, output,session) {
           HTML("First let’s compare the the impacts to mean monthly snowpack conditions across the basin."),
           br(),br(),
           HTML("<b>Climate Change Impacts:</b>"),
-          tags$li(HTML("Click on legend items to hide the 10, 30, 60, and 90% disturbance cases.")),
+          tags$li(HTML("Click on legend items to hide the 10, 30, 60, and 90% disturbance cases (or click the green 'Climate Impact' button).")),
           tags$li(HTML("<code>Climate change reduced snow water equivalent (<i>SWE</i>) in all months, initiated earlier snowmelt (shifted peak <i>M</i> to one month earlier), and decreased sublimation (<i>E<sub>S</sub></i>) in both climate cases.</code>")),
           tags$li(HTML("Despite <i>SWE</i> reductions, <i>M</i> increased during winter (Dec.-Mar.) under the Warm/Wet climate only.")),
           tags$li(HTML("Larger <i>M</i> declines occurred during spring to early summer (Apr.-July) in both climates.")),
           br(),
           HTML("<b>Forest Disturbance Impacts under Climate Change:</b>"),
-          tags$li(HTML("Click on legend items to"),
+          tags$li(HTML("Click on legend items (or click the green 'Reset' button) to"),
                   actionLink("wat_mon_analysis_1_update1","turn all cases back on.")),
           tags$li(HTML("Forest disturbances increased <i>SWE</i> relative to the case without disturbance (‘0% Disturbance’), despite slight increases in sublimation (<i>E<sub>S</sub></i>).")),
           tags$li(HTML("This was due to canopy reductions and larger canopy spacing when"), 
@@ -1828,12 +1900,12 @@ server <- function(input, output,session) {
           HTML("Next let's assess the impacts on the streamflow hydrograph (mean monthly <i>Q</i>)."),
           br(),br(),
           HTML("<b>Climate Change Impacts:</b>"),
-          tags$li(HTML("Click on legend items to hide the 10, 30, 60, and 90% disturbance cases.")),
+          tags$li(HTML("Click on legend items to hide the 10, 30, 60, and 90% disturbance cases (or click the green 'Climate Impact' button).")),
           tags$li(HTML("<code>The impact of climate change uncertainties <i>Q</i> were well represented by the climate bookends.</code>")),
           tags$li(HTML("While the Warm/Wet case increased <i>Q</i> (in Dec. to June), the Hot/Dry case decreased <i>Q</i> (in May to Jan.).")),
           br(),
           HTML("<b>Forest Disturbance Impacts under Climate Change:</b>"),
-          tags$li(HTML("Click on legend items to"),
+          tags$li(HTML("Click on legend items  (or click the green 'Reset' button) to"),
                   actionLink("wat_mon_analysis_2_update1","turn all cases back on.")),
           tags$li(HTML("Forest disturbances increased <i>Q</i> relative to the case without disturbance in late spring to early winter (despite slight <i>ET</i> increases in spring), but decreased <i>Q</i> in the early spring.")),
           tags$li(HTML("This difference was due to higher ground snowpacks ("),
@@ -1841,7 +1913,7 @@ server <- function(input, output,session) {
                   HTML(") and <i>M</i> during spring to early summer months under forest removal (despite"),
                   actionLink("wat_mon_analysis_2_update2",HTML("slight sublimation (<i>E<sub>S</sub></i>) increases")),
                   HTML(").")),
-          tags$li(HTML("In the Warm/Wet case, <i>M</i> increase was sufficient to reverse the climate change effects on <i>Q</i> in key months for all forest disturbance cases and on an"),
+          tags$li(HTML("In the Warm/Wet case, <i>M</i> increase was sufficient to reverse the climate change effects on <i>Q</i> in key months for all forest disturbance cases and significantly increase <i>Q</i> on a"),
                   actionLink("wat_mon_analysis_2_update3","mean annual basis.")),
           tags$li(HTML("<code>Forest disturbances in the Hot/Dry case were sufficient to offset warming in some months, but not on an"), 
                   actionLink("wat_mon_analysis_2_update4","annual basis"),
@@ -1921,6 +1993,11 @@ server <- function(input, output,session) {
     updateNavbarPage(session, "pages",navpage_name)
     updateRadioButtons(session,"wat_ann_analyses",selected = "wat_ann_analysis_5")
     updateCollapse(session,"watershed_analyses_annual_panels",open="Guided Analysis")
+    # updateRadioButtons(session,"wat_ann_plot_type_selected",selected = 2)
+    # updateVarSelectInput(session,"wat_ann_basin_selected_1",selected = "San Juan")
+    # updateVarSelectInput(session,"wat_ann_var_selected_1",selected = "Streamflow ([cubic km])")
+    # updateVarSelectInput(session,"wat_ann_var_selected_2",selected = "Supply efficiency ([runoff + baseflow]/precipitation)")
+    
   })
   observeEvent(input$wat_mon_analysis_2_update4, {
     navpage_name <- "Annual"

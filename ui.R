@@ -2,18 +2,16 @@
 ##
 ## Script name: ui.R
 ##
-## Purpose of the script: The user interface script of the VIC-Explorer website package.
+## Purpose of the script: The user interface script of CRB-Scenario-Explorer.
 ##
 ## @author: Kristen Whitney
 ##
 ## Created on Fri Sept 19 2022
 ##
-## Copyright (c) Arizona State University, 2022
-## Email: kmwhitne@asu.edu
 ##
 ## --------------------------------------------------------------------------------------##
 ##    Notes:
-##    More information on this to come. 
+##    
 ##
 ## --------------------------------------------------------------------------------------##
 ## ----------------------------------Load packages and source scripts---------------------------------------## ----
@@ -25,23 +23,13 @@ library(thematic,quietly=TRUE,warn.conflicts = FALSE)
 library(stringi,quietly=TRUE,warn.conflicts = FALSE)
 library(stringr,quietly=TRUE,warn.conflicts = FALSE)
 library(shinyBS,quietly=TRUE,warn.conflicts = FALSE)
-# library(bslib, quietly = TRUE)
-# library(shinythemes,quietly = TRUE)
-# library(stringi,quietly=TRUE,warn.conflicts = FALSE)
-# library(lubridate,quietly=TRUE,warn.conflicts = FALSE)
-# library(dygraphs,quietly=TRUE,warn.conflicts = FALSE)
-# library(tidyverse,quietly=TRUE,warn.conflicts = FALSE)
-# library(RColorBrewer,quietly=TRUE,warn.conflicts = FALSE)
 library(plotly,quietly=TRUE,warn.conflicts = FALSE)
 library(leaflet,quietly=TRUE,warn.conflicts = FALSE)
 library(manipulateWidget,quietly=TRUE,warn.conflicts = FALSE) # sync leaflet
 library(leaflet.minicharts,quietly=TRUE,warn.conflicts = FALSE)
-# library(ncdf4,quietly=TRUE,warn.conflicts = FALSE)
-# library(stars,quietly=TRUE,warn.conflicts = FALSE)
 
 # Source helper scripts
 source("./helpfiles/helper_dictionaries.R")
-# assign("more_info_options", more_info_options, envir=globalenv()) # Set as a global variable
 
 ## ----------------------------------Init Options---------------------------------------## ----
 thematic_shiny(font = "auto")
@@ -92,10 +80,6 @@ title = div("CRB-Scenario-Explorer",
 ),
 
 windowTitle = "CRB-Scenario-Explorer",
-# position = "fixed-top",
-# fluid = TRUE,
-# collapsible = TRUE,
-# id = 'tabs',
 
 ## ----------------------------------Start defining Pages and Tabs------------------------------------------## ----
 
@@ -116,7 +100,7 @@ windowTitle = "CRB-Scenario-Explorer",
                                       background-image: url('webtool_banner.png');
                                       # background-repeat: no-repeat;
                                       background-size: cover;
-                                      height: 140px;
+                                      height: 150px;
                                       border-style: none!important;
                                       }"
           )
@@ -172,51 +156,22 @@ navbarMenu(
 tabPanel("Annual",
          id = "watershed_analyses_annual",
          fluidRow(
-           column(3,
-                  wellPanel(
-                    # h4("Main Control Panel"),
-                    selectInput(
-                      "wat_ann_basin_selected_1",
-                      label = "Select two basin regions:",
-                      choices = basin_full_names,
-                      selected = "Basin-wide",
-                    ),
-                    selectInput(
-                      "wat_ann_basin_selected_2",
-                      label = NULL,
-                      choices = basin_full_names,
-                      selected = "Upper Basin"
-                    ),
-                    selectInput(
-                      "wat_ann_var_selected_1",
-                      label = "Select two variables:",
-                      choices = sort(var_visible_wat_ann),
-                      selected = "Snow water equivalent"
-                    ),
-                    selectInput(
-                      "wat_ann_var_selected_2",
-                      label = NULL,
-                      choices = sort(var_visible_wat_ann),
-                      selected = "Streamflow ([cubic km])"
-                    ),
-                    # br(),
-                    radioButtons("wat_ann_plot_type_selected", label = "Select a plot type:",
-                                 choices = list("Mean annual values" = 1, "Changes in mean annual values, relative to Baseline (fluxes as percent changes)" = 2, "Changes in mean annual values, relative to Baseline (fluxes as aboslute differences)" = 3), 
-                                 selected = 1)
-                  )
-           ),
-           column(9,
-                  br(),br(),
-                  plotlyOutput("wat_ann_plot")
-           ),
-         ),
-         fluidRow(
+           plotlyOutput("wat_ann_plot"),
+           br(),
            # Information Panels
            bsCollapse(id = "watershed_analyses_annual_panels",
                       open = "Figure Description",
                       bsCollapsePanel("Figure Description",
                                       htmlOutput("wat_ann_plot_description"),
-                                      helpText(HTML("Note: Move mouse over plot to highlight individual values. Click legend items to hide/show. Double-click legend items to isolate.")),
+                                      hr(),
+                                      helpText(HTML("Notes:<br>- Move mouse over plot to highlight individual values. Click legend items to hide/show. Double-click legend items to isolate."),
+                                               HTML("<br>- All plot settings can be manually adjusted in the"),
+                                               actionLink("wat_ann_plot_description_to_freeform","'Freeform Analysis' panel"),
+                                               HTML("below (e.g., selecting options to to visualize Upper Basin streamflow in million-acre feet [MAF])."),
+                                               HTML("<br>- Follow the steps in the"),
+                                               actionLink("wat_ann_plot_description_to_guided","'Guided Analysis' panel"),
+                                               HTML("below to learn the findings at the mean annual watershed scale.")
+                                               ),
                                       style="default"),
                       bsCollapsePanel("Guided Analysis",
                                       fluidRow(
@@ -231,103 +186,111 @@ tabPanel("Annual",
                                             "4. Streamflow impacts" = "wat_ann_analysis_4",
                                             "5. Supply efficiency impacts" = "wat_ann_analysis_5",
                                             "6. Conclusions" = "wat_ann_analysis_conclusions"
-                                          ),
-                                          selected = "wat_ann_analysis_conclusions",
+                                            ),
+                                          # selected = "wat_ann_analysis_conclusions",
+                                          selected = character(0),
                                           inline=TRUE
-                                        ),
+                                          ),
                                         hr(),
                                         # Result/interpretation description
                                         uiOutput("wat_ann_analysis_description")
-
+                                        ),
+                                      style = "primary"),
+                      bsCollapsePanel("Freeform Analysis",
+                                      # Control Panel
+                                      fluidRow(
+                                        column(3,
+                                               # h4("Main Control Panel"),
+                                               selectInput(
+                                                 "wat_ann_basin_selected_1",
+                                                 label = "Select two basin regions:",
+                                                 choices = basin_full_names,
+                                                 selected = "Basin-wide"
+                                                 ),
+                                               selectInput(
+                                                 "wat_ann_basin_selected_2",
+                                                 label = NULL,
+                                                 choices = basin_full_names,
+                                                 selected = "Upper Basin"
+                                                 )
+                                               ),
+                                        column(3,
+                                               selectInput(
+                                                 "wat_ann_var_selected_1",
+                                                 label = "Select two variables:",
+                                                 choices = sort(var_visible_wat_ann),
+                                                 selected = "Snow water equivalent"
+                                                 ),
+                                               selectInput(
+                                                 "wat_ann_var_selected_2",
+                                                 label = NULL,
+                                                 choices = sort(var_visible_wat_ann),
+                                                 selected = "Streamflow ([cubic km])"
+                                                 )
+                                               ),
+                                        column(3,
+                                               radioButtons("wat_ann_plot_type_selected",
+                                                            label = "Select a plot type:",
+                                                            choices = list("Mean annual values" = 1, "Changes in mean annual values, relative to Baseline (fluxes as percent changes)" = 2, "Changes in mean annual values, relative to Baseline (fluxes as aboslute differences)" = 3), 
+                                                            selected = 1
+                                                            )
+                                               )
+                                        ),
+                                      style="info"
                                       ),
-                                      style = "info"),
                       bsCollapsePanel("More Info",
-                                      tags$li(HTML("More information on each basin region can be found at the"), 
-                                      actionLink("link_from_wat_ann_to_watersheds1a","More Info > Watersheds"),
-                                      HTML("and"),
-                                      actionLink("link_from_wat_ann_to_watersheds1b","More Info > Forest Disturbances > Watershed statistics"),
-                                      HTML("pages.")),
-                                      tags$li(HTML("More information on the modelled scenarios can be found on"), 
+                                      tags$li(HTML("More info on each basin region can be found at the"),
+                                              actionLink("link_from_wat_ann_to_watersheds1a","More Info > Watersheds"),
+                                              HTML("and"),
+                                              actionLink("link_from_wat_ann_to_watersheds1b","More Info > Forest Disturbances > Watershed statistics"),
+                                              HTML("pages.")
+                                              ),
+                                      tags$li(HTML("More info on the modelled scenarios can be found on"), 
                                               actionLink("link_from_wat_ann_to_scenario_overview","More Info > Scenario Overview"),
-                                              HTML("page.")),
-                                      tags$li(HTML("More information on the model framework can be found on"), 
+                                              HTML("page.")
+                                              ),
+                                      tags$li(HTML("More info on the model framework can be found on"), 
                                               actionLink("link_from_wat_ann_to_framework_overview1","More Info > Framework Overview"),
-                                              HTML("page.")),
+                                              HTML("page.")
+                                              ),
                                       tags$li(HTML("Check out the"),
                                               actionLink("link_from_wat_ann_to_wat_month1","Monthly Watershed-Analyses"),
-                                              HTML("to learn the impacts to streamflow timing and the underlying snowpack dynamics.")),
+                                              HTML("to learn the impacts to streamflow timing and the underlying snowpack dynamics.")
+                                              ),
                                       tags$li(HTML("Follow the guided analysis on the"),
                                               actionLink("link_from_wat_ann_to_spatial_analyses1","Spatial-Analyses"),
-                                              HTML("page to compare how these changes were distributed across the basin and to learn the overall conclusions and water resource management implications of this work.")),
-                                      
-                                      style="primary"
+                                              HTML("page to compare how these changes were distributed across the basin and to learn the overall conclusions and water resource management implications of this work.")
+                                              ),
+                                      style="success"
+                                      )
                       )
-                                      
            )
-         )
-         
-               
-
-         
-
-         
-),
+         ),
 ## -----------------------------------------Watershed-Analyses Monthly page---------------------------------------------## ----
 tabPanel("Monthly",
          id = "watershed_analyses_monthly",
          fluidRow(
-           column(3,
-                  wellPanel(
-                    # h4("Main Control Panel"),
-                    selectInput(
-                      "wat_mon_basin_selected",
-                      label = "Select a basin region:",
-                      choices = basin_full_names,
-                      selected = "Basin-wide",
-                    ),
-                    selectInput(
-                      "wat_mon_var_selected_1",
-                      label = "Select three variables:",
-                      choices = sort(var_visible_wat_mon),
-                      selected = "Streamflow ([cubic km])"
-                    ),
-                    selectInput(
-                      "wat_mon_var_selected_2",
-                      label = NULL,
-                      choices = sort(var_visible_wat_mon),
-                      selected = "Snowmelt"
-                    ),
-                    selectInput(
-                      "wat_mon_var_selected_3",
-                      label = NULL,
-                      choices = sort(var_visible_wat_mon),
-                      selected = "Total evapotranspiration"
-                    )
-                    # # br(),
-                    # radioButtons("wat_ann_plot_type_selected", label = "Select a plot type:",
-                    #              choices = list("Mean annual values" = 1, "Changes in mean annual values, relative to Baseline (fluxes as percent changes)" = 2, "Changes in mean annual values, relative to Baseline (fluxes as aboslute differences)" = 3), 
-                    #              selected = 1)
-                  )
-           ),
-           column(9,
-                  # br(),
-                  # textOutput("dum_text"),
-                  # br(),
-                  plotlyOutput("wat_mon_plot")
-           ),
-         ),
-         fluidRow(
+           plotlyOutput("wat_mon_plot"),
+           br(),
+           
            # Information Panels
            bsCollapse(id = "watershed_analyses_monthly_panels",
                       open = "Figure Description",
                       bsCollapsePanel("Figure Description",
                                       htmlOutput("wat_mon_plot_description"),
-                                      helpText(HTML("Notes: <br>-Move mouse over plot to highlight individual values. Click legend items to hide/show. Double-click legend items to isolate.",
-                                                    "<br>-Comparison of the \'0% Disturbance\' case to the Baseline",
-                                                    "indicates the climate impacts.",
-                                                    "<br>-Comparisons of the \'0% Disturbance\' case to any other disturbance case (10-90%)",
-                                                    "indicate the forest disturbance impacts.")),
-                                      style="default"),
+                                      hr(),
+                                      helpText(HTML("Notes: <br>- Move mouse over plot to highlight individual values. Click legend items to hide/show. Double-click legend items to isolate."),
+                                               HTML("<br>- All plot settings can be manually adjusted in the"),
+                                               actionLink("wat_mon_plot_description_to_freeform","'Freeform Analysis' panel"),
+                                               HTML("below (e.g., selecting options to to visualize Upper Basin streamflow in million-acre feet [MAF])."),
+                                               HTML("<br>- Comparison of the \'0% Disturbance\' case to the Baseline indicates the climate impacts."),
+                                               HTML("<br>- Comparisons of the \'0% Disturbance\' case to any other disturbance case (10-90%) indicate the forest disturbance impacts."),
+                                               HTML("<br>- Follow the steps in the"),
+                                               actionLink("wat_mon_plot_description_to_guided","'Guided Analysis' panel"),
+                                               HTML("below to learn the findings at the mean monthly watershed scale.")
+                                               ),
+                                      style="default"
+                                      ),
                       bsCollapsePanel("Guided Analysis",
                                       fluidRow(
                                         # analysis steps
@@ -340,7 +303,8 @@ tabPanel("Monthly",
                                             "3. Conclusions" = "wat_mon_analysis_conclusions"
                                             # "4. Implications and Assumptions" = "wat_mon_analysis_implications"
                                           ),
-                                          selected = "wat_mon_analysis_conclusions",
+                                          # selected = "wat_mon_analysis_conclusions",
+                                          selected = character(0),
                                           inline=TRUE
                                         ),
                                         hr(),
@@ -348,17 +312,52 @@ tabPanel("Monthly",
                                         uiOutput("wat_mon_analysis_description")
                                         
                                       ),
-                                      style = "info"),
+                                      style = "primary"),
+                      bsCollapsePanel("Freeform Analysis",
+                                      # Control Panel
+                                      fluidRow(
+                                        column(3,
+                                               selectInput(
+                                                 "wat_mon_basin_selected",
+                                                 label = "Select a basin region:",
+                                                 choices = basin_full_names,
+                                                 selected = "Basin-wide"
+                                               )
+                                               ),
+                                        column(3,
+                                               selectInput(
+                                                 "wat_mon_var_selected_1",
+                                                 label = "Select three variables:",
+                                                 choices = sort(var_visible_wat_mon),
+                                                 selected = "Streamflow ([cubic km])"
+                                               )),
+                                        column(3,br(),
+                                               selectInput(
+                                                 "wat_mon_var_selected_2",
+                                                 label = NULL,
+                                                 choices = sort(var_visible_wat_mon),
+                                                 selected = "Snowmelt"
+                                               )),
+                                        column(3,br(),
+                                               selectInput(
+                                                 "wat_mon_var_selected_3",
+                                                 label = NULL,
+                                                 choices = sort(var_visible_wat_mon),
+                                                 selected = "Total evapotranspiration"
+                                               )
+                                        )
+                                        ),
+                                      style="info"),
                       bsCollapsePanel("More Info",
-                                      tags$li(HTML("More information on each basin region can be found at the"), 
+                                      tags$li(HTML("More info on each basin region can be found at the"), 
                                               actionLink("link_from_wat_mon_to_watersheds1a","More Info > Watersheds"),
                                               HTML("and"),
                                               actionLink("link_from_wat_mon_to_watersheds1b","More Info > Forest Disturbances > Watershed statistics"),
                                               HTML("pages.")),
-                                      tags$li(HTML("More information on the modelled scenarios can be found on"),
+                                      tags$li(HTML("More info on the modelled scenarios can be found on"),
                                               actionLink("link_from_wat_mon_to_scenario_overview1","More Info > Scenario Overview"),
                                               HTML("page.")),
-                                      tags$li(HTML("More information on the model framework can be found on"),
+                                      tags$li(HTML("More info on the model framework can be found on"),
                                               actionLink("link_from_wat_mon_to_framework_overview1","More Info > Framework Overview"),
                                               HTML("page.")),
                                       tags$li(HTML("Check out the"),
@@ -366,14 +365,13 @@ tabPanel("Monthly",
                                               HTML(".")),
                                       tags$li(HTML("Follow the guided analysis on the"),
                                               actionLink("link_from_wat_mon_to_spatial_analyses1","Spatial-Analyses"),
-                                              HTML("page to compare how changes were distributed across the basin and to learn the overall conclusions and water resource management implications of this work.")),
+                                              HTML("page to compare how changes were distributed across the basin and to learn the overall conclusions and water resource management implications of this work.")
+                                              ),
 
-                                      style="primary"
+                                      style="success"
+                                      )
                       )
-                      
            )
-         )
-         
 )
 
 ),
@@ -381,102 +379,76 @@ tabPanel("Monthly",
 ## -----------------------------------------Spatial-Analyses Tab---------------------------------------------## ----
 tabPanel(
   "Spatial-Analyses",
-  
   fluidRow(
-    column(3,
-           wellPanel(
-             selectInput(
-               "spatial_var_selected_1",
-               label = "Select two variables:",
-               choices = sort(var_visible_spatial),
-               selected = "Total evapotranspiration"
-             ),
-             selectInput(
-               "spatial_var_selected_2",
-               label = NULL,
-               choices = sort(var_visible_spatial),
-               selected = "Snow water equivalent"
-             ),
-             selectInput(
-               "spatial_temporal_scale_selected",
-               label = "Select a temporal average:",
-               choices = names(spatial_input_argument_dictionary$temporal_scales),
-               selected = "Annual (Oct-Sep)"
-             ),
-             selectInput(
-               "spatial_impact_type_selected",
-               label="Select impact type",
-               choices = names(spatial_input_argument_dictionary$impact_scenarios),
-               selected = "30% forest disturbance"
-             ),
-             radioButtons(
-               "spatial_basemap_on",
-               label = "Basemap:",
-               choices = list(
-                 "on" = TRUE,
-                 "off" = FALSE
-               ),
-               selected = FALSE
-             ),
-             radioButtons(
-               "spatial_sync_maps",
-               label = "Sync map zoom:",
-               choices = list(
-                 "on" = TRUE,
-                 "off" = FALSE
-               ),
-               selected = FALSE
-             )
-           )
+    # Warm/Wet Tab
+    tabsetPanel(
+      id = "spatial_scenario_panels",
+      tabPanel(
+        id = "spatial_scenario_warm_wet",
+        title = "Warm/Wet Climate",
+        
+        # Plot titles (variable names)
+        fluidRow(
+          column(6,
+                 htmlOutput("spatial_plot_warmwet_var1")
+                 ),
+          column(6,
+                 htmlOutput("spatial_plot_warmwet_var2")
+                 )
+          ),
+        
+        # Plots
+        combineWidgetsOutput('spatial_scenario_maps_warmwet', width = "100%", height = "600px")
+        ),
+      
+      # Hot/Dry Tab
+      tabPanel(
+        id = "spatial_scenario_hot_dry",
+        title = "Hot/Dry Climate",
+         
+        # Plot titles (variable names)
+        fluidRow(
+          column(6,
+                 htmlOutput("spatial_plot_hotdry_var1")
+                 ),
+          column(6,
+                 htmlOutput("spatial_plot_hotdry_var2")
+                 )
+          ),
+        
+        # Plots
+        combineWidgetsOutput('spatial_scenario_maps_hotdry', width = "100%", height = "600px")
+        )
+       )
     ),
-    column(9,
-           # Separate tabs for Warm/Wet and Hot/Dry
-           tabsetPanel(
-             id = "spatial_scenario_panels",
-             tabPanel(
-               id = "spatial_scenario_warm_wet",
-               title = "Warm/Wet Climate",
-               
-               # Plot titles (variable names)
-               fluidRow(column(6,
-                              htmlOutput("spatial_plot_warmwet_var1")
-                        ),
-                      column(6,
-                             htmlOutput("spatial_plot_warmwet_var2")
-               )),
-               
-               # Plots
-               combineWidgetsOutput('spatial_scenario_maps_warmwet', width = "100%", height = "600px")
-           ),
-           tabPanel(
-             id = "spatial_scenario_hot_dry",
-             title = "Hot/Dry Climate",
-             
-             # Plot titles (variable names)
-             fluidRow(column(6,
-                             htmlOutput("spatial_plot_hotdry_var1")
-             ),
-             column(6,
-                    htmlOutput("spatial_plot_hotdry_var2")
-             )),
-             
-             # Plots
-             combineWidgetsOutput('spatial_scenario_maps_hotdry', width = "100%", height = "600px")
-             )
-           )
-    ),
-  ),
   fluidRow(
+    
     # Information Panels
     bsCollapse(id = "spatial_analyses_panels",
                open = "Figure Description",
                bsCollapsePanel("Figure Description",
                                htmlOutput("spatial_plot_description"),
-                               helpText(HTML("Move mouse over plot to highlight average values across each subbasin.")),
+                               hr(),
+                               helpText(HTML("Notes:<br>- Move mouse over plot to highlight average values across each subbasin."),
+                                        HTML("<br>- Click and drag on the map to move the position."),
+                                        HTML("<br>- Click '+' or '-' icons or use your mouse scroll to zoom in/out.<br>- Click the magnifying glass icon to search for and highlight regions of interest."),
+                                        
+                                        HTML("<br>- All plot settings can be manually adjusted in the"),
+                                        actionLink("spatial_plot_description_to_freeform","'Freeform Analysis' panel"),
+                                        HTML("below."),
+                                        HTML("<br>- Follow the steps in the"),
+                                        actionLink("spatial_plot_description_to_guided","'Guided Analysis' panel"),
+                                        HTML("below to learn the findings at the spatially-distributed scale."),
+                                        HTML("<br>- The major findings across all analysis scales are listed in the"),
+                                        actionLink("spatial_plot_description_to_conclusions","'Overarching Research Conclusions' panel."),
+                                        HTML("<br>- The broader relevance of these findings are listed in the"),
+                                        actionLink("spatial_plot_description_to_implications","'Water Management and Policy Implications' panel.")
+                                        ),
                                style="default"),
                bsCollapsePanel("Guided Analysis",
                                fluidRow(
-                                 # analysis steps
+                                 
+                                 # Analysis steps
                                  radioButtons(
                                    "spatial_guided_analyses",
                                    label = "Choose an analysis step:",
@@ -490,29 +462,80 @@ tabPanel(
                                    inline=TRUE
                                  ),
                                  hr(),
+                                 
                                  # Result/interpretation description
                                  uiOutput("spatial_analysis_description")
-
-                               ),
-                               style = "info"),
+                                 ),
+                               style = "primary"),
                bsCollapsePanel("Overarching Research Conclusions",
                                style="warning",
                                uiOutput("spatial_analysis_conclusions_description")
-               ),
+                               ),
                bsCollapsePanel("Water Management and Policy Implications",
                                style="danger",
                                uiOutput("spatial_analysis_implications_description")
-               ),
+                               ),
+               bsCollapsePanel("Freeform Analysis",
+                               column(3,
+                                      selectInput(
+                                        "spatial_var_selected_1",
+                                        label = "Select two variables:",
+                                        choices = sort(var_visible_spatial),
+                                        selected = "Snow water equivalent"
+                                      ),
+                                      selectInput(
+                                        "spatial_var_selected_2",
+                                        label = NULL,
+                                        choices = sort(var_visible_spatial),
+                                        selected = "Total evapotranspiration"
+                                      )),
+                               column(3,
+                                      selectInput(
+                                        "spatial_temporal_scale_selected",
+                                        label = "Select a temporal average:",
+                                        choices = names(spatial_input_argument_dictionary$temporal_scales),
+                                        selected = "Annual (Oct-Sep)"
+                                        )
+                                      ),
+                               column(3,
+                                      selectInput(
+                                        "spatial_impact_type_selected",
+                                        label="Select impact type",
+                                        choices = names(spatial_input_argument_dictionary$impact_scenarios),
+                                        selected = "30% Forest disturbance"
+                                      )),
+                               column(3,
+                                      radioButtons(
+                                        "spatial_basemap_on",
+                                        label = "Basemap:",
+                                        choices = list(
+                                          "on" = TRUE,
+                                          "off" = FALSE
+                                        ),
+                                        selected = FALSE
+                                      ),
+                                      radioButtons(
+                                        "spatial_sync_maps",
+                                        label = "Sync map zoom:",
+                                        choices = list(
+                                          "on" = TRUE,
+                                          "off" = FALSE
+                                        ),
+                                        selected = FALSE
+                                        )
+                                      ),
+                               style="info"
+                               ),
                bsCollapsePanel("More Info",
-                               tags$li(HTML("More information on each basin region can be found at the"), 
+                               tags$li(HTML("More info on each basin region can be found at the"), 
                                        actionLink("link_from_spatial_to_watersheds1a","More Info > Watersheds"),
                                        HTML("and"),
                                        actionLink("link_from_spatial_to_watersheds1b","More Info > Forest Disturbances > Watershed statistics"),
                                        HTML("pages.")),
-                               tags$li(HTML("More information on the modelled scenarios can be found on"),
+                               tags$li(HTML("More info on the modelled scenarios can be found on"),
                                        actionLink("link_from_spatial_to_scenario_overview1","More Info > Scenario Overview"),
                                        HTML("page.")),
-                               tags$li(HTML("More information on the model framework can be found on"),
+                               tags$li(HTML("More info on the model framework can be found on"),
                                        actionLink("link_from_spatial_to_framework_overview1","More Info > Framework Overview"),
                                        HTML("page.")),
                                tags$li(HTML("Check out the Watershed-Analyses analyses at the mean"),
@@ -523,10 +546,10 @@ tabPanel(
                                        ),
                                tags$li(HTML("Follow the"),
                                        actionLink("spatial_analysis_update1","Guided Analysis"),
-                                       HTML("to learn the overall conclusions and water resource management implications of this work."),
+                                       HTML("to learn the overall conclusions and water resource management implications of this work.")
                                        ),
                                
-                               style="primary"
+                               style="success"
                )
                
     )
@@ -585,8 +608,8 @@ verticalTabPanel(
                                  ),
                                  tags$li(
                                    actionLink("link_from_scenario_to_forest_disturbances2","Forest Disturbances"),
-                                         HTML("applied to the (b, d) Far-Future land cover conditions."),
-                                 ),
+                                         HTML("applied to the (b, d) Far-Future land cover conditions.")
+                                 )
                                ),
                                style = "default"),
                bsCollapsePanel("More Info", 
@@ -688,6 +711,18 @@ verticalTabPanel(
                                ),
                                tags$li(HTML("Click the links in the 'Figure Description' panel (above) or navigate in the"),
                                        HTML("main menu on the left to learn more about each framework component.")),
+                               hr(),
+                               HTML("The table below lists the hydrological processes in the model framework used in this work."),
+                               tags$figure(
+                                 align = "center",
+                                 tags$img(
+                                   src = vic_ex_images$framework_overview_table$image_src,
+                                   width = vic_ex_images$framework_overview_table$image_width,
+                                   alt = vic_ex_images$framework_overview_table$image_alt_text,
+                                   height = vic_ex_images$framework_overview_table$image_height
+                                 )
+                               ),
+                               
                                style = "primary"),
                # bsCollapsePanel("Assumptions", 
                #                 # insert assumptions
@@ -721,56 +756,18 @@ verticalTabPanel(
                                    tags$li(htmlOutput("framework_bennett_et_al_2018a")),
                                    tags$li(htmlOutput("framework_bennett_et_al_2018b")),
                                    tags$li(htmlOutput("framework_usgs_et_al_2016a")),
-                                   tags$li(htmlOutput("framework_andreadis_et_al_2009"))
+                                   tags$li(htmlOutput("framework_andreadis_et_al_2009")),
+                                   tags$li(htmlOutput("framework_liang_et_al_1999")),
+                                   tags$li(htmlOutput("framework_cherkauer_lettenmaier_2003")),
+                                   tags$li(htmlOutput("framework_wigmosta_et_al_1994")),  # add this to dictionary
+                                   tags$li(htmlOutput("framework_franchini_pacciani_1991")),  # add this to dictionary
+                                   tags$li(htmlOutput("framework_bohn_vivoni_2016"))  # add this to dictionary
                                  ),
                                style = "info")
     )
   )
 ),
-## -----------------------------------------Meteorology Model panel---------------------------------------------## ----
-# verticalTabPanel(
-#   title = "Meteorology Model",
-#   #icon = icon("cloud-sun-rain"),
-#   box_height= 0.1,
-#   
-#   # Content
-#   fluidRow(
-#     # Figure
-#     tags$figure(
-#       align = "center",
-#       tags$img(
-#         src = vic_ex_images$met_model$image_src,
-#         width = vic_ex_images$met_model$image_width,
-#         alt = vic_ex_images$met_model$image_alt_text,
-#         height = vic_ex_images$met_model$image_height
-#       )
-#     ),
-#     
-#     # Information Panels
-#     bsCollapse(id = "met_model_info_panels", 
-#                open = "Figure Description",
-#                bsCollapsePanel("Figure Description", 
-#                                tags$p(
-#                                  HTML("<b>The meteorology model</b> ..."),
-#                                  ""
-#                                ),
-#                                style = "default"),
-#                bsCollapsePanel("More Info", 
-#                                tags$li("more info 1"),
-#                                tags$li("more info 2"),
-#                                style = "primary"),
-#                bsCollapsePanel("Assumptions", 
-#                                # insert assumptions
-#                                style = "warning"),
-#                bsCollapsePanel("References",
-#                                tags$ol(
-#                                  tags$li()
-#                                  ),
-#                                style = "info")
-#     )
-#   )
-#   
-# ),
+
 ## -----------------------------------------Hydrology Model panel---------------------------------------------## ----
 verticalTabPanel(
   title = "Hydrology Model",
@@ -826,7 +823,7 @@ verticalTabPanel(
                                    tags$li(HTML("VIC esimates the"), actionLink("link_from_hydro_overview_to_hydro_model_prec","partitioning of precipitation"), HTML("in to rain and snowfall using a temperature-based scheme.")),
                                    tags$li(HTML("All tiles within a cell receive the same rain and snowfall amounts.")),
                                    hr(),
-                                   helpText(HTML("For more information on VIC, <a href=\"https://vic.readthedocs.io/en/master/Overview/ModelOverview/\">click here</a>")),
+                                   helpText(HTML("For More info on VIC, <a href=\"https://vic.readthedocs.io/en/master/Overview/ModelOverview/\">click here</a>")),
                                    
                                    style = "primary"),
                    bsCollapsePanel("Assumptions", 
@@ -847,16 +844,16 @@ verticalTabPanel(
                                       htmlOutput("hydro_overview_vic_code")),
                                    h5(HTML("<b>References:</b>")),
                                    tags$ol(
-                                     tags$li(htmlOutput("hydro_overview_liang_el_al_1994")),
+                                     tags$li(htmlOutput("hydro_overview_liang_et_al_1994")),
                                      tags$li(htmlOutput("hydro_overview_andreadis_et_al_2009")), 
                                      tags$li(htmlOutput("hydro_overview_cherkauer_lettenmaier_2003")),
                                      tags$li(htmlOutput("hydro_overview_bohn_vivoni_2016")),
                                      tags$li(htmlOutput("hydro_overview_christensen_lettenmaier_2007")),
                                      tags$li(htmlOutput("hydro_overview_bureau_2012")),
                                      tags$li(htmlOutput("hydro_overview_vano_lettenmaier_2012")),
-                                     tags$li(htmlOutput("hydro_overview_hamman_el_al_2018")),
-                                     tags$li(htmlOutput("hydro_overview_bohn_el_al_2018b")),
-                                     tags$li(htmlOutput("hydro_overview_wang_vivoni_2022")),
+                                     tags$li(htmlOutput("hydro_overview_hamman_et_al_2018")),
+                                     tags$li(htmlOutput("hydro_overview_bohn_et_al_2018b")),
+                                     tags$li(htmlOutput("hydro_overview_wang_vivoni_2022"))
                                    ),
                                    style = "info")
         )
@@ -873,15 +870,6 @@ verticalTabPanel(
         br(),
         plotlyOutput("p_partitioning_fig"),
         br(),
-        # tags$figure(
-        #   align = "center",
-        #   tags$img(
-        #     src = vic_ex_images$hydro_model_prec$image_src,
-        #     width = vic_ex_images$hydro_model_prec$image_width,
-        #     alt = vic_ex_images$hydro_model_prec$image_alt_text,
-        #     height = vic_ex_images$hydro_model_prec$image_height
-        #   )
-        # ),
         
         # Information Panels
         bsCollapse(id = "hydro_model_prec_info_panels", 
@@ -918,7 +906,7 @@ verticalTabPanel(
                                            actionLink("hydro_p_partition_update1",HTML("the precipitation phase air temperature thresholds [-0.5, 0.5<sup>o</sup>C]")),
                                            HTML(").")),
                                    hr(),
-                                   helpText(HTML("For more information on the snow band formulation, <a href=\"https://vic.readthedocs.io/en/master/Overview/SnowBandsText/\">click here</a>")),
+                                   helpText(HTML("For More info on the snow band formulation, <a href=\"https://vic.readthedocs.io/en/master/Overview/SnowBandsText/\">click here</a>")),
                                    style = "primary"),
                    bsCollapsePanel("Assumptions", 
                                    tags$li(HTML("VIC assumes that the near surface air temperature thresholds determining precipitation phase (-0.5, 0.5<sup>o</sup>C) do not vary across space.")),
@@ -975,7 +963,7 @@ verticalTabPanel(
                                      tags$li(HTML("Water can be added as rain, snow, drip/throughfall from canopy.")),
                                      tags$li(HTML("Albedo and snowpack size evolves with snow ages.")),
                                      hr(),
-                                     helpText(HTML("For more information on the snow pack formulation, <a href=\"https://vic.readthedocs.io/en/master/Overview/SnowModelText/\">click here</a>")),
+                                     helpText(HTML("For More info on the snow pack formulation, <a href=\"https://vic.readthedocs.io/en/master/Overview/SnowModelText/\">click here</a>"))
                                    ),
                                    style = "default"),
                    bsCollapsePanel("More Info", 
@@ -1017,7 +1005,7 @@ verticalTabPanel(
                                      )
                                    ),
                                    hr(),
-                                   helpText(HTML("For more information on the snow band formulation, <a href=\"https://vic.readthedocs.io/en/master/Overview/SnowBandsText/\">click here</a>")),
+                                   helpText(HTML("For More info on the snow band formulation, <a href=\"https://vic.readthedocs.io/en/master/Overview/SnowBandsText/\">click here</a>")),
                                    style = "primary"),
                    bsCollapsePanel("Assumptions",
                                    tags$figure(
@@ -1073,7 +1061,7 @@ verticalTabPanel(
                                      actionLink("hydro_model_evap_update1",HTML("physically-based Penman Monteith approach")),
                                      HTML(".<sup>1</sup>"),
                                      actionLink("link_from_hydro_model_evap_to_snowpack","Sublimation"),
-                                     HTML("is drawn from snowpacks stored in the vegetation canopy and on the ground using an energy-balance model.<sup>1-3</sup>"),
+                                     HTML("is drawn from snowpacks stored in the vegetation canopy and on the ground using an energy-balance model.<sup>1-3</sup>")
                                      ),
                                    
                                    style = "default"),
@@ -1092,7 +1080,7 @@ verticalTabPanel(
                                        width = vic_ex_images$clumped_canopy$image_width,
                                        alt = vic_ex_images$clumped_canopy$image_alt_text,
                                        height = vic_ex_images$clumped_canopy$image_height
-                                     ),
+                                     )
                                    ),
                                    style = "primary"),
                    bsCollapsePanel("Assumptions", 
@@ -1100,11 +1088,11 @@ verticalTabPanel(
                                    actionLink("hydro_model_evap_update2",HTML("Penman Monteith approach")),
                                    HTML("and"),
                                    actionLink("link_from_hydro_model_evap_to_snowpack_assumptions","snowpack energy-balance model"),
-                                   HTML(") is solved through an iterative procedure (until the initial and final values of surface temperature are within tolerance). Xiao <em>et al.</em> (2022) describes these processes in detail."),
+                                   HTML(") is solved through an iterative procedure (until the initial and final values of surface temperature are within tolerance). Xiao <em>et al.</em> (2022) describes these processes in detail.")
                                    ),
                                    tags$li(
                                      actionLink("hydro_model_evap_update3",HTML("The clumped canopy scheme")),
-                                     HTML("assumes a temporally constant vegetation fraction and climatological monthly leaf area index (LAI) values (both are spatially variable; LAI is plant specific), estimated from remote sensing products."),
+                                     HTML("assumes a temporally constant vegetation fraction and climatological monthly leaf area index (LAI) values (both are spatially variable; LAI is plant specific), estimated from remote sensing products.")
                                            ),
                                    style = "warning"),
                    bsCollapsePanel("References", 
@@ -1151,7 +1139,7 @@ verticalTabPanel(
                                      tags$li(HTML("The water immediately infiltrates (no limit on infiltration rate) until either all water infiltrates or the soil (locally) reaches saturation.")),
                                      tags$li(HTML("The remainder of the influx produces runoff.")),
                                      hr(),
-                                     helpText(HTML("Image adapted from open access VIC documentation (<a href=\"http://vic.readthedocs.io/en/master/Overview/ModelOverview/\">http://vic.readthedocs.io/en/master/Overview/ModelOverview/</a>)")),
+                                     helpText(HTML("Image adapted from open access VIC documentation (<a href=\"http://vic.readthedocs.io/en/master/Overview/ModelOverview/\">http://vic.readthedocs.io/en/master/Overview/ModelOverview/</a>)"))
                                               
                                    ),
                                    style = "default"),
@@ -1168,7 +1156,7 @@ verticalTabPanel(
                    bsCollapsePanel("Assumptions", 
                                    tags$li(HTML("Relies on an empirical"),
                                            actionLink("hydro_model_infil_runoff_update",HTML("VIC curve shape parameter")),
-                                           HTML("(unqiue value for each land cover tile, typically calibrated based on observed river discharge)."),
+                                           HTML("(unqiue value for each land cover tile, typically calibrated based on observed river discharge).")
                                            ),
                                    tags$li(HTML("Infiltration is computed for the top two soil layers combined.")),
                                    style = "warning"),
@@ -1226,14 +1214,14 @@ verticalTabPanel(
                                    # insert references
                                    tags$ol(
                                      tags$li(htmlOutput("hydro_model_baseflow_franchini_pacciani_1991")),
-                                     tags$li(htmlOutput("hydro_model_baseflow_rosenberg_et_al_2013")),
+                                     tags$li(htmlOutput("hydro_model_baseflow_rosenberg_et_al_2013"))
                                    ),
                                    style = "info")
         )
         
       )
     )
-  ),
+  )
   )
   ),
 
@@ -1270,7 +1258,7 @@ verticalTabPanel(
                                  HTML("This routing scheme is a source-to-sink model that solves a linearized version of the Saint-Venant equations.")
                                ),
                                hr(),
-                               helpText(HTML("More information can be found on the R-VIC documentation pages (<a href=\"https://rvic.readthedocs.io/en/latest/about/model-overview/\">https://rvic.readthedocs.io/en/latest/about/model-overview/</a>)")),
+                               helpText(HTML("More info can be found on the R-VIC documentation pages (<a href=\"https://rvic.readthedocs.io/en/latest/about/model-overview/\">https://rvic.readthedocs.io/en/latest/about/model-overview/</a>)")),
                                style = "default"),
                bsCollapsePanel("More Info",
                                tags$li("Routing occurs in two stages: (1) Routing of overland flow from a point of generation to the nearest channel within the grid cell. (2) Routing of channel flow through the network."),
@@ -1278,7 +1266,7 @@ verticalTabPanel(
                                hr(),
                                helpText(actionLink("flow_rout_to_watersheds1","Navigate to the 'Watersheds' page"),HTML("for more info on the subbasin and channel delineations.")),
                                
-                               helpText(HTML("More information can be found on the R-VIC documentation pages (<a href=\"https://rvic.readthedocs.io/en/latest/about/model-overview/\">https://rvic.readthedocs.io/en/latest/about/model-overview/</a>)")),
+                               helpText(HTML("More info can be found on the R-VIC documentation pages (<a href=\"https://rvic.readthedocs.io/en/latest/about/model-overview/\">https://rvic.readthedocs.io/en/latest/about/model-overview/</a>)")),
                                
                                style = "primary"),
                bsCollapsePanel("Assumptions",
@@ -1291,7 +1279,7 @@ verticalTabPanel(
                                tags$li("Assumes 'shallow water' flows (i.e., horizontal length scale >> vertical length scale)."),
                                tags$li("Ignores impacts of channel slope, friction slope, and water surface slope on flow."),
                                tags$li("Ignore losses or gains of water after initial runoff generation."),
-                               tags$li("Flow is linear superposition of the impulse response functions (IRFs; i.e., unit hydrographs)."),
+                               tags$li("Flow is a linear superposition of the impulse response functions (IRFs; i.e., unit hydrographs)."),
 
                                h5(HTML("<b>Validity of Assumptions:</b>")),
                                tags$li(HTML("These assumptions are typically acceptable at large grid cell and basin scales.")),
@@ -1299,7 +1287,7 @@ verticalTabPanel(
                                tags$li(HTML("Groundwater is not explicitly depicted. However, Rosenberg <i>et al.</i> (2013) found that use of a groundwater formulation had little impact on simulated streamflow in the Colorado River Basin.")),
                                
                                hr(),
-                               helpText(HTML("More information can be found on the R-VIC documentation pages (<a href=\"https://rvic.readthedocs.io/en/latest/about/model-overview/\">https://rvic.readthedocs.io/en/latest/about/model-overview/</a>)")),
+                               helpText(HTML("More info can be found on the R-VIC documentation pages (<a href=\"https://rvic.readthedocs.io/en/latest/about/model-overview/\">https://rvic.readthedocs.io/en/latest/about/model-overview/</a>)")),
                                
                                style = "warning"),
                bsCollapsePanel("References",
@@ -1307,7 +1295,7 @@ verticalTabPanel(
                                tags$ol(
                                  tags$li(htmlOutput("flow_rout_lohmann_et_al_1996")),
                                  tags$li(htmlOutput("flow_rout_lohmann_et_al_1998")),
-                                 tags$li(htmlOutput("flow_rout_rosenberg_et_al_2013")),
+                                 tags$li(htmlOutput("flow_rout_rosenberg_et_al_2013"))
                                  
                                ),
                                style = "info")
@@ -1346,9 +1334,9 @@ verticalTabPanel(
                  open = "Figure Description",
                  bsCollapsePanel("Figure Description", 
                                  tags$p(
-                                   HTML("Basin-averaged annual changes in (a) total precipitation (<i>ΔP</i>), and (b) air temperature (<i>ΔT</i>) in the Baseline (1976-2005) under historic emissions and in the future (2006-2099) under lower (Representative Concentration Pathway 4.5; R45) and higher (Representative Concentration Pathway 8.5) R85 emission scenarios."),
+                                   HTML("Basin-averaged annual changes in (a) total precipitation (<i>ΔP</i>), and (b) air temperature (<i>ΔT</i>) in the Baseline (1976-2005) under historic emissions and in the future (2006-2099) under lower (Representative Concentration Pathway 4.5; R45) and higher (Representative Concentration Pathway 8.5; R85) emission scenarios."),
                                    hr(),
-                                   HTML("Bold lines show the Warm/Wet (blue) and Hot/Dry (red) climate bookends, and shading show interquartile range (IQR; i.e., 25<sup>th</sup> to 75<sup>th</sup> percentiles) across the ensemble of eight climate models for each emission scenario (historic, or future R45 or R85). Grey boxes highlight the Baseline and Far-Future (2066-2095) periods. Annual changes are computed relative to the mean Baseline conditions.")
+                                   HTML("Bold lines show the Warm/Wet (blue) and Hot/Dry (red) climate bookends, and shading shows the interquartile range (IQR; i.e., 25<sup>th</sup> to 75<sup>th</sup> percentiles) across the ensemble of eight climate models for each emission scenario (historic, or future R45 or R85). Grey boxes highlight the Baseline and Far-Future (2066-2095) periods. Annual changes are computed relative to the mean Baseline conditions.")
                                    
                                  ),
                                  style = "default"),
@@ -1392,17 +1380,17 @@ verticalTabPanel(
                                  tags$p(
                                    HTML("GCM values of mean annual precipitation (<i>P</i>) and air temperature (<i>T</i>) in the indicated basin regions for the Baseline (top) and Far-Future period under R45 (middle) and R85 (bottom). Changes relative to baseline ([% for <i>P</i>] and [<sup>o</sup>C for <i>T</i>]) in parentheses. Bolded values indicate the GCMs for the Warm/Wet (italic) and Hot/Dry (non-italic) cases."),
                                    hr(),
-                                   helpText(HTML("More information on each basin region can be found at the"), 
+                                   helpText(HTML("More info on each basin region can be found at the"), 
                                            actionLink("climate_proj_to_watersheds1","More Info > Watersheds"),
                                            HTML("and"),
                                            actionLink("climate_proj_to_watersheds2","More Info > Forest Disturbances > Watershed statistics"),
-                                           HTML("pages.")),
+                                           HTML("pages."))
 
                                    
                                  ),
                                  style = "default"),
                  bsCollapsePanel("More Info", 
-                                 tags$li(HTML("Climate model forcings were from statistically-downscaled GCM products<sup>1</sup> from the Climate Model Intercomparison Project 5 (CMIP5)<sup>2</sup> for RCPs 4.5 (R45) and 8.5 (R85), and initially included a subset of eight general circulation models (GCMs) that best reproduced historical conditions in the CRB.<sup>3</sup> ")),
+                                 tags$li(HTML("Climate model forcings were from statistically-downscaled GCM products<sup>1</sup> of the Climate Model Intercomparison Project 5 (CMIP5)<sup>2</sup> for RCPs 4.5 (R45) and 8.5 (R85), and initially included a subset of eight general circulation models (GCMs) that best reproduced historical conditions in the CRB.<sup>3</sup> ")),
                                  tags$li(actionLink("climate_proj_to_stakeholder2",HTML("Stakeholders proposed collapsing the effort to two climate bookends (a ‘worse or best case’ future)"))),
                                  tags$li(HTML("Based on comparisons of mean annual precipitation (<i>P</i>) and air temperature (<i>T</i>), we selected downscaled climate forcings for 1976 to 2099 from two products: (1) CanESM2 under R45 emissions for the ‘Warm/Wet’ scenario, and (2) IPSL-CM5A-MR under the R85 emissions for the ‘Hot/Dry’ scenario.")),
                                  style = "primary"),
@@ -1458,15 +1446,16 @@ verticalTabPanel(
                                      HTML("(a) Land cover map from the FORE-SCE (Sleeter <i>et al</i>., 2012) and INEGI (2013) products. (b) Elevations with subbasin delineations (black outlines) and their names, the location of the main basin outlet at Yuma, AZ, and the division of Upper and Lower Basin at Lees Ferry, AZ, from USGS (2016a). Red cross-hatching shows elevations ≥ 1,800 m."),
                                      hr(),
                                      helpText(actionLink("forest_disturb_update0","See 'More Info' panel"),HTML("below to learn how land cover and elevation were used to develop our forest disturbance scenarios.")),
-                                     helpText(actionLink("forest_disturb_to_watersheds1","Navigate to the 'Watersheds' page"),HTML("for more info on the subbasin and channel delineations.")),
+                                     helpText(actionLink("forest_disturb_to_watersheds1","Navigate to the 'Watersheds' page"),HTML("for more info on the subbasin and channel delineations."))
                                      
                                    ),
                                    style = "default"),
                    bsCollapsePanel("More Info", 
                                    h5(HTML("<b>Elevation and land cover:</b>")),
-                                   tags$li(HTML("Basin elevations range from 35 to 4391 m, with most high elevations contained in the Upper Basin (source area above Lees Ferry, AZ) where approximately 92% of streamflow originates as snowmelt.<sup>4</sup>")),
+                                   tags$li(HTML("Basin elevations range from 35 to 4391 m (above sea-level), with most high elevations contained in the Upper Basin (source area above Lees Ferry, AZ) where approximately 92% of streamflow originates as snowmelt.<sup>4</sup>")),
                                    tags$li(HTML("Land cover maps reveal that most land areas are characterized by shrub or scrub ecosystems (~59%), followed by various forest types (~23%), and grassland or herbaceous cover (11%).<sup>1,2</sup>")),
-                                   tags$li(HTML("Future projections of land cover compositions were from the FOREcasting SCEnario (FORE-SCE)<sup>1</sup> products based on the review of Sohl <i>et al</i>. (2016)."), actionLink("forest_disturb_to_stakeholder1",HTML("Stakeholders agreed FORE-SCE products were the best available option for the modeling scenarios"))),
+                                   tags$li(HTML("Future projections of land cover compositions were from the FOREcasting SCEnario (FORE-SCE)<sup>1</sup> products based on the review of Sohl <i>et al</i>. (2016).")), 
+                                   tags$li(actionLink("forest_disturb_to_stakeholder1",HTML("Stakeholders agreed FORE-SCE products were the best available option for the modeling scenarios."))),
                                    tags$li(HTML("The FORE-SCE gridded resolution (250 m) was incorporated to our modeling framework (1/16<sup>o</sup>, or ~6 km).")),
                                    tags$li(HTML("We used FORE-SCE maps under historical conditions in year 2005 (shown above) to parameterize the Baseline period, and under the SRES A2 scenario from year 2099 for the Far-Future period.")),
                                    
@@ -1529,16 +1518,12 @@ verticalTabPanel(
                  open = "Table Description",
                  bsCollapsePanel("Table Description", 
                                  tags$p(
-                                   HTML("Average total forest fraction (<i>C<sub>v</sub></i>) at elevations ≥ 1,800 m across each internal watershed (subbasin) of the basin for the Baseline and Far-Future land cover conditions. Grass values are shown in parentheses. The total land area at elevations ≥ 1,800 m across each subbasin shown in the bottom row."),
-                                   # hr(),
-                                   # helpText(actionLink("climate_proj_to_watersheds","Click here"),
-                                   # HTML("for more info on the basin regions."))
-                                   
+                                   HTML("Average total forest fraction (<i>C<sub>v</sub></i>) at elevations ≥ 1,800 m across each internal watershed (subbasin) of the basin for the Baseline and Far-Future land cover conditions. Grass values are shown in parentheses. The total land area at elevations ≥ 1,800 m across each subbasin shown in the bottom row.")
                                  ),
                                  style = "default"),
                  bsCollapsePanel("More Info",
                                  helpText(actionLink("forest_disturb_update4","Click here"),HTML("for comparisons of forest and grass parameters.")),
-                                 helpText(actionLink("forest_disturb_to_watersheds","Click here"),HTML("for more information on the internal watersheds (subbasins) of the basin.")),
+                                 helpText(actionLink("forest_disturb_to_watersheds","Click here"),HTML("for More info on the internal watersheds (subbasins) of the basin.")),
                                  helpText(actionLink("forest_disturb_to_watersheds3","Navigate to the 'Watersheds' page"),HTML("for more info on the subbasin and channel delineations.")),
                                  
                                  style = "primary")
@@ -1626,16 +1611,16 @@ verticalTabPanel(
                                  HTML("<b>(b)</b> Channel network with stream orders and source area gage locations."),
                                  HTML("<b>(c)</b> Characterstics of each watershed source area, including:"),
                                  tags$li(HTML("Corresponding USGS gage locations,<sup>2</sup> and operations used to compute streamflows for certain source areas.")),
-                                 tags$li(HTML("Total area of each source area.")),
-                                 tags$li(HTML("Average elevation of each source area.<sup>1</sup>"))
+                                 tags$li(HTML("Total area of each source area in square-kilometers ([km<sup>2</sup>]).")),
+                                 tags$li(HTML("Average elevation of each source area in meters above sea level ([m.a.s.l.]).<sup>1</sup>"))
                                ),
                                style = "default"),
                bsCollapsePanel("More Info", 
                                tags$li(HTML("The basin-wide domain encompasses about 630,000 km<sup>2</sup>, with headwaters in the Green River in Wyoming that flow through the river for about 2,253 km to northern México.")),
-                               tags$li(actionLink("link_from_watersheds_to_stakeholders1","In consultation with basin water managers"),
+                               tags$li(actionLink("link_from_watersheds_to_stakeholders1","In consultation with basin water managers,"),
                                        HTML("we performed a model subbasin delineation for the source area above Imperial Dam and the Gila River subbasin in Arizona that yielded eight analysis subbasins (shown above).")),
                                tags$li(HTML("These subbasins correspond to sub-divisions by the USGS.<sup>2,3</sup>")),
-                               tags$li(HTML("We used flow directions from the,"),
+                               tags$li(HTML("We used flow directions from the"),
                                        actionLink("link_from_watersheds_to_forest_disturbance_elevations","30 m National Elevation Dataset"),
                                        HTML(", USGS gaging stations, and Hydrologic Unit Codes as guides for subbasin and channel network delineation.<sup>1-3</sup>")
                                ),
@@ -1691,7 +1676,7 @@ verticalTabPanel(
                bsCollapsePanel("Figure Description", 
                                tags$p(
                                  HTML("To achieve applicable, comprehensive, timely, and accessible research for water resource decision-making,<sup>1,2</sup>"),
-                                 HTML("we incorporated feedback from five “collaborative science, modelling, and decision” groups (or CoMods) comprised of water managers across the CRB (24 individuals from 13 agencies; "),
+                                 HTML("we incorporated feedback from five “collaborative science, modelling, and decision” groups (or CoMods) comprised of water managers across the CRB (27 individuals from 13 agencies; "),
                                  actionLink("stakeholder_update1","listed in 'More Info' below"),
                                  HTML(") during each stage of our scenario development and appraisal process (shown in the figure above)."),
                                  HTML("Documentation of this process and resulting model approach is provided in the panel menu on the left, and briefly summarized"),
@@ -1731,7 +1716,7 @@ verticalTabPanel(
                                HTML("When presented with scenario outcomes, stakeholders agreed that the results were “very timely”, accessible, and applicable for water resource decisions due to their involvement during our model design and implementation process. Stakeholders also indicated that our findings could be useful for policy discourse around forest management and wildfire impacts when seeking water security, especially if provided in a transparent way that clarifies how the model works and the limitations of the approach, as well as its abilities to visualize surface water impacts. We developed the CRB-Scenario-Explorer tool to meet this need, designed according to this feedback."),
                                hr(),
                                h5(HTML("<b>Stakeholder reflections on the CRB-Scenario-Explorer web-tool:</b>")),
-                               HTML("<i>(To be populated after our next stakeholder meeting)</i>"),
+                               HTML("We shared CRB-Scenario-Explorer with our stakeholders and held a final meeting to evaluate their user-experience and incorporate their recommendations to improve the tool. Feedback on the web-based tool included recommendations to expand the availability of model variables and re-organize layouts. We implemented these suggestions into the final CRB-Scenario-Explorer design. Participants confirmed that the documentation pages are “thorough,” “nicely organized” (i.e., easy-to-find and accessible), and sufficient for understanding the scenario construction process and the results in relation to parameter representation and assumptions.<br><br>When asked to reflect on the efficacy of the freeform and guided assessments at various scales offered by the tool, stakeholders agreed that: “The hybrid approach provides a great balance for understanding the modelling scenarios.” Similarly, it was noted that the web-based tool and underlying research “most certainly answers the question on forest disturbance impacts and how those impacts affect different water resource metrics.” Stakeholders also found it useful to switch between hybrid analysis modes to meet their needs, indicating for example, that visualizations showing Upper and Lower Basin streamflow in million-acre feet (MAF) “are in line with how we and other stakeholders assess water resources across the basin.”<br><br>Participants noted that the analysis interfaces can be used for briefing and reporting to board members and other executive leaders about the potential impacts from climate change and forest reduction scenarios. Stakeholders can also utilize the documentation pages to clarify the model framework capabilities and limitations."),
                                style = "primary"),
                # bsCollapsePanel("Assumptions", 
                #                 # insert assumptions
@@ -1745,98 +1730,11 @@ verticalTabPanel(
                                style = "info")
     )
   )
-) # add another comma here if adding an additional panel (structure commented below)
-## -----------------------------------------Land Cover panel---------------------------------------------## ----
-# verticalTabPanel(
-#   title = "Land Cover Maps",
-#   #icon = icon("tree-city"),
-#   box_height= 0.1,
-#   
-#   # Content
-#   fluidRow(
-#     # Figure
-#     tags$figure(
-#       align = "center",
-#       tags$img(
-#         src = vic_ex_images$land_cover$image_src,
-#         width = vic_ex_images$land_cover$image_width,
-#         alt = vic_ex_images$land_cover$image_alt_text,
-#         height = vic_ex_images$land_cover$image_height
-#       )
-#     ),
-#     
-#     # Information Panels
-#     bsCollapse(id = "land_cover_info_panels", 
-#                open = "Figure Description",
-#                bsCollapsePanel("Figure Description", 
-#                                tags$p(
-#                                  HTML("<b>Land cover maps description</b> ..."),
-#                                  ""
-#                                ),
-#                                style = "default"),
-#                bsCollapsePanel("More Info", 
-#                                tags$li("more info 1"),
-#                                tags$li("more info 2"),
-#                                style = "primary"),
-#                bsCollapsePanel("Assumptions", 
-#                                # insert assumptions
-#                                style = "warning"),
-#                bsCollapsePanel("References",
-#                                tags$ol(
-#                                  tags$li()
-#                                ),
-#                                style = "info")
-#     )
-#   )
-# ),
-
-## -----------------------------------------Model Parameters panel---------------------------------------------## ----
-# verticalTabPanel(
-#   title = "Model Parameters",
-#   #icon = icon("map"),
-#   box_height= 0.1,
-#   
-#   # Content
-#   fluidRow(
-#     # Figure
-#     tags$figure(
-#       align = "center",
-#       tags$img(
-#         src = vic_ex_images$model_parameters$image_src,
-#         width = vic_ex_images$model_parameters$image_width,
-#         alt = vic_ex_images$model_parameters$image_alt_text,
-#         height = vic_ex_images$model_parameters$image_height
-#       )
-#     ),
-#     
-#     # Information Panels
-#     bsCollapse(id = "model_parameters__info_panels", 
-#                open = "Figure Description",
-#                bsCollapsePanel("Figure Description", 
-#                                tags$p(
-#                                  HTML("<b>Model parameters description</b> ..."),
-#                                  ""
-#                                ),
-#                                style = "default"),
-#                bsCollapsePanel("More Info", 
-#                                tags$li("more info 1"),
-#                                tags$li("more info 2"),
-#                                style = "primary"),
-#                bsCollapsePanel("Assumptions", 
-#                                # insert assumptions
-#                                style = "warning"),
-#                bsCollapsePanel("References",
-#                                tags$ol(
-#                                  tags$li()
-#                                ),
-#                                style = "info")
-#     )
-#   )
-# ),
+) 
 ) # End of verticalTabsetPanel
 ) # end of column
 ) # end of fluidRow
 ) # end of Model Info tabPanel
-) # End of More ----
+) # End of More Info ----
 )
 

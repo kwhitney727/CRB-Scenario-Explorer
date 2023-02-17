@@ -8,16 +8,14 @@
 ##
 ## Created on Fri Sept 19 2022
 ##
-## Copyright (c) Arizona State University, 2022
-## Email: kmwhitne@asu.edu
 ##
 ## --------------------------------------------------------------------------------------##
 ##    Notes:
-##    The main script of the VIC-Explorer website package The app.R script
+##    The main script of the CRB-Scenario-Explorer website package The app.R script
 ##    is used to set up and launch the VIC-Explorer website user interface and 
 ##    server. More information on this to come.
 
-##    Variable Infiltration Capacity model Explorer (VIC-Explorer)
+##    Colorado River Basin Scenario Explorer (CRB-Scenario-Explorer)
 ##    Created by Kristen M. Whitney, School of Earth and Space Exploration, 
 ##    Arizona State University.
 
