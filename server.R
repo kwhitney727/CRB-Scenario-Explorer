@@ -2,9 +2,9 @@
 ##
 ## Script name: server.R
 ##
-## Purpose of the script: The server script of the VIC-Explorer website package.
+## Purpose of the script: The server script of the CRB-Scenario-Explorer website package.
 ##
-## @author: Kristen Whitney
+## @author: Dr. Kristen Whitney
 ##
 ## Created on Fri Sept 19 2022
 ##
@@ -35,19 +35,9 @@ library(rlist,quietly=TRUE,warn.conflicts = FALSE)
 library(manipulateWidget,quietly=TRUE,warn.conflicts = FALSE) # sync leaflet
 library(leaflet.minicharts,quietly=TRUE,warn.conflicts = FALSE)
 library(leaflet.extras,quietly=TRUE,warn.conflicts = FALSE)
-# library(dygraphs,quietly=TRUE,warn.conflicts = FALSE)
-# library(xts,quietly=TRUE,warn.conflicts = FALSE)
-# library(stringi,quietly=TRUE,warn.conflicts = FALSE)
-# library(lubridate,quietly=TRUE,warn.conflicts = FALSE)
-# library(leaflegend,quietly=TRUE,warn.conflicts = FALSE)
 library(mapview,quietly=TRUE,warn.conflicts = FALSE)
-
-# library(leaflet,quietly=TRUE,warn.conflicts = FALSE)
 library(ncdf4,quietly=TRUE,warn.conflicts = FALSE)
 library(stars,quietly=TRUE,warn.conflicts = FALSE)
-# library(DT)
-#library(quantmod)
-# library(tidyr)
 
 ## ----------------------------------Load data---------------------------------------## ----
 basin_agg_clim_mann_changes <- readRDS("./data/basin_agg_climatological_mean_annual_changes_all.rds")
@@ -108,6 +98,12 @@ server <- function(input, output,session) {
   observeEvent(input$spatial_button, {
     navpage_name <- "Spatial-Analyses"
     updateNavbarPage(session, "pages",navpage_name)
+  })
+  observeEvent(input$link_from_landing_to_more_info, {
+    panel_name <- "Scenario Overview"
+    navpage_name <- "More Info"
+    updateNavbarPage(session, "pages",navpage_name)
+    updateTabsetPanel(session, "more_info_panels", panel_name)
   })
   
   # Spatial-Analyses panel
@@ -239,14 +235,20 @@ server <- function(input, output,session) {
     updateTabsetPanel(session,inputId =  "more_info_forest_disturbances",selected = "Overview")
     updateCollapse(session,"elevation_landcover_maps_info_panels",open="Assumptions")
   })
+  observeEvent(input$link_from_spatial_to_forest_disturbances4, {
+    panel_name <- "Forest Disturbances"
+    navpage_name <- "More Info"
+    updateNavbarPage(session, "pages",navpage_name)
+    updateTabsetPanel(session, "more_info_panels", panel_name)
+    updateTabsetPanel(session,inputId =  "more_info_forest_disturbances",selected = "Overview")
+    updateCollapse(session,"elevation_landcover_maps_info_panels",open="Assumptions")
+  })
   observeEvent(input$link_from_spatial_to_stakeholder_engagement, {
     panel_name <- "Stakeholder Engagement"
     navpage_name <- "More Info"
     updateNavbarPage(session, "pages",navpage_name)
     updateTabsetPanel(session, "more_info_panels", panel_name)
   })
-  
-  
   
   # Watersheds-Analyses Monthly panel
   observeEvent(input$link_from_wat_mon_to_watersheds1a, {
@@ -313,7 +315,6 @@ server <- function(input, output,session) {
     updateTabsetPanel(session,inputId =  "more_info_forest_disturbances",selected = "Forest vs. grass parameters")
   })
   observeEvent(input$link_from_wat_mon_to_hydro_snow, {
-    # panel_name <- "Hydrology Model"
     navpage_name <- "More Info"
     masterpanel_id <- "more_info_panels"
     panel1_id <- "more_info_hydro_model"
@@ -427,14 +428,12 @@ server <- function(input, output,session) {
   })
   
   observeEvent(input$link_from_wat_ann_to_hydro_model_prec, {
-    # panel_name <- "Scenario Overview"
     navpage_name <- "More Info"
     masterpanel_id <- "more_info_panels"
     panel1_id <- "more_info_hydro_model"
     panel1_name <- "Hydrology Model"
     panel2_name <-  "Precipitation Partitioning"
     updateNavbarPage(session, "pages",navpage_name)
-    # updateTabsetPanel(session, "more_info_panels", panel_name)
     updateTabsetPanel(session,inputId =  masterpanel_id,selected =  panel1_name)
     updateTabsetPanel(session,inputId =  panel1_id,selected =  panel2_name)
   })
@@ -479,20 +478,17 @@ server <- function(input, output,session) {
     panel1_name <- "Hydrology Model"
     panel2_name <-  "Overview"
     updateNavbarPage(session, "pages",navpage_name)
-    # updateTabsetPanel(session, "more_info_panels", panel_name)
     updateTabsetPanel(session,inputId =  masterpanel_id,selected =  panel1_name)
     updateTabsetPanel(session,inputId =  panel1_id,selected =  panel2_name)
   })
   
   observeEvent(input$link_from_wat_ann_to_hydro_model_snow, {
-    # panel_name <- "Hydrology Model"
     navpage_name <- "More Info"
     masterpanel_id <- "more_info_panels"
     panel1_id <- "more_info_hydro_model"
     panel1_name <- "Hydrology Model"
     panel2_name <-  "Snowpack"
     updateNavbarPage(session, "pages",navpage_name)
-    # updateTabsetPanel(session, "more_info_panels", panel_name)
     updateTabsetPanel(session,inputId =  masterpanel_id,selected =  panel1_name)
     updateTabsetPanel(session,inputId =  panel1_id,selected =  panel2_name)
   })
@@ -531,7 +527,6 @@ server <- function(input, output,session) {
   
   
   # Framework Overview panel
-  # output$active <- renderUI(input$more_info_panels)
   observeEvent(input$link_from_framework_to_hydro_model_overview, {
     masterpanel_id <- "more_info_panels"
     panel1_name <- "Hydrology Model"
@@ -587,7 +582,6 @@ server <- function(input, output,session) {
     updateTabsetPanel(session,inputId =  masterpanel_id,selected =  panel1_name)
     updateTabsetPanel(session,inputId =  panel1_id,selected =  panel2_name)
   })
-  
   
   # Hydrology Model panel - overview
   observeEvent(input$link_from_hydro_overview_to_hydro_model_snow, {
@@ -870,8 +864,6 @@ server <- function(input, output,session) {
     updateTabsetPanel(session,inputId =  masterpanel_id,selected =  panel1_name)
   })
   
-  
-  
 
 ## ----------------------------------References and Source Code html outputs---------------------------------------## ----
   # Notes: 
@@ -900,14 +892,12 @@ server <- function(input, output,session) {
   output$spatial_analysis_bohn_et_al_2018b <- renderText((references_and_code$bohn_et_al_2018b))
   output$spatial_analysis_wang_vivoni_2022 <- renderText((references_and_code$wang_vivoni_2022))
   output$spatial_analysis_dore_et_al_2008 <- renderText((references_and_code$dore_et_al_2008))
-  
   output$spatial_analysis_reed_et_al_2016 <- renderText((references_and_code$reed_et_al_2016))
   output$spatial_analysis_zhang_et_al_2017 <- renderText((references_and_code$zhang_et_al_2017))
   output$spatial_analysis_li_et_al_2017 <- renderText((references_and_code$li_et_al_2017))
   output$spatial_analysis_wang_et_al_2020 <- renderText((references_and_code$wang_et_al_2020))
   output$spatial_analysis_boon_2012 <- renderText((references_and_code$boon_2012))
   output$spatial_analysis_broxton_et_al_2014 <- renderText((references_and_code$broxton_et_al_2014))
-  
   output$spatial_analysis_harpold_et_al_2015 <- renderText((references_and_code$harpold_et_al_2015))
   output$spatial_analysis_overpeck_udall_2020 <- renderText((references_and_code$overpeck_udall_2020))
   output$spatial_analysis_seager_et_al_2007 <- renderText((references_and_code$seager_et_al_2007))
@@ -972,14 +962,15 @@ server <- function(input, output,session) {
   output$flow_rout_lohmann_et_al_1998 <- renderText((references_and_code$lohmann_et_al_1998))
   output$flow_rout_rosenberg_et_al_2013 <- renderText((references_and_code$rosenberg_et_al_2013))
   
-  
   # Climate Projections page
   output$climate_proj_pierce_et_al_2014 <- renderText((references_and_code$pierce_et_al_2014))
   output$climate_proj_taylor_et_al_2012 <- renderText((references_and_code$taylor_et_al_2012))
   output$climate_proj_gautam_mascaro_2018 <- renderText((references_and_code$gautam_mascaro_2018))
+  output$climate_proj_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
   output$climate_proj_table_pierce_et_al_2014 <- renderText((references_and_code$pierce_et_al_2014))
   output$climate_proj_table_taylor_et_al_2012 <- renderText((references_and_code$taylor_et_al_2012))
   output$climate_proj_table_gautam_mascaro_2018 <- renderText((references_and_code$gautam_mascaro_2018))
+  output$climate_proj_table_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
   
   # Forest Disturbances page
   output$forest_disturb_sleeter_et_al_2012 <- renderText((references_and_code$sleeter_et_al_2012))
@@ -997,23 +988,27 @@ server <- function(input, output,session) {
   output$forest_disturb_goeking_tarboton_2020 <- renderText((references_and_code$goeking_tarboton_2020))
   output$forest_disturb_xiao_et_al_2022 <- renderText((references_and_code$xiao_et_al_2022))
   output$forest_disturb_livneh_et_al_2015b <- renderText((references_and_code$livneh_et_al_2015b))
+  output$forest_disturb_whitney_et_al_2023_1 <- renderText((references_and_code$whitney_et_al_2023))
+  output$forest_disturb_whitney_et_al_2023_2 <- renderText((references_and_code$whitney_et_al_2023))
+  
   
   # Watersheds page
   output$watersheds_usgs_et_al_2016a <- renderText((references_and_code$usgs_et_al_2016a))
   output$watersheds_usgs_et_al_2016b <- renderText((references_and_code$usgs_et_al_2016b))
   output$watersheds_usgs_et_al_2019 <- renderText((references_and_code$usgs_et_al_2019))
+  output$watersheds_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
   
   # Stakeholder Engagement page
   output$stakeholder_white_et_al_2010 <- renderText((references_and_code$white_et_al_2010))
   output$stakeholder_dunn_laing_2017 <- renderText((references_and_code$dunn_laing_2017))
-  
+  output$stakeholder_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
   
   # Scenario Overview page
   output$scenario_pierce_et_al_2014 <- renderText((references_and_code$pierce_et_al_2014))
   output$scenario_pierce_et_al_2015 <- renderText((references_and_code$pierce_et_al_2015))
   output$scenario_taylor_et_al_2012 <- renderText((references_and_code$taylor_et_al_2012))
   output$scenario_sleeter_et_al_2012 <- renderText((references_and_code$sleeter_et_al_2012))
-  
+  output$scenario_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
   
   # Framework Overview page
   output$framework_vic_code <- renderText((references_and_code$vic_code))
@@ -1045,7 +1040,7 @@ server <- function(input, output,session) {
   output$framework_wigmosta_et_al_1994 <- renderText((references_and_code$wigmosta_et_al_1994))
   output$framework_franchini_pacciani_1991 <- renderText((references_and_code$franchini_pacciani_1991))
   output$framework_bohn_vivoni_2016 <- renderText((references_and_code$bohn_vivoni_2016))
-  
+  output$framework_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
   
 ## ----------------------------------Watershed-Analyses Annual tab---------------------------------------## ----
   
@@ -1314,9 +1309,7 @@ server <- function(input, output,session) {
             )
           )
         })
-        
       }
-      
   })
   
   # Guided analyses - subcomponents
@@ -1380,10 +1373,7 @@ server <- function(input, output,session) {
     updateVarSelectInput(session,"wat_ann_var_selected_1",selected = "Snow water equivalent")
   })
   
-  # observe({
-  #   
-  # })
-  # 
+  
 ## ----------------------------------Spatial-Analyses tab---------------------------------------## ----
   
   # plot description output
@@ -1405,7 +1395,6 @@ server <- function(input, output,session) {
     updateCollapse(session,"spatial_analyses_panels",open="Water Management and Policy Implications")
   })
   
-  
   # Plot title outputs
   output$spatial_plot_warmwet_var1 <- renderText({
     paste0("<br><center><b>",input$spatial_var_selected_1,"</b></center>")
@@ -1420,7 +1409,17 @@ server <- function(input, output,session) {
     paste0("<br><center><b>",input$spatial_var_selected_2,"</b></center>")
   })
   
-  
+  # Freeform analysis html outputs: 
+  output$spatial_plot_forest_disturbance_sensitivity_vars <- renderText({
+    var_forest_disturbance_sensitivity(list(
+      "var_selected1" = input$spatial_var_selected_1,
+      "var_selected2" = input$spatial_var_selected_2,
+      "impact_type_selected" = input$spatial_impact_type_selected))
+  })
+  #   Impact description
+  output$spatial_plot_impact_description <- renderText({
+    spatial_input_argument_dictionary$impact_scenarios[[input$spatial_impact_type_selected]]$impact_description
+  })
   
   # Initialize maps - Warm/Wet
   output$spatial_scenario_maps_warmwet = renderCombineWidgets({
@@ -1458,7 +1457,6 @@ server <- function(input, output,session) {
     )
     
     fig1 <-plot_spatial_map(plot_input_list) 
-    
     
     # get plot input list (variable two, Warm/Wet climate)
     plot_input_list = list(
@@ -1721,7 +1719,6 @@ server <- function(input, output,session) {
     updateVarSelectInput(session,"spatial_temporal_scale_selected",selected = "Annual (Oct-Sep)")
     updateVarSelectInput(session,"spatial_impact_type_selected",selected = "30% Forest disturbance")
   })
-
   
   observeEvent(input$spatial_analyses_panels, {
     
@@ -1772,9 +1769,6 @@ server <- function(input, output,session) {
               tags$li(htmlOutput("spatial_analysis_williams_et_al_2022")), # 15
               tags$li(htmlOutput("spatial_analysis_overpeck_udall_2020")),# 16. Overpeck and Udall, 2020
               tags$li(htmlOutput("spatial_analysis_seager_et_al_2007"))# 17. Seager et al., 2007
-
-              
-              
             )
           )
         )
@@ -1820,11 +1814,7 @@ server <- function(input, output,session) {
   output$wat_mon_plot_description <- renderText({
     plot_specs_wat_monthly_line$plot_description
   })
-  # output$wat_mon_basin_description <- renderText({
-  #   HTML("<b>",input$wat_mon_basin_selected," monthly average</br>")
-  # })
-  
-  
+
   # plot description to other panels
   observeEvent(input$wat_mon_plot_description_to_freeform, {
     updateCollapse(session,"watershed_analyses_monthly_panels",open="Freeform Analysis")
@@ -1833,10 +1823,6 @@ server <- function(input, output,session) {
     updateCollapse(session,"watershed_analyses_monthly_panels",open="Guided Analysis")
   })
   
-  # output$dum_text <- renderText({
-  #   paste(basin_dict[[input$wat_mon_basin_selected]]$stored_name," ",input$wat_mon_basin_selected," ",input$wat_mon_var_selected_1," ",input$wat_mon_var_selected_2," ",input$wat_mon_var_selected_3)
-  # })
-  # 
   # render plot
   output$wat_mon_plot <- renderPlotly({
     # create plot function input list
@@ -1850,7 +1836,6 @@ server <- function(input, output,session) {
     # run plot function
     fig <-plot_mean_mmon_lineplot(plot_input_list)
 
-    
     return(fig)
   })
   
@@ -2017,7 +2002,7 @@ server <- function(input, output,session) {
 ## ----------------------------------Scenario Overview tab---------------------------------------## ----
   
 
-## ----------------------------------Precipitation Paritioning tab---------------------------------------## ----
+## ----------------------------------Precipitation Partitioning tab---------------------------------------## ----
   
   
   # render plot

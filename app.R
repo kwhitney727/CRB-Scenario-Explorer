@@ -4,7 +4,7 @@
 ##
 ## Purpose of the script: Main app file, pointing to server and ui source files.
 ##
-## @author: Kristen Whitney
+## @author: Dr. Kristen Whitney
 ##
 ## Created on Fri Sept 19 2022
 ##
