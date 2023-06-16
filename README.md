@@ -10,9 +10,7 @@ CRB-Scenario-Explorer: Colorado River Basin Scenario Explorer
 
 The Colorado River Basin Scenario Explorer (CRB-Scenario-Explorer) is an interactive web-based tool made using the Shiny R web application framework, version 1.7.2, for the R programming language.<sup>1,2</sup>
 The application includes various abilities to explore and visualize hydrologic projections over the Colorado River Basin (CRB) results generated with the Variable Infiltration Capacity (VIC) model.<sup>3</sup>
-Forthcoming companion publications will detail the methods behind the data, and include a case study in the Colorado River Basin using the CRB-Scenario-Explorer tool.
-
-More Information will be provided here soon.
+Details of the underlying VIC model research can be found in Whitney et al. (2023).<sup>4</sup> A forthcoming companion publication will detail the methods of developing CRB-Scenario-Explorer, including the stakeholder engagement and user-experience testing process.
 
 Citing CRB-Scenario-Explorer
 =============
@@ -38,3 +36,5 @@ References
 [2]: R Core Team. (2022). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Available at: [https://www.R-project.org/](https://www.R-project.org/) (Accessed July 27, 2022)
 
 [3]: Liang, X., Lettenmaier, D. P., Wood, E. F., & Burges, S. J. (1994). A simple hydrologically based model of land surface water and energy fluxes for general circulation models. Journal of Geophysical Research, 99(D7), 14415. [https://doi.org/10.1029/94JD00483](https://doi.org/10.1029/94JD00483)
+
+[4]: Whitney, K. M., Vivoni, E. R., Wang, Z., White, D. D., Quay, R., Mahmoud, M. I., & Templeton, N. P. (2023). A stakeholder-engaged approach to anticipating forest disturbance impacts in the Colorado River Basin under climate change. Journal of Water Resources Planning and Management, 149(7), 04023020. [https://doi.org/10.1061/JWRMD5.WRENG-5905](https://doi.org/10.1061/JWRMD5.WRENG-5905)
