@@ -4,7 +4,7 @@
 ##
 ## Purpose of the script: Creates main dictionary/list objects for CRB-Scenario-Explorer.
 ##
-## @author: Kristen Whitney
+## @author: Dr. Kristen Whitney
 ##
 ## Created on Mon Oct 3, 2022
 ##
@@ -175,6 +175,8 @@ vic_ex_images <- list(
 
 ## --------------------------References dictionary---------------------------------## ----
 references_and_code <- list(
+  # general structure:
+  # "[in text citation]" = "[first author] <em>et al.</em>, [year]. <em>[journal abbreviation]</em> [vol] ([issue]): [first page–last page]. <a href=\"[doi full url]\">[doi short url]</a>."
   
   "metsim_code" = "MetSim (Bennett <em>et al.</em>, 2020; <a href=\"https://github.com/UW-Hydro/MetSim\">github.com/UW-Hydro/MetSim</a>).",
   "rvic_code" = "R-VIC (Lohmann <em>et al.</em>, 1996, 1998; <a href=\"https://github.com/UW-Hydro/RVIC\">github.com/UW-Hydro/RVIC</a>).",
@@ -194,7 +196,6 @@ references_and_code <- list(
   "pierce_et_al_2015" = "Pierce <em>et al.</em>, 2015. <em>BAMS</em> 16: 2421–2442. <a href=\"https://doi.org/10.1175/JHM-D-14-0236.1\">doi.org/10.1175/JHM-D-14-0236.1</a>.",
   "taylor_et_al_2012" = "Taylor <em>et al.</em>, 2012. <em>BAMS</em> 93: 485–498. <a href=\"https://doi.org/10.1175/BAMS-D-11-00094.1\">doi.org/10.1175/BAMS-D-11-00094.1</a>.",
   "sleeter_et_al_2012" = "Sleeter <em>et al.</em>, 2012. <em>Glob. Environ. Change</em> 22: 896–914. <a href=\"https://doi.org/10.1016/j.gloenvcha.2012.03.008\">doi.org/10.1016/j.gloenvcha.2012.03.008</a>.",
-  
   "bennett_et_al_2020" ="Bennett <em>et al.</em>, 2020. <em>J. Open Source Softw.</em> 5 (47): 2042. <a href=\"https://doi.org/10.21105/joss.02042\">doi.org/10.21105/joss.02042</a>.",
   "bohn_et_al_2013" ="Bohn <em>et al.</em>, 2013. <em>Agric. For. Meteorol.</em> 176: 38–49. <a href=\"https://doi.org/10.1016/j.agrformet.2013.03.003\">doi.org/10.1016/j.agrformet.2013.03.003</a>.",
   "bohn_et_al_2019" ="Bohn <em>et al.</em>, 2019. <em>J. Hydrometeorol.</em> 20 (2): 298–317. <a href=\"https://doi.org/10.1175/JHM-D-18-0203.1\">doi.org/10.1175/JHM-D-18-0203.1</a>.",
@@ -212,7 +213,6 @@ references_and_code <- list(
   "usgs_et_al_2016a" ="[dataset] U.S. Geological Survey (USGS), 2016a. <em>USGS National Elevation Dataset (NED) 1 arcsecond downloadable data collection from The National Map 3D Elevation Program (3DEP) - National Geospatial Data Asset (NGDA) National Elevation Data Set (NED).</em> <a href=\"https://www.usgs.gov/core-science-systems/ngp/tnm-delivery\">https://www.usgs.gov/core-science-systems/ngp/tnm-delivery</a>. (Accessed January 1, 2018)",
   "usgs_et_al_2016b" ="[dataset] U.S. Geological Survey (USGS), 2016b. <em>National Water Information System data available to the World Wide Web (USGS Water Data for the Nation)</em> <a href=\"http://waterdata.usgs.gov/nwis/\">http://waterdata.usgs.gov/nwis/</a>. (Accessed January 1, 2018)",
   "usgs_et_al_2019" ="[dataset] U.S. Geological Survey (USGS), 2019. <em>USGS Watershed Boundary Dataset (WBD) for 2-digit Hydrologic Unit.</em> <a href=\"ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Hydrography/WBD/HU2/Shape/\">ftp://rockyftp.cr.usgs.gov/vdelivery/Datasets/Staged/Hydrography/WBD/HU2/Shape/</a>. (Accessed October 15, 2018)",
-  
   "wang_vivoni_2022" ="Wang and Vivoni, 2022. <em>J. Am. Water Resour. Assoc.</em> 58 (3): 370–387. <a href=\"https://doi.org/10.1111/1752-1688.13005\">doi.org/10.1111/1752-1688.13005</a>.",
   "bohn_et_al_2018b" = "Bohn <em>et al.</em>, 2018b. <em>Environ. Res. Lett.</em> 13: 114005. <a href=\"https://doi.org/10.1088/1748-9326/aae53e\">doi.org/10.1088/1748-9326/aae53e</a>.",
   "williams_et_al_2022" = "Williams <em>et al.</em>, 2022. <em>PNAS</em> 119 (10): e2114069119. <a href=\"https://doi.org/10.1073/pnas.2114069119\">doi.org/10.1073/pnas.2114069119</a>.",
@@ -225,7 +225,6 @@ references_and_code <- list(
   "brown_et_al_2014" = "Brown <em>et al.</em>, 2014. <em>Hydrol. Process.</em> 28: 3326–3340. <a href=\"https://doi.org/10.1002/hyp.9870\">doi.org/10.1002/hyp.9870</a>.",
   "harpold_et_al_2014" = "Harpold <em>et al.</em>, 2014. <em>Ecohydrol.</em> 7: 440–452. <a href=\"https://doi.org/10.1002/eco.1363\">doi.org/10.1002/eco.1363</a>.",
   "vivoni_et_al_2008" = "Vivoni <em>et al.</em>, 2008. <em>Geophys. Res. Lett.</em> 35: L22403. <a href=\"https://doi.org/10.1029/2008GL036001\">doi.org/10.1029/2008GL036001</a>.",
-  
   "deangelo_et_al_2017" = "DeAngelo <em>et al.</em>, 2017. In <em>Climate Science Special Report: Fourth National Climate Assessment, Volume I</em> [Wuebbles, D. J. <em>et al.</em> (eds.)], 393–410. Washington, DC, USA: U.S. Global Change Research Program. <a href=\"https://doi.org/10.7930/J0M32SZG\">doi.org/10.7930/J0M32SZG</a>.",
   "bennett_et_al_2009" = "Bennett <em>et al.</em>, 2009. <em>Ecol.</em> 12 (12): 1394–1404. <a href=\"https://doi.org/10.1111/j.1461-0248.2009.01387.x\">doi.org/10.1111/j.1461-0248.2009.01387.x</a>.",
   "goeking_tarboton_2020" = "Goeking and Tarboton, 2020. <em>J. For.</em> 118 (2): 172–192. <a href=\"https://doi.org/10.1093/jofore/fvz069\">doi.org/10.1093/jofore/fvz069</a>.",
@@ -256,12 +255,9 @@ references_and_code <- list(
   "harpold_et_al_2015" = "Harpold <em>et al.</em>, 2015. <em>Hydrol.</em> 29 (12): 2782–2798. <a href=\"https://doi.org/10.1002/hyp.10400\">doi.org/10.1002/hyp.10400</a>.",
   "overpeck_udall_2020" = "Overpeck and Udall, 2020. <em>J. Hydrometeorol.</em> 15: 2558–2585. <a href=\"https://doi.org/10.1175/JHM-D-14-0082.1\">doi.org/10.1175/JHM-D-14-0082.1</a>.",
   "seager_et_al_2007" = "Seager <em>et al.</em>, 2007. <em>Science.</em> 316 (5828): 1181–1184. <a href=\"https://doi.org/10.1126/science.1139601\">doi.org/10.1126/science.1139601</a>.",
-  "wigmosta_et_al_1994" = "Wigmosta <em>et al.</em>, 1994. <em>Water Resour. Res.</em> 30: 1665–1679. <a href=\"https://doi.org/10.1029/94WR00436\">doi.org/10.1029/94WR00436</a>."
-  
-  
-  # general structure:
-  # "[in text citation]" = "[first author] <em>et al.</em>, [year]. <em>[journal abbreviation]</em> [vol] ([issue]): [first page–last page]. <a href=\"[doi full url]\">[doi short url]</a>."
-  
+  "wigmosta_et_al_1994" = "Wigmosta <em>et al.</em>, 1994. <em>Water Resour. Res.</em> 30: 1665–1679. <a href=\"https://doi.org/10.1029/94WR00436\">doi.org/10.1029/94WR00436</a>.",
+  "whitney_et_al_2023" = "Whitney <em>et al.</em>, 2023. <em>J. Water Resour.</em> 149 (7): 04023020. <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">10.1061/JWRMD5.WRENG-5905</a>."
+
   )
 
 ## --------------------------Watersheds dictionary---------------------------------## ----
@@ -273,13 +269,10 @@ basin_stored_names <- append(subbasin_stored_names,c("CRB","UpperBasin","LowerBa
 basin_full_names<- append(subbasin_full_names,c("Basin-wide","Upper Basin","Lower Basin"))
 
 basin_dict <-list()
-# subbasin_dict <-list()
 for(i in 1:length(basin_full_names)) {
   if ((grepl("subbasin",basin_full_names[i])) & (!grepl("subbasins",basin_full_names[i]))){
     is_subbasin=TRUE
     basin_full_names[i] <- str_replace_all(basin_full_names[i],fixed(" subbasin"), "")
-    # assign(basin_full_names[i],list("stored_name"=basin_stored_names[i],"full_name"=basin_full_names[i]))
-    # subbasin_dict[[basin_full_names[i]]] <- get(basin_full_names[i])
   } else {
     is_subbasin=FALSE
   }
@@ -288,7 +281,6 @@ for(i in 1:length(basin_full_names)) {
 }
 reordered_names <- c("Basin-wide","Upper Basin","Lower Basin","Green","Upper Colorado","San Juan","Glen Canyon","Little Colorado","Grand Canyon","Lower Colorado","Gila")
 basin_dict <- basin_dict[reordered_names]
-# subbasin_full_names <- str_replace_all(subbasin_full_names,fixed(" subbasin"), "")
 
 ## --------------------------Variables dictionary---------------------------------## ----
 Canopy_moisture_interception <- list(stored_name="OUT_WDEW",
@@ -304,7 +296,8 @@ Canopy_moisture_interception <- list(stored_name="OUT_WDEW",
                                     forest_change_thres=10,
                                     change_nbins=11,
                                     map_basin_label_base_string = "%+.2f",
-                                    map_legend_ndecimals = 0)   
+                                    map_legend_ndecimals = 0,
+                                    forest_disturbance_sensitive = TRUE)   
 Canopy_snow_interception <- list(stored_name="OUT_SNOW_CANOPY",
                                  description="Snow interception storage in canopy",
                                  plot_var_str = 'SWE<sub>can</sub>',
@@ -318,7 +311,8 @@ Canopy_snow_interception <- list(stored_name="OUT_SNOW_CANOPY",
                                  forest_change_thres=10,
                                  change_nbins=11,
                                  map_basin_label_base_string = "%+.2f",
-                                 map_legend_ndecimals = 0)
+                                 map_legend_ndecimals = 0,
+                                 forest_disturbance_sensitive = TRUE)
 Snow_water_equivalent <- list(stored_name="OUT_SWE",
                               description="Snow water equivalent in snow pack (including vegetation-intercepted snow)",
                               plot_var_str = 'SWE',
@@ -332,7 +326,8 @@ Snow_water_equivalent <- list(stored_name="OUT_SWE",
                               forest_change_thres=25,
                               change_nbins=11,
                               map_basin_label_base_string = "%+.2f",
-                              map_legend_ndecimals = 0)
+                              map_legend_ndecimals = 0,
+                              forest_disturbance_sensitive = TRUE)
 Surface_albedo <- list(stored_name="OUT_ALBEDO",
                        description="Average surface albedo",
                        plot_var_str = '&alpha;',
@@ -346,7 +341,8 @@ Surface_albedo <- list(stored_name="OUT_ALBEDO",
                        forest_change_thres=50,
                        change_nbins=11,
                        map_basin_label_base_string = "%+.2f",
-                       map_legend_ndecimals = 0)
+                       map_legend_ndecimals = 0,
+                       forest_disturbance_sensitive = FALSE)
 Air_temperature <- list(stored_name="OUT_AIR_TEMP",
                         description="Air temperature",
                         plot_var_str = 'T',
@@ -360,7 +356,8 @@ Air_temperature <- list(stored_name="OUT_AIR_TEMP",
                         forest_change_thres=9,
                         change_nbins=11,
                         map_basin_label_base_string = "%+.2f",
-                        map_legend_ndecimals = 0)
+                        map_legend_ndecimals = 0,
+                        forest_disturbance_sensitive = FALSE)
 Surface_temperature <- list(stored_name="OUT_SURF_TEMP",
                             description="Surface temperature",
                             plot_var_str = 'T<sub>surf</sub>',
@@ -374,7 +371,8 @@ Surface_temperature <- list(stored_name="OUT_SURF_TEMP",
                             forest_change_thres=9,
                             change_nbins=11,
                             map_basin_label_base_string = "%+.2f",
-                            map_legend_ndecimals = 0)
+                            map_legend_ndecimals = 0,
+                            forest_disturbance_sensitive = TRUE)
 Total_soil_moisture <- list(stored_name="OUT_SOIL_MOIST_TOTAL",
                             description="Total soil moisture across all three layers",
                             plot_var_str = 'SM',
@@ -388,7 +386,8 @@ Total_soil_moisture <- list(stored_name="OUT_SOIL_MOIST_TOTAL",
                             forest_change_thres=100,
                             change_nbins=11,
                             map_basin_label_base_string = "%+.2f",
-                            map_legend_ndecimals = 0)
+                            map_legend_ndecimals = 0,
+                            forest_disturbance_sensitive = TRUE)
 Total_precipitation <- list(stored_name="OUT_PREC",
                             description="Total precipitation",
                             plot_var_str = 'P',
@@ -402,7 +401,8 @@ Total_precipitation <- list(stored_name="OUT_PREC",
                             forest_change_thres=50,
                             change_nbins=11,
                             map_basin_label_base_string = "%+.2f",
-                            map_legend_ndecimals = 0)
+                            map_legend_ndecimals = 0,
+                            forest_disturbance_sensitive = FALSE)
 Rainfall <- list(stored_name="OUT_RAINF",
                  description="Rainfall",
                  plot_var_str = 'P<sub>R</sub>',
@@ -416,7 +416,8 @@ Rainfall <- list(stored_name="OUT_RAINF",
                  forest_change_thres=25,
                  change_nbins=11,
                  map_basin_label_base_string = "%+.2f",
-                 map_legend_ndecimals = 0)
+                 map_legend_ndecimals = 0,
+                 forest_disturbance_sensitive = FALSE)
 Snowfall <- list(stored_name="OUT_SNOWF",
                  description="Snowfall",
                  plot_var_str = 'P<sub>S</sub>',
@@ -430,7 +431,8 @@ Snowfall <- list(stored_name="OUT_SNOWF",
                  forest_change_thres=25,
                  change_nbins=11,
                  map_basin_label_base_string = "%+.2f",
-                 map_legend_ndecimals = 0)
+                 map_legend_ndecimals = 0,
+                 forest_disturbance_sensitive = FALSE)
 Total_evapotranspiration <- list(stored_name="OUT_EVAP",
                                  description="Total net evapotranspiration (including sublimation)",
                                  plot_var_str = 'ET',
@@ -444,7 +446,8 @@ Total_evapotranspiration <- list(stored_name="OUT_EVAP",
                                  forest_change_thres=25,
                                  change_nbins=11,
                                  map_basin_label_base_string = "%+.2f",
-                                 map_legend_ndecimals = 0)
+                                 map_legend_ndecimals = 0,
+                                 forest_disturbance_sensitive = TRUE)
 Canopy_evaporation <- list(stored_name="OUT_EVAP_CANOP",
                            description="Net evaporation from canopy interception",
                            plot_var_str = 'E<sub>c</sub>',
@@ -458,7 +461,8 @@ Canopy_evaporation <- list(stored_name="OUT_EVAP_CANOP",
                            forest_change_thres=10,
                            change_nbins=11,
                            map_basin_label_base_string = "%+.2f",
-                           map_legend_ndecimals = 0)
+                           map_legend_ndecimals = 0,
+                           forest_disturbance_sensitive = TRUE)
 Plant_transpiration <- list(stored_name="OUT_TRANSP_VEG",
                             description="Net transpiration from vegetation",
                             plot_var_str = 'T<sub>v</sub>',
@@ -472,7 +476,8 @@ Plant_transpiration <- list(stored_name="OUT_TRANSP_VEG",
                             forest_change_thres=30,
                             change_nbins=11,
                             map_basin_label_base_string = "%+.2f",
-                            map_legend_ndecimals = 0)
+                            map_legend_ndecimals = 0,
+                            forest_disturbance_sensitive = TRUE)
 Soil_evaporation <- list(stored_name="OUT_EVAP_BARE",
                          description="Net evaporation from bare soil",
                          plot_var_str = 'E<sub>soil</sub>',
@@ -486,7 +491,8 @@ Soil_evaporation <- list(stored_name="OUT_EVAP_BARE",
                          forest_change_thres=30,
                          change_nbins=11,
                          map_basin_label_base_string = "%+.2f",
-                         map_legend_ndecimals = 0)
+                         map_legend_ndecimals = 0,
+                         forest_disturbance_sensitive = TRUE)
 Runoff <- list(stored_name="OUT_RUNOFF",
                description="Surface runoff",
                plot_var_str = 'R',
@@ -500,7 +506,8 @@ Runoff <- list(stored_name="OUT_RUNOFF",
                forest_change_thres=25,
                change_nbins=11,
                map_basin_label_base_string = "%+.2f",
-               map_legend_ndecimals = 0)
+               map_legend_ndecimals = 0,
+               forest_disturbance_sensitive = TRUE)
 Baseflow <- list(stored_name="OUT_BASEFLOW",
                  description="Baseflow out of the bottom layer",
                  plot_var_str = 'BF',
@@ -514,7 +521,8 @@ Baseflow <- list(stored_name="OUT_BASEFLOW",
                  forest_change_thres=25,
                  change_nbins=11,
                  map_basin_label_base_string = "%+.2f",
-                 map_legend_ndecimals = 0)
+                 map_legend_ndecimals = 0,
+                 forest_disturbance_sensitive = TRUE)
 Snowmelt <- list(stored_name="OUT_SNOW_MELT",
                  description="Snow melt",
                  plot_var_str = 'M',
@@ -528,7 +536,8 @@ Snowmelt <- list(stored_name="OUT_SNOW_MELT",
                  forest_change_thres=25,
                  change_nbins=11,
                  map_basin_label_base_string = "%+.2f",
-                 map_legend_ndecimals = 0)
+                 map_legend_ndecimals = 0,
+                 forest_disturbance_sensitive = TRUE)
 Soil_inflow <- list(stored_name="OUT_INFLOW",
                     description="Moisture that reaches top of soil column",
                     plot_var_str = 'I',
@@ -542,7 +551,8 @@ Soil_inflow <- list(stored_name="OUT_INFLOW",
                     forest_change_thres=50,
                     change_nbins=11,
                     map_basin_label_base_string = "%+.2f",
-                    map_legend_ndecimals = 0)
+                    map_legend_ndecimals = 0,
+                    forest_disturbance_sensitive = TRUE)
 Potential_evapotranspiration <- list(stored_name="OUT_PET",
                                      description="Potential evapotranspiration (= area-weighted sum of potential transpiration and potential soil evaporation). Potential transpiration is computed using the Penman-Monteith eqn with architectural resistance and LAI of the current veg cover.",
                                      plot_var_str = 'PET',
@@ -556,21 +566,24 @@ Potential_evapotranspiration <- list(stored_name="OUT_PET",
                                      forest_change_thres=200,
                                      change_nbins=11,
                                      map_basin_label_base_string = "%+.2f",
-                                     map_legend_ndecimals = 0)
+                                     map_legend_ndecimals = 0,
+                                     forest_disturbance_sensitive = TRUE)
 Streamflow_cubic_km <- list(stored_name="streamflow_cubic_km",
                             description="Streamflow (channel routed runoff and baseflow)",
                             plot_var_str = 'Q',
                             units="km<sup>3</sup>",
                             subplot_label = "Streamflow",
                             flux_type = TRUE,
-                            changes_as_a_percentage = TRUE)
+                            changes_as_a_percentage = TRUE,
+                            forest_disturbance_sensitive = TRUE)
 Streamflow_maf <- list(stored_name="streamflow_maf",
                        description="Streamflow (channel routed runoff and baseflow)",
                        plot_var_str = 'Q',
                        units="MAF",
                        subplot_label = "Streamflow",
                        flux_type = TRUE,
-                       changes_as_a_percentage = TRUE)
+                       changes_as_a_percentage = TRUE,
+                       forest_disturbance_sensitive = TRUE)
 Total_runoff_baseflow <- list(stored_name="OUT_RUNOFF_BASEFLOW_SUM",
                              description="Total runoff + baseflow",
                              plot_var_str = 'RBF',
@@ -584,7 +597,8 @@ Total_runoff_baseflow <- list(stored_name="OUT_RUNOFF_BASEFLOW_SUM",
                              forest_change_thres=50,
                              change_nbins=11,
                              map_basin_label_base_string = "%+.2f",
-                             map_legend_ndecimals = 0)
+                             map_legend_ndecimals = 0,
+                             forest_disturbance_sensitive = TRUE)
 Sublimation <- list(stored_name="OUT_SUB_SNOW",
                     description="Snowpack sublimation",
                     plot_var_str = 'E<sub>s</sub>',
@@ -598,7 +612,8 @@ Sublimation <- list(stored_name="OUT_SUB_SNOW",
                     forest_change_thres=10,
                     change_nbins=11,
                     map_basin_label_base_string = "%+.2f",
-                    map_legend_ndecimals = 0)
+                    map_legend_ndecimals = 0,
+                    forest_disturbance_sensitive = TRUE)
 Runoff_efficiency <- list(stored_name="R_efficiency",
                           description="Runoff efficiency (runoff per precipitation)",
                           plot_var_str = 'RE',
@@ -612,7 +627,8 @@ Runoff_efficiency <- list(stored_name="R_efficiency",
                           forest_change_thres=0.06,
                           change_nbins=11,
                           map_basin_label_base_string = "%+.3f",
-                          map_legend_ndecimals = 2)
+                          map_legend_ndecimals = 2,
+                          forest_disturbance_sensitive = TRUE)
 Baseflow_efficiency <- list(stored_name="BF_efficiency",
                             description="Baseflow efficiency (baseflow per precipitation)",
                             plot_var_str = 'BFE',
@@ -626,7 +642,8 @@ Baseflow_efficiency <- list(stored_name="BF_efficiency",
                             forest_change_thres=0.06,
                             change_nbins=11,
                             map_basin_label_base_string = "%+.3f",
-                            map_legend_ndecimals = 2)
+                            map_legend_ndecimals = 2,
+                            forest_disturbance_sensitive = TRUE)
 Runoff_baseflow_efficiency <- list(stored_name="R_BF_efficiency",
                                    description="Total runoff and baseflow efficiency (total runoff + baseflow per precipitation)",
                                    plot_var_str = 'RBFE',
@@ -640,7 +657,8 @@ Runoff_baseflow_efficiency <- list(stored_name="R_BF_efficiency",
                                    forest_change_thres=0.06,
                                    change_nbins=11,
                                    map_basin_label_base_string = "%+.3f",
-                                   map_legend_ndecimals = 2)
+                                   map_legend_ndecimals = 2,
+                                   forest_disturbance_sensitive = TRUE)
 Rainfall_fraction <- list(stored_name="OUT_RAINFRACT",
                           description="Fraction of precipitation as rainfall",
                           plot_var_str = 'RF',
@@ -654,7 +672,8 @@ Rainfall_fraction <- list(stored_name="OUT_RAINFRACT",
                           forest_change_thres=0.15,
                           change_nbins=11,
                           map_basin_label_base_string = "%+.3f",
-                          map_legend_ndecimals = 2)
+                          map_legend_ndecimals = 2,
+                          forest_disturbance_sensitive = FALSE)
 Evaporative_index <- list(stored_name="EI",
                           description="Evaporative index (actual evapotranspiration per total precipitation)",
                           plot_var_str = 'EI',
@@ -668,7 +687,8 @@ Evaporative_index <- list(stored_name="EI",
                           forest_change_thres=0.06,
                           change_nbins=11,
                           map_basin_label_base_string = "%+.3f",
-                          map_legend_ndecimals = 2)
+                          map_legend_ndecimals = 2,
+                          forest_disturbance_sensitive = TRUE)
 Dryness_index <- list(stored_name="DI",
                       description="Dryness index (potential evapotranspiration per total precipitation)",
                       plot_var_str = 'DI',
@@ -682,7 +702,8 @@ Dryness_index <- list(stored_name="DI",
                       forest_change_thres=0.06,
                       change_nbins=11,
                       map_basin_label_base_string = "%+.3f",
-                      map_legend_ndecimals = 2)
+                      map_legend_ndecimals = 2,
+                      forest_disturbance_sensitive = TRUE)
 var_info_dict <- list("Canopy water"=Canopy_moisture_interception,
                       "Canopy snow"=Canopy_snow_interception,
                       "Snow water equivalent"=Snow_water_equivalent,
@@ -892,7 +913,8 @@ spatial_input_argument_dictionary <- list(
         "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) in the Far-Future (2066-2095) period relative to Baseline (1976-2005) under Warm/Wet and Hot/Dry climates without forest disturbances.",
         "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) in the Far-Future (2066-2095) period relative to Baseline (1976) under Warm/Wet and Hot/Dry climates without forest disturbances.",
         "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) in the Far-Future (2066-2095) period relative to Baseline (1976) under Warm/Wet and Hot/Dry climates without forest disturbances."
-      )
+      ),
+      impact_description = "Impact = Mean Far-Future changes (without forest disturbance) relative to Baseline."
     ),
     "10% Forest disturbance" = list(
       stored_name = "forest_impact",
@@ -906,7 +928,8 @@ spatial_input_argument_dictionary <- list(
         "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 10% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
         "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 10% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
         "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 10% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates."
-      )
+      ),
+      impact_description = "Impact = Mean Far-Future changes under 10% forest disturbance relative to no forest disturbance."
     ),
     "30% Forest disturbance" = list(
       stored_name = "forest_impact",
@@ -920,7 +943,8 @@ spatial_input_argument_dictionary <- list(
         "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 30% Forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
         "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 30% Forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
         "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 30% Forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates."
-      )
+      ),
+      impact_description = "Impact = Mean Far-Future changes under 30% forest disturbance relative to no forest disturbance."
     ),
     "60% Forest disturbance" = list(
       stored_name = "forest_impact",
@@ -934,7 +958,8 @@ spatial_input_argument_dictionary <- list(
         "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 60% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
         "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 60% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
         "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 60% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates."
-      )
+      ),
+      impact_description = "Impact = Mean Far-Future changes under 60% forest disturbance relative to no forest disturbance."
     ),
     "90% Forest disturbance" = list(
       stored_name = "forest_impact",
@@ -948,7 +973,8 @@ spatial_input_argument_dictionary <- list(
         "Annual (Oct-Sep)" = "Spatial distributions of mean annual (Oct. through Sep.) changes (\u0394) under the 90% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
         "Cool-Season (Oct-Mar)" = "Spatial distributions of mean cool-season (Oct. through Mar.) changes (\u0394) under the 90% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates.",
         "Warm-Season (Apr-Sep)" = "Spatial distributions of mean warm-season (Apr. through Sep.) changes (\u0394) under the 90% forest disturbance case relative to no disturbance in the Far-Future (2066-2095) period under Warm/Wet and Hot/Dry climates."
-      )
+      ),
+      impact_description = "Impact = Mean Far-Future changes under 90% forest disturbance relative to no forest disturbance."
     )
   ),
   temporal_scales = list(

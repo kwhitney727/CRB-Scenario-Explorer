@@ -4,7 +4,7 @@
 ##
 ## Purpose of the script: Creates helper functions for CRB-Scenario-Explorer.
 ##
-## @author: Kristen Whitney
+## @author: Dr. Kristen Whitney
 ##
 ## Created on Mon Oct 4, 2022
 ##
@@ -421,28 +421,6 @@ plot_mean_ann_anomaly_lineplot <-function(plot_input_list){
   data_plot$v1 = data_plot[[vars_selected_stored[1]]]
   data_plot$v2 = data_plot[[vars_selected_stored[2]]]
   
-  # # get global min/max values for each variable
-  # v1_min<-floor(min(data_plot$v1))
-  # v1_max<-ceiling(max(data_plot$v1))
-  # v2_min<-floor(min(data_plot$v2))
-  # v2_max<-ceiling(max(data_plot$v2))
-  # if ((v1_min<0) & (v1_max>0)) {
-  #   v1_range <- list(-1*max(abs(v1_min),abs(v1_max)),max(abs(v1_min),abs(v1_max)))
-  # } else if (v1_min<0){
-  #   v1_range <- list(v1_min,0)
-  # } else if (v1_max>0){
-  #   v1_range <- list(0,v1_max)
-  # }
-  # 
-  # if ((v2_min<0) & (v2_max>0)) {
-  #   v2_range <- list(-1*max(abs(v2_min),abs(v2_max)),max(abs(v2_min),abs(v2_max)))
-  # } else if (v2_min<0){
-  #   v2_range <- list(v2_min,0)
-  # } else if (v2_max>0){
-  #   v2_range <- list(0,v2_max)
-  # }
-  
-  
   # pivot to wider
   data_plot<- data_plot %>% dplyr::select(-{vars_selected_stored}) %>%
     pivot_wider(
@@ -482,12 +460,6 @@ plot_mean_ann_anomaly_lineplot <-function(plot_input_list){
                   x0 = 0, x1 = 1, xref = "paper",
                   y0 = 0, y1 = 1, yref = "paper")
            )
-           #   list(type = "line",
-           #        fillcolor = "none", line = list(color = "black",width=0.75), 
-           #        # opacity = 0.3,
-           #        x0 = 0, x1 = 1, xref = "paper",
-           #        y0 = 0, y1 = 0, yref = "paper")
-           # )
     )
   
   
@@ -516,13 +488,6 @@ plot_mean_ann_anomaly_lineplot <-function(plot_input_list){
                   y0 = 0, y1 = 1, yref = "paper")
            )
     )
-  
-  # # center on zero line
-  # if(wat_ann_center_on_zero) {
-  #   p_v1<- p_v1 %>% layout(yaxis=list(range=v1_range))
-  #   p_v2<- p_v2 %>% layout(yaxis=list(range=v2_range))
-  #   
-  # }
   
   # create final figure
   fig <- subplot(p_v1,p_v2,shareX = T,nrows=2,titleY=TRUE) %>% layout(
@@ -1038,8 +1003,6 @@ plot_mean_mmon_lineplot <-function(plot_input_list){
 }
 
 ## --------------------------Spatial map plots---------------------------------## ----
-
-
 # function for map legend labels ----
 myLabelFormat = function(...,signed=FALSE,relative_limits=FALSE,scale_range=NA,orig_val_range=NA,ndecimals=0){ 
   if((signed)&(relative_limits)){ 
@@ -1265,3 +1228,28 @@ plot_p_partitioning_plot <-function(){
   return(fig)
   
 }
+
+## --------------------------Spatial map - Flag if variable not sensitive to forest disturbances ---------------------------------## ----
+# Takes an input variable. Returns text specifying if the variable is NOT 
+# sensitive to forest disturbance (sends blank text if it is sensitive to forest disturbance)
+
+var_forest_disturbance_sensitivity <-function(input_args){ 
+  var_selected1 <- input_args$var_selected1
+  var_selected2 <- input_args$var_selected2
+  impact_type_selected <- input_args$impact_type_selected
+  forest_sensitive_1 <- var_info_dict[[var_selected1]]$forest_disturbance_sensitive
+  forest_sensitive_2 <- var_info_dict[[var_selected2]]$forest_disturbance_sensitive
+  if ((identical(impact_type_selected,"Climate change"))|| ((forest_sensitive_1) && (forest_sensitive_2))) {
+    output_text <- ""
+  } else if ((!forest_sensitive_1) && (!forest_sensitive_2)) {
+    output_text <- paste0("<code><b>Note:</b> Changes in <i>",var_selected1,"</i> or <i>",var_selected2,"</i> are zero since meteorology is not sensitive the modeled forest disturbance (",
+                          actionLink("link_from_spatial_to_forest_disturbances4","more info"),").</code>")
+  } else if (!forest_sensitive_1) {
+    output_text <- paste0("<code><b>Note:</b> Changes in <i>", var_selected1,"</i> are zero since meteorology is not sensitive the modeled forest disturbance (",
+                          actionLink("link_from_spatial_to_forest_disturbances4","more info"),").</code>")
+  } else if (!forest_sensitive_2) {
+    output_text <- paste0("<code><b>Note:</b> Changes in <i>",var_selected2,"</i> are zero since meteorology is not sensitive the modeled forest disturbance (",
+                          actionLink("link_from_spatial_to_forest_disturbances4","more info"),").</code>")
+  }
+  return(output_text)
+  }
