@@ -256,7 +256,9 @@ references_and_code <- list(
   "overpeck_udall_2020" = "Overpeck and Udall, 2020. <em>J. Hydrometeorol.</em> 15: 2558–2585. <a href=\"https://doi.org/10.1175/JHM-D-14-0082.1\">doi.org/10.1175/JHM-D-14-0082.1</a>.",
   "seager_et_al_2007" = "Seager <em>et al.</em>, 2007. <em>Science.</em> 316 (5828): 1181–1184. <a href=\"https://doi.org/10.1126/science.1139601\">doi.org/10.1126/science.1139601</a>.",
   "wigmosta_et_al_1994" = "Wigmosta <em>et al.</em>, 1994. <em>Water Resour. Res.</em> 30: 1665–1679. <a href=\"https://doi.org/10.1029/94WR00436\">doi.org/10.1029/94WR00436</a>.",
-  "whitney_et_al_2023" = "Whitney <em>et al.</em>, 2023. <em>J. Water Resour.</em> 149 (7): 04023020. <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">10.1061/JWRMD5.WRENG-5905</a>."
+  "whitney_et_al_2023a" = "Whitney <em>et al.</em>, 2023a. <em>J. Water Resour.</em> 149 (7): 04023020. <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">10.1061/JWRMD5.WRENG-5905</a>.",
+  "whitney_et_al_2023b" = "Whitney <em>et al.</em>, 2023b. <em>Environ. Model. Softw.</em> 167: 105763 <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">10.1016/j.envsoft.2023.105763</a>."
+  
 
   )
 
