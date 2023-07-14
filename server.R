@@ -966,11 +966,15 @@ server <- function(input, output,session) {
   output$climate_proj_pierce_et_al_2014 <- renderText((references_and_code$pierce_et_al_2014))
   output$climate_proj_taylor_et_al_2012 <- renderText((references_and_code$taylor_et_al_2012))
   output$climate_proj_gautam_mascaro_2018 <- renderText((references_and_code$gautam_mascaro_2018))
-  output$climate_proj_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
+  output$climate_proj_whitney_et_al_2023a <- renderText((references_and_code$whitney_et_al_2023a))
+  output$climate_proj_whitney_et_al_2023b <- renderText((references_and_code$whitney_et_al_2023b))
+  
   output$climate_proj_table_pierce_et_al_2014 <- renderText((references_and_code$pierce_et_al_2014))
   output$climate_proj_table_taylor_et_al_2012 <- renderText((references_and_code$taylor_et_al_2012))
   output$climate_proj_table_gautam_mascaro_2018 <- renderText((references_and_code$gautam_mascaro_2018))
-  output$climate_proj_table_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
+  output$climate_proj_table_whitney_et_al_2023a <- renderText((references_and_code$whitney_et_al_2023a))
+  output$climate_proj_table_whitney_et_al_2023b <- renderText((references_and_code$whitney_et_al_2023b))
+  
   
   # Forest Disturbances page
   output$forest_disturb_sleeter_et_al_2012 <- renderText((references_and_code$sleeter_et_al_2012))
@@ -988,27 +992,35 @@ server <- function(input, output,session) {
   output$forest_disturb_goeking_tarboton_2020 <- renderText((references_and_code$goeking_tarboton_2020))
   output$forest_disturb_xiao_et_al_2022 <- renderText((references_and_code$xiao_et_al_2022))
   output$forest_disturb_livneh_et_al_2015b <- renderText((references_and_code$livneh_et_al_2015b))
-  output$forest_disturb_whitney_et_al_2023_1 <- renderText((references_and_code$whitney_et_al_2023))
-  output$forest_disturb_whitney_et_al_2023_2 <- renderText((references_and_code$whitney_et_al_2023))
+  output$forest_disturb_whitney_et_al_2023a_1 <- renderText((references_and_code$whitney_et_al_2023a))
+  output$forest_disturb_whitney_et_al_2023a_2 <- renderText((references_and_code$whitney_et_al_2023a))
+  output$forest_disturb_whitney_et_al_2023b_1 <- renderText((references_and_code$whitney_et_al_2023b))
+  output$forest_disturb_whitney_et_al_2023b_2 <- renderText((references_and_code$whitney_et_al_2023b))
+  
   
   
   # Watersheds page
   output$watersheds_usgs_et_al_2016a <- renderText((references_and_code$usgs_et_al_2016a))
   output$watersheds_usgs_et_al_2016b <- renderText((references_and_code$usgs_et_al_2016b))
   output$watersheds_usgs_et_al_2019 <- renderText((references_and_code$usgs_et_al_2019))
-  output$watersheds_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
+  output$watersheds_whitney_et_al_2023a <- renderText((references_and_code$whitney_et_al_2023a))
+  output$watersheds_whitney_et_al_2023b <- renderText((references_and_code$whitney_et_al_2023b))
+  
   
   # Stakeholder Engagement page
   output$stakeholder_white_et_al_2010 <- renderText((references_and_code$white_et_al_2010))
   output$stakeholder_dunn_laing_2017 <- renderText((references_and_code$dunn_laing_2017))
-  output$stakeholder_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
+  output$stakeholder_whitney_et_al_2023a <- renderText((references_and_code$whitney_et_al_2023a))
+  output$stakeholder_whitney_et_al_2023b <- renderText((references_and_code$whitney_et_al_2023b))
   
   # Scenario Overview page
   output$scenario_pierce_et_al_2014 <- renderText((references_and_code$pierce_et_al_2014))
   output$scenario_pierce_et_al_2015 <- renderText((references_and_code$pierce_et_al_2015))
   output$scenario_taylor_et_al_2012 <- renderText((references_and_code$taylor_et_al_2012))
   output$scenario_sleeter_et_al_2012 <- renderText((references_and_code$sleeter_et_al_2012))
-  output$scenario_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
+  output$scenario_whitney_et_al_2023a <- renderText((references_and_code$whitney_et_al_2023a))
+  output$scenario_whitney_et_al_2023b <- renderText((references_and_code$whitney_et_al_2023b))
+  
   
   # Framework Overview page
   output$framework_vic_code <- renderText((references_and_code$vic_code))
@@ -1040,7 +1052,8 @@ server <- function(input, output,session) {
   output$framework_wigmosta_et_al_1994 <- renderText((references_and_code$wigmosta_et_al_1994))
   output$framework_franchini_pacciani_1991 <- renderText((references_and_code$franchini_pacciani_1991))
   output$framework_bohn_vivoni_2016 <- renderText((references_and_code$bohn_vivoni_2016))
-  output$framework_whitney_et_al_2023 <- renderText((references_and_code$whitney_et_al_2023))
+  output$framework_whitney_et_al_2023a <- renderText((references_and_code$whitney_et_al_2023a))
+  output$framework_whitney_et_al_2023b <- renderText((references_and_code$whitney_et_al_2023b))
   
 ## ----------------------------------Watershed-Analyses Annual tab---------------------------------------## ----
   

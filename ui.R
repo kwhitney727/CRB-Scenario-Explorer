@@ -132,7 +132,7 @@ windowTitle = "CRB-Scenario-Explorer",
       column(12, align="center",
              h4(tags$p(HTML("CRB-Scenario-Explorer and the underlying research was designed by and for hydroclimate scientists and water resource decision-makers. Research method details can be found in the"),
                 actionLink("link_from_landing_to_more_info","'More Info'"),
-                HTML("pages and in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023)</a>. A forethcoming publication will detail the methods for developing the CRB-Scenario-Explorer tool.")))
+                HTML("pages and in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023a)</a>. The methods for developing the CRB-Scenario-Explorer tool are detailed in <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">Whitney <i>et al</i>. (2023b)</a>")))
              ),
     column(12,hr()),
 
@@ -634,7 +634,7 @@ verticalTabPanel(
                                        actionLink("link_from_scenario_to_framework_overview","Framework Overview"), 
                                        HTML("page to learn how we implemented these scenarios.")),
                                hr(),
-                               helpText(HTML("More info can be found in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023)</a>.")),
+                               helpText(HTML("More info can be found in Whitney et al. (<a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">2023a</a>; <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">2023b</a>).")),
                                style = "primary"),
                bsCollapsePanel("References", 
                                   tags$ol(
@@ -642,7 +642,8 @@ verticalTabPanel(
                                    tags$li(htmlOutput("scenario_pierce_et_al_2015")),
                                    tags$li(htmlOutput("scenario_taylor_et_al_2012")), 
                                    tags$li(htmlOutput("scenario_sleeter_et_al_2012")),
-                                   tags$li(htmlOutput("scenario_whitney_et_al_2023"))
+                                   tags$li(htmlOutput("scenario_whitney_et_al_2023a")),
+                                   tags$li(htmlOutput("scenario_whitney_et_al_2023b")),
                                    ), style = "info")
     )
     
@@ -736,7 +737,7 @@ verticalTabPanel(
                                  )
                                ),
                                hr(),
-                               helpText(HTML("More info can be found in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023)</a>.")),
+                               helpText(HTML("More info can be found in Whitney et al. (<a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">2023a</a>; <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">2023b</a>).")),
                                
                                
                                style = "primary"),
@@ -775,7 +776,8 @@ verticalTabPanel(
                                    tags$li(htmlOutput("framework_wigmosta_et_al_1994")), 
                                    tags$li(htmlOutput("framework_franchini_pacciani_1991")),  
                                    tags$li(htmlOutput("framework_bohn_vivoni_2016")),
-                                   tags$li(htmlOutput("framework_whitney_et_al_2023"))
+                                   tags$li(htmlOutput("framework_whitney_et_al_2023a")),
+                                   tags$li(htmlOutput("framework_whitney_et_al_2023b"))
                                  ),
                                style = "info")
     )
@@ -1360,7 +1362,7 @@ verticalTabPanel(
                                          actionLink("climate_proj_update1",HTML("comparisons of mean annual precipitation (<i>P</i>) and air temperature (<i>T</i>)")),
                                          HTML(", we selected downscaled climate forcings for 1976 to 2099 from two products: (1) CanESM2 under R45 emissions for the ‘Warm/Wet’ scenario, and (2) IPSL-CM5A-MR under the R85 emissions for the ‘Hot/Dry’ scenario.")),
                                  hr(),
-                                 helpText(HTML("More info can be found in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023)</a>.")),
+                                 helpText(HTML("More info can be found in Whitney et al. (<a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">2023a</a>; <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">2023b</a>).")),
                                  style = "primary"),
                  # bsCollapsePanel("Assumptions", 
                  #                 # insert assumptions
@@ -1371,7 +1373,8 @@ verticalTabPanel(
                                    tags$li(htmlOutput("climate_proj_pierce_et_al_2014")), 
                                    tags$li(htmlOutput("climate_proj_taylor_et_al_2012")),
                                    tags$li(htmlOutput("climate_proj_gautam_mascaro_2018")),
-                                   tags$li(htmlOutput("climate_proj_whitney_et_al_2023"))
+                                   tags$li(htmlOutput("climate_proj_whitney_et_al_2023a")),
+                                   tags$li(htmlOutput("climate_proj_whitney_et_al_2023b"))
                                  ),
                                  style = "info")
       )
@@ -1410,7 +1413,7 @@ verticalTabPanel(
                                  tags$li(actionLink("climate_proj_to_stakeholder2",HTML("Stakeholders proposed collapsing the effort to two climate bookends (a ‘worse or best case’ future)"))),
                                  tags$li(HTML("Based on comparisons of mean annual precipitation (<i>P</i>) and air temperature (<i>T</i>), we selected downscaled climate forcings for 1976 to 2099 from two products: (1) CanESM2 under R45 emissions for the ‘Warm/Wet’ scenario, and (2) IPSL-CM5A-MR under the R85 emissions for the ‘Hot/Dry’ scenario.")),
                                  hr(),
-                                 helpText(HTML("More info can be found in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023)</a>.")),
+                                 helpText(HTML("More info can be found in Whitney et al. (<a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">2023a</a>; <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">2023b</a>).")),
                                  style = "primary"),
                  # bsCollapsePanel("Assumptions", 
                  #                 # insert assumptions
@@ -1421,7 +1424,8 @@ verticalTabPanel(
                                    tags$li(htmlOutput("climate_proj_table_pierce_et_al_2014")), 
                                    tags$li(htmlOutput("climate_proj_table_taylor_et_al_2012")),
                                    tags$li(htmlOutput("climate_proj_table_gautam_mascaro_2018")),
-                                   tags$li(htmlOutput("climate_proj_table_whitney_et_al_2023"))
+                                   tags$li(htmlOutput("climate_proj_table_whitney_et_al_2023a")),
+                                   tags$li(htmlOutput("climate_proj_table_whitney_et_al_2023b"))
                                  ),
                                  style = "info")
       )
@@ -1488,7 +1492,7 @@ verticalTabPanel(
                                    helpText(actionLink("forest_disturb_update3","Click here"),HTML("for comparisons of forest and grass parameters.")),
                                    helpText(actionLink("forest_disturb_to_watersheds2","Navigate to the 'Watersheds' page"),HTML("for more info on the subbasin and channel delineations.")),
                                    hr(),
-                                   helpText(HTML("More info can be found in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023)</a>.")),
+                                   helpText(HTML("More info can be found in Whitney et al. (<a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">2023a</a>; <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">2023b</a>).")),
                                    style = "primary"),
                    bsCollapsePanel("Assumptions",
                                    # insert assumptions
@@ -1500,7 +1504,7 @@ verticalTabPanel(
                                    tags$li(HTML("The forest disturbances are also applied immediately in the future and are permanent (do not account for forest recovery and its long-term impact on runoff; e.g., Goeking and Tarboton, 2020).")),
                                    tags$li(HTML("The current VIC application also does not include a fully coupled land-atmosphere system. Thus, the meteorological forcings are not sensitive to the modeled forest disturbances.")),
                                    hr(),
-                                   helpText(HTML("More info can be found in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023)</a>.")),
+                                   helpText(HTML("More info can be found in Whitney et al. (<a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">2023a</a>; <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">2023b</a>).")),
                                    style = "warning"),
                    bsCollapsePanel("References",
                                    h5(HTML("<b>References:</b>")),
@@ -1518,7 +1522,8 @@ verticalTabPanel(
                                      tags$li(htmlOutput("forest_disturb_wang_vivoni_2022")),
                                      tags$li(htmlOutput("forest_disturb_seidl_et_al_2011")),
                                      tags$li(htmlOutput("forest_disturb_goeking_tarboton_2020")),
-                                     tags$li(htmlOutput("forest_disturb_whitney_et_al_2023_1"))
+                                     tags$li(htmlOutput("forest_disturb_whitney_et_al_2023a_1")),
+                                     tags$li(htmlOutput("forest_disturb_whitney_et_al_2023b_1"))
                                    ),
                                    style = "info")
         )
@@ -1584,14 +1589,15 @@ verticalTabPanel(
                                  tags$li(HTML("Differences in the vegetation parameters (shown in the figure above) between short and tall vegetation affect evapotranspiration components, snow accumulation and ablation, and canopy interception in the model.")),
                                  tags$li(HTML("With higher forest disturbances, the average vegetation parameter values in the high elevation cells shifted towards the grass conditions")),
                                  hr(),
-                                 helpText(HTML("More info can be found in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023)</a>.")),
+                                 helpText(HTML("More info can be found in Whitney et al. (<a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">2023a</a>; <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">2023b</a>).")),
                                  style = "primary"),
                  bsCollapsePanel("References",
                                  h5(HTML("<b>References:</b>")),
                                  tags$ol(
                                    tags$li(htmlOutput("forest_disturb_xiao_et_al_2022")),
                                    tags$li(htmlOutput("forest_disturb_livneh_et_al_2015b")),
-                                   tags$li(htmlOutput("forest_disturb_whitney_et_al_2023_2")),
+                                   tags$li(htmlOutput("forest_disturb_whitney_et_al_2023a_2")),
+                                   tags$li(htmlOutput("forest_disturb_whitney_et_al_2023b_2"))
                                  ),
                                  style = "info")
       )
@@ -1644,7 +1650,7 @@ verticalTabPanel(
                                  HTML("for statistics of forest cover parameters over each watershed.")
                                ),
                                hr(),
-                               helpText(HTML("More info can be found in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023)</a>.")),
+                               helpText(HTML("More info can be found in Whitney et al. (<a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">2023a</a>; <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">2023b</a>).")),
                                style = "primary"),
                # bsCollapsePanel("Assumptions", 
                #                 # insert assumptions
@@ -1655,7 +1661,8 @@ verticalTabPanel(
                                  tags$li(htmlOutput("watersheds_usgs_et_al_2016a")), 
                                  tags$li(htmlOutput("watersheds_usgs_et_al_2016b")),
                                  tags$li(htmlOutput("watersheds_usgs_et_al_2019")),
-                                 tags$li(htmlOutput("watersheds_whitney_et_al_2023"))
+                                 tags$li(htmlOutput("watersheds_whitney_et_al_2023a")),
+                                 tags$li(htmlOutput("watersheds_whitney_et_al_2023b"))
                                ),
                                style = "info")
     )
@@ -1731,7 +1738,7 @@ verticalTabPanel(
                                h5(HTML("<b>Stakeholder reflections on the CRB-Scenario-Explorer web-tool:</b>")),
                                HTML("We shared CRB-Scenario-Explorer with our stakeholders and held a final meeting to evaluate their user-experience and incorporate their recommendations to improve the tool. Feedback on the web-based tool included recommendations to expand the availability of model variables and re-organize layouts. We implemented these suggestions into the final CRB-Scenario-Explorer design. Participants confirmed that the documentation pages are “thorough,” “nicely organized” (i.e., easy-to-find and accessible), and sufficient for understanding the scenario construction process and the results in relation to parameter representation and assumptions.<br><br>When asked to reflect on the efficacy of the freeform and guided assessments at various scales offered by the tool, stakeholders agreed that: “The hybrid approach provides a great balance for understanding the modelling scenarios.” Similarly, it was noted that the web-based tool and underlying research “most certainly answers the question on forest disturbance impacts and how those impacts affect different water resource metrics.” Stakeholders also found it useful to switch between hybrid analysis modes to meet their needs, indicating for example, that visualizations showing Upper and Lower Basin streamflow in million-acre feet (MAF) “are in line with how we and other stakeholders assess water resources across the basin.”<br><br>Participants noted that the analysis interfaces can be used for briefing and reporting to board members and other executive leaders about the potential impacts from climate change and forest reduction scenarios. Stakeholders can also utilize the documentation pages to clarify the model framework capabilities and limitations."),
                                hr(),
-                               helpText(HTML("More info can be found in <a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">Whitney <i>et al</i>. (2023)</a>.")),
+                               helpText(HTML("More info can be found in Whitney et al. (<a href=\"https://ascelibrary.org/doi/full/10.1061/JWRMD5.WRENG-5905\">2023a</a>; <a href=\"https://doi.org/10.1016/j.envsoft.2023.105763\">2023b</a>).")),
                                style = "primary"),
                # bsCollapsePanel("Assumptions", 
                #                 # insert assumptions
@@ -1741,7 +1748,8 @@ verticalTabPanel(
                                tags$ol(
                                  tags$li(htmlOutput("stakeholder_white_et_al_2010")),
                                  tags$li(htmlOutput("stakeholder_dunn_laing_2017")),
-                                 tags$li(htmlOutput("stakeholder_whitney_et_al_2023"))
+                                 tags$li(htmlOutput("stakeholder_whitney_et_al_2023a")),
+                                 tags$li(htmlOutput("stakeholder_whitney_et_al_2023b"))
                                ),
                                style = "info")
     )
